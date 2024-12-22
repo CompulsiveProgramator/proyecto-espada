@@ -1,5 +1,19 @@
 # ninja log v6
-14	1170	7565732044826224	CMakeFiles/Proyecto_Espada.dir/main.cpp.obj	99d90bece5d858c7
-1174	1722	7565732056444391	Proyecto_Espada.exe	51bbad660e8ad194
 29	1219	7565876631136208	CMakeFiles/Proyecto_Espada.dir/main.cpp.obj	99d90bece5d858c7
 1221	1411	7565876643053869	Proyecto_Espada.exe	51bbad660e8ad194
+9	3632	7565886597887516	build.ninja	af50032ff30bf7af
+19	1142	7565886598776666	CMakeFiles/Proyecto_Espada.dir/main.cpp.obj	1dcf98fb166ac308
+26	1819	7565886598847621	CMakeFiles/Proyecto_Espada.dir/utilities/Interfaz.cpp.obj	3b44a745a9d49599
+1821	2164	7565886616794333	Proyecto_Espada.exe	f62df81747be1c66
+36	3813	7565890197290578	CMakeFiles/Proyecto_Espada.dir/utilities/Interfaz.cpp.obj	3b44a745a9d49599
+24	3919	7565890197175518	CMakeFiles/Proyecto_Espada.dir/main.cpp.obj	1dcf98fb166ac308
+3925	4267	7565890236177931	Proyecto_Espada.exe	f62df81747be1c66
+39	3925	7565894647720295	CMakeFiles/Proyecto_Espada.dir/utilities/Interfaz.cpp.obj	3b44a745a9d49599
+23	3556	7565894851001081	CMakeFiles/Proyecto_Espada.dir/main.cpp.obj	1dcf98fb166ac308
+3557	4025	7565894886337473	Proyecto_Espada.exe	f62df81747be1c66
+41	4003	7565895663920205	CMakeFiles/Proyecto_Espada.dir/utilities/Interfaz.cpp.obj	3b44a745a9d49599
+27	4067	7565895663796474	CMakeFiles/Proyecto_Espada.dir/main.cpp.obj	1dcf98fb166ac308
+4067	4514	7565895704183994	Proyecto_Espada.exe	f62df81747be1c66
+14	1470	7565905702346063	CMakeFiles/Proyecto_Espada.dir/utilities/Interfaz.cpp.obj	3b44a745a9d49599
+8	1508	7565905702290233	CMakeFiles/Proyecto_Espada.dir/main.cpp.obj	1dcf98fb166ac308
+1508	1698	7565905717284224	Proyecto_Espada.exe	f62df81747be1c66

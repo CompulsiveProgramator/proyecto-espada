@@ -579,3 +579,67 @@ events:
       Running the CXX compiler's linker: "C:/Users/secre/AppData/Local/Programs/CLion/bin/mingw/bin/ld.exe" "-v"
       GNU ld (GNU Binutils) 2.40
 ...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.30/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-3.30/Modules/CheckCXXSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "conan_provider.cmake:144 (check_cxx_source_compiles)"
+      - "conan_provider.cmake:186 (detect_gnu_libstdcxx)"
+      - "conan_provider.cmake:370 (detect_lib_cxx)"
+      - "conan_provider.cmake:573 (detect_host_profile)"
+      - "CMakeLists.txt:23 (find_package)"
+    checks:
+      - "Performing Test _conan_is_gnu_libstdcxx"
+    directories:
+      source: "C:/Users/secre/CLionProjects/IG/Proyecto_Espada/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-0usdqr"
+      binary: "C:/Users/secre/CLionProjects/IG/Proyecto_Espada/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-0usdqr"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "_conan_is_gnu_libstdcxx"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/secre/CLionProjects/IG/Proyecto_Espada/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-0usdqr'
+        
+        Run Build Command(s): C:/Users/secre/AppData/Local/Programs/CLion/bin/ninja/win/x64/ninja.exe -v cmTC_f7628
+        [1/2] C:\\Users\\secre\\AppData\\Local\\Programs\\CLion\\bin\\mingw\\bin\\g++.exe -D_conan_is_gnu_libstdcxx  -std=gnu++20 -fdiagnostics-color=always -o CMakeFiles/cmTC_f7628.dir/src.cxx.obj -c C:/Users/secre/CLionProjects/IG/Proyecto_Espada/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-0usdqr/src.cxx
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\Users\\secre\\AppData\\Local\\Programs\\CLion\\bin\\mingw\\bin\\g++.exe   CMakeFiles/cmTC_f7628.dir/src.cxx.obj -o cmTC_f7628.exe -Wl,--out-implib,libcmTC_f7628.dll.a -Wl,--major-image-version,0,--minor-image-version,0  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 && cd ."
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.30/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-3.30/Modules/CheckCXXSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "conan_provider.cmake:152 (check_cxx_source_compiles)"
+      - "conan_provider.cmake:186 (detect_gnu_libstdcxx)"
+      - "conan_provider.cmake:370 (detect_lib_cxx)"
+      - "conan_provider.cmake:573 (detect_host_profile)"
+      - "CMakeLists.txt:23 (find_package)"
+    checks:
+      - "Performing Test _conan_gnu_libstdcxx_is_cxx11_abi"
+    directories:
+      source: "C:/Users/secre/CLionProjects/IG/Proyecto_Espada/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-pw3z96"
+      binary: "C:/Users/secre/CLionProjects/IG/Proyecto_Espada/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-pw3z96"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "_conan_gnu_libstdcxx_is_cxx11_abi"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/secre/CLionProjects/IG/Proyecto_Espada/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-pw3z96'
+        
+        Run Build Command(s): C:/Users/secre/AppData/Local/Programs/CLion/bin/ninja/win/x64/ninja.exe -v cmTC_9bd86
+        [1/2] C:\\Users\\secre\\AppData\\Local\\Programs\\CLion\\bin\\mingw\\bin\\g++.exe -D_conan_gnu_libstdcxx_is_cxx11_abi  -std=gnu++20 -fdiagnostics-color=always -o CMakeFiles/cmTC_9bd86.dir/src.cxx.obj -c C:/Users/secre/CLionProjects/IG/Proyecto_Espada/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-pw3z96/src.cxx
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\Users\\secre\\AppData\\Local\\Programs\\CLion\\bin\\mingw\\bin\\g++.exe   CMakeFiles/cmTC_9bd86.dir/src.cxx.obj -o cmTC_9bd86.exe -Wl,--out-implib,libcmTC_9bd86.dll.a -Wl,--major-image-version,0,--minor-image-version,0  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 && cd ."
+        
+      exitCode: 0
+...

@@ -3,7 +3,9 @@ project(Proyecto_Espada)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(Proyecto_Espada main.cpp)
+add_executable(Proyecto_Espada main.cpp
+        utilities/Interfaz.cpp
+        utilities/Interfaz.h)
 
 if (LINUX)
     find_path(OPENGL_REGISTRY_INCLUDE_DIRS "GL/glcorearb.h")
