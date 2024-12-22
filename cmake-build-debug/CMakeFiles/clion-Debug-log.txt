@@ -1,4 +1,4 @@
-"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=C:/Users/secre/AppData/Local/Programs/CLion/bin/ninja/win/x64/ninja.exe -G Ninja -S C:\Users\secre\CLionProjects\IG\Proyecto_Espada -B C:\Users\secre\CLionProjects\IG\Proyecto_Espada\cmake-build-debug
+"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=C:/Users/secre/AppData/Local/Programs/CLion/bin/ninja/win/x64/ninja.exe -DCMAKE_PROJECT_TOP_LEVEL_INCLUDES=conan_provider.cmake -G Ninja -S C:\Users\secre\CLionProjects\IG\Proyecto_Espada -B C:\Users\secre\CLionProjects\IG\Proyecto_Espada\cmake-build-debug
 -- The C compiler identification is GNU 13.1.0
 -- The CXX compiler identification is GNU 13.1.0
 -- Detecting C compiler ABI info
@@ -11,6 +11,14 @@
 -- Check for working CXX compiler: C:/Users/secre/AppData/Local/Programs/CLion/bin/mingw/bin/g++.exe - skipped
 -- Detecting CXX compile features
 -- Detecting CXX compile features - done
--- Configuring done (3.2s)
+CMake Warning at conan_provider.cmake:651 (message):
+  Conan is correctly configured as dependency provider, but Conan has not
+  been invoked.  Please add at least one call to `find_package()`.
+Call Stack (most recent call first):
+  conan_provider.cmake:666 (conan_provide_dependency_check)
+  CMakeLists.txt:DEFERRED
+
+
+-- Configuring done (4.1s)
 -- Generating done (0.1s)
 -- Build files have been written to: C:/Users/secre/CLionProjects/IG/Proyecto_Espada/cmake-build-debug
