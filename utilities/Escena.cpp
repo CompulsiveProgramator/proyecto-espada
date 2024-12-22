@@ -58,3 +58,19 @@ void IGV::Escena::visualizar() {
 
     glutWireTeapot(0.1);
 }
+
+/**
+ * Setter del atributo ejes
+ * @param valor El valor True o False
+ */
+void IGV::Escena::setEjes(bool valor) {
+    ejes = valor;
+}
+
+/**
+ * Getter del atributo ejes
+ * @return El valor de ejes
+ */
+bool IGV::Escena::getEjes() {
+    return ejes;
+}

@@ -22,6 +22,8 @@ namespace IGV{
         ~Escena();
 
         void visualizar();
+        bool getEjes();
+        void setEjes(bool valor);
     };
 }
 

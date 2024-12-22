@@ -73,6 +73,9 @@ namespace IGV
     void Interfaz::keyboardFunc(unsigned char key, int x, int y) {
         switch ( key )
         {
+            case 'e':
+                instancia->escena->setEjes(!instancia->escena->getEjes());
+                break;
             case 27:
                 exit ( 1 );
                 break;
