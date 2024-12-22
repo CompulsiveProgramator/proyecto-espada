@@ -4,25 +4,28 @@ project(Proyecto_Espada)
 set(CMAKE_CXX_STANDARD 20)
 
 # Para usar Dear ImGui como biblioteca para construir la interfaz grafica de la app
-#file( GLOB IMGUI_FILES imgui/*.cpp)
+file( GLOB IMGUI_FILES imgui/*.cpp)
 
 add_executable(Proyecto_Espada main.cpp
-        #${IMGUI_FILES}
-        utilities/Interfaz.cpp
-        utilities/Interfaz.h
+        ${IMGUI_FILES}
+        utilities/Renderer.cpp
+        utilities/Renderer.h
         utilities/Escena.cpp
         utilities/Escena.h
         utilities/Camara.cpp
         utilities/Camara.h
         utilities/igvPunto3D.cpp
         utilities/igvPunto3D.h
+        utilities/GUI.cpp
+        utilities/GUI.h
 )
 
 target_include_directories(Proyecto_Espada PUBLIC imgui)
 
 find_package(glm)
 find_package(glfw3)
-target_link_libraries(Proyecto_Espada glfw glm::glm)
+find_package(glad)
+target_link_libraries(Proyecto_Espada glm::glm glfw glad::glad)
 
 if (LINUX)
     find_path(OPENGL_REGISTRY_INCLUDE_DIRS "GL/glcorearb.h")

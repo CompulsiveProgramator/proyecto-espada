@@ -58,7 +58,7 @@ void IGV::Escena::visualizar() {
 
     GLfloat color[] = {0.1, 0, 0, 1.0 };
     glMaterialfv(GL_FRONT, GL_EMISSION, color);
-    glutWireTeapot(1);
+    //glutWireTeapot(1);
 }
 
 /**

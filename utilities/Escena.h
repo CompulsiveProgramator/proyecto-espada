@@ -6,7 +6,6 @@
 #define PROYECTO_ESPADA_ESCENA_H
 
 #include <GL/gl.h>
-#include <GL/glut.h>
 
 namespace IGV{
     /**
