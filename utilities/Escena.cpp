@@ -56,7 +56,9 @@ void IGV::Escena::visualizar() {
         pintar_ejes();
     }
 
-    glutWireTeapot(0.1);
+    GLfloat color[] = {0.1, 0, 0, 1.0 };
+    glMaterialfv(GL_FRONT, GL_EMISSION, color);
+    glutWireTeapot(1);
 }
 
 /**
