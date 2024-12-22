@@ -13,6 +13,15 @@ namespace IGV
      */
     IGV::Interfaz::Interfaz() {
         escena = new Escena();
+        camara = new Camara(-1 * 4.5, 1 * 4.5, -1 * 4.5, 1 * 4.5
+                , 1, 200, igvPunto3D{6,4,8}, igvPunto3D{0,0,0}, {0,1,0});
+    }
+
+    /**
+     * Destructor de la clase
+     */
+    Interfaz::~Interfaz() {
+        delete instancia;
     }
 
     /**
@@ -48,7 +57,7 @@ namespace IGV
         glutCreateWindow(_titulo.c_str());
 
         glEnable(GL_DEPTH_TEST); // Se activa el ocultamiento de caras por z-buffer (Usamos la profundidad)
-        glClearColor( 0.7, 0.7, 0.7, 0.0);
+        glClearColor( 0.8, 0.8, 0.8, 0.0);
 
         glEnable(GL_LIGHTING);
         glEnable(GL_NORMALIZE);
@@ -79,6 +88,8 @@ namespace IGV
             case 27:
                 exit ( 1 );
                 break;
+            default:
+                break;
         }
 
         glutPostRedisplay(); // Se renueva el contenido de la ventana
@@ -92,6 +103,9 @@ namespace IGV
     void Interfaz::reshapeFunc(int w, int h) {
         instancia->ancho_ventana = w;
         instancia->alto_ventana = h;
+
+        glutPostRedisplay();
+        instancia->camara->aplicar();
     }
 
     /**
@@ -103,6 +117,7 @@ namespace IGV
 
         glViewport( 0, 0, instancia->ancho_ventana, instancia->alto_ventana);
 
+        instancia->camara->aplicar();
         instancia->escena->visualizar();
 
         // Se refresca la ventana:
@@ -128,13 +143,6 @@ namespace IGV
         glutReshapeFunc(reshapeFunc);
         glutDisplayFunc(displayFunc);
         glutSpecialFunc(specialFunc);
-    }
-
-    /**
-     * Destructor de la clase
-     */
-    Interfaz::~Interfaz() {
-        delete instancia;
     }
 }
 

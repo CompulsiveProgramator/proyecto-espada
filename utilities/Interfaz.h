@@ -17,6 +17,7 @@
 
 #include <iostream>
 #include "Escena.h"
+#include "Camara.h"
 
 namespace IGV{
     /**
@@ -32,6 +33,7 @@ namespace IGV{
         int ancho_ventana = 0; ///< Ancho de la ventana de visualizaci�n
         int alto_ventana = 0;  ///< Alto de la ventana de visualizaci�n
         Escena *escena = nullptr;
+        Camara *camara = nullptr;
     public:
         ~Interfaz();
         static Interfaz& getInstancia();
