@@ -12,7 +12,7 @@ namespace IGV
      * Constructor de la ventana
      */
     IGV::Interfaz::Interfaz() {
-
+        escena = new Escena();
     }
 
     /**
@@ -100,6 +100,8 @@ namespace IGV
 
         glViewport( 0, 0, instancia->ancho_ventana, instancia->alto_ventana);
 
+        instancia->escena->visualizar();
+
         // Se refresca la ventana:
         glutSwapBuffers();
     }
@@ -123,6 +125,13 @@ namespace IGV
         glutReshapeFunc(reshapeFunc);
         glutDisplayFunc(displayFunc);
         glutSpecialFunc(specialFunc);
+    }
+
+    /**
+     * Destructor de la clase
+     */
+    Interfaz::~Interfaz() {
+        delete instancia;
     }
 }
 

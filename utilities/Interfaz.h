@@ -16,6 +16,7 @@
 #endif   // defined(__APPLE__) && defined(__MACH__)
 
 #include <iostream>
+#include "Escena.h"
 
 namespace IGV{
     /**
@@ -30,7 +31,9 @@ namespace IGV{
 
         int ancho_ventana = 0; ///< Ancho de la ventana de visualizaci�n
         int alto_ventana = 0;  ///< Alto de la ventana de visualizaci�n
+        Escena *escena = nullptr;
     public:
+        ~Interfaz();
         static Interfaz& getInstancia();
         void configurar_ventana( int argc, char **argv, int _ancho_ventana, int _alto_ventana, int _pos_X, int _pos_Y,
                                 std::string _titulo );

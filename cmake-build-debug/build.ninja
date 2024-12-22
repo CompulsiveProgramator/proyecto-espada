@@ -65,6 +65,14 @@ build CMakeFiles/Proyecto_Espada.dir/utilities/Interfaz.cpp.obj: CXX_COMPILER__P
   OBJECT_DIR = CMakeFiles\Proyecto_Espada.dir
   OBJECT_FILE_DIR = CMakeFiles\Proyecto_Espada.dir\utilities
 
+build CMakeFiles/Proyecto_Espada.dir/utilities/Escena.cpp.obj: CXX_COMPILER__Proyecto_Espada_unscanned_Debug C$:/Users/secre/CLionProjects/IG/Proyecto_Espada/utilities/Escena.cpp || cmake_object_order_depends_target_Proyecto_Espada
+  DEFINES = -DFREEGLUT_LIB_PRAGMAS=0 -DFREEGLUT_STATIC=1
+  DEP_FILE = CMakeFiles\Proyecto_Espada.dir\utilities\Escena.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -isystem C:/Users/secre/.conan2/p/opengcb89a1c7568ab/p/include -isystem C:/Users/secre/.conan2/p/khrpl54278e0c9b4ae/p/include -isystem C:/Users/secre/.conan2/p/b/freegfeb5ed234330b/p/include
+  OBJECT_DIR = CMakeFiles\Proyecto_Espada.dir
+  OBJECT_FILE_DIR = CMakeFiles\Proyecto_Espada.dir\utilities
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Proyecto_Espada
@@ -73,7 +81,7 @@ build CMakeFiles/Proyecto_Espada.dir/utilities/Interfaz.cpp.obj: CXX_COMPILER__P
 #############################################
 # Link the executable Proyecto_Espada.exe
 
-build Proyecto_Espada.exe: CXX_EXECUTABLE_LINKER__Proyecto_Espada_Debug CMakeFiles/Proyecto_Espada.dir/main.cpp.obj CMakeFiles/Proyecto_Espada.dir/utilities/Interfaz.cpp.obj | C$:/Users/secre/.conan2/p/b/freegfeb5ed234330b/p/lib/libglut.a
+build Proyecto_Espada.exe: CXX_EXECUTABLE_LINKER__Proyecto_Espada_Debug CMakeFiles/Proyecto_Espada.dir/main.cpp.obj CMakeFiles/Proyecto_Espada.dir/utilities/Interfaz.cpp.obj CMakeFiles/Proyecto_Espada.dir/utilities/Escena.cpp.obj | C$:/Users/secre/.conan2/p/b/freegfeb5ed234330b/p/lib/libglut.a
   FLAGS = -g
   LINK_LIBRARIES = C:/Users/secre/.conan2/p/b/freegfeb5ed234330b/p/lib/libglut.a  -lgdi32  -lwinmm  -luser32  -lopengl32  -lglu32  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   LINK_PATH = -LC:/Users/secre/.conan2/p/b/freegfeb5ed234330b/p/lib
