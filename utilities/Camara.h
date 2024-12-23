@@ -5,7 +5,11 @@
 #ifndef PROYECTO_ESPADA_CAMARA_H
 #define PROYECTO_ESPADA_CAMARA_H
 
+#define GLM_ENABLE_EXPERIMENTAL
+
 #include <GL/gl.h>
+#include <glm/gtx/transform.hpp>
+#include <glm/mat4x4.hpp>
 #include "igvPunto3D.h"
 
 enum tipoCamara
@@ -24,18 +28,20 @@ namespace IGV{
         GLdouble xwmin, xwmax, ywmin, ywmax; // Las dimensiones de la camara, si usamos PARALELA
         GLdouble angulo, raspecto; // El angulo de apertura vertical y la relacion ancho/alto
         GLdouble znear, zfar;
-        igvPunto3D posicionCamara;
-        igvPunto3D lookAt;
-        igvPunto3D vectorVertical;
+        glm::vec3 posicionCamara;
+        glm::vec3 lookAt;
+        glm::vec3 vectorVertical;
     public:
         Camara(GLdouble _xmin, GLdouble _xmax,
                GLdouble _ymin, GLdouble _ymax,
                GLdouble _znear, GLdouble _zfar,
-               igvPunto3D _posicion,
-               igvPunto3D _lookAt,
-               igvPunto3D _vectorVertical);
+               glm::vec3 _posicion,
+               glm::vec3 _lookAt,
+               glm::vec3 _vectorVertical);
 
         void aplicar();
+        void rotarSobreLookAtEjeX(bool antihorario);
+        void rotarSobreLookAtEjeY(bool antihorario);
     };
 }
 

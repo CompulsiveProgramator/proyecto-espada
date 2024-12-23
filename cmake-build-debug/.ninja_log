@@ -18,3 +18,13 @@
 33	4254	7566032430259508	CMakeFiles/Proyecto_Espada.dir/utilities/Renderer.cpp.obj	7b89f72952fa2c0a
 22	2945	7566172420292453	CMakeFiles/Proyecto_Espada.dir/utilities/Escena.cpp.obj	53951a2c087b8214
 2946	4434	7566172449525136	Proyecto_Espada.exe	f14d3ecc4b39ff18
+29	4130	7566179712939536	CMakeFiles/Proyecto_Espada.dir/main.cpp.obj	3c1a0524fb73c843
+48	4570	7566179713128414	CMakeFiles/Proyecto_Espada.dir/utilities/Camara.cpp.obj	f332b2f41191eea9
+41	5281	7566179713060531	CMakeFiles/Proyecto_Espada.dir/utilities/Renderer.cpp.obj	7b89f72952fa2c0a
+5281	6391	7566179765458555	Proyecto_Espada.exe	f14d3ecc4b39ff18
+33	4448	7566182731407262	CMakeFiles/Proyecto_Espada.dir/main.cpp.obj	3c1a0524fb73c843
+51	5061	7566182731593683	CMakeFiles/Proyecto_Espada.dir/utilities/Camara.cpp.obj	f332b2f41191eea9
+42	5844	7566182731507282	CMakeFiles/Proyecto_Espada.dir/utilities/Renderer.cpp.obj	7b89f72952fa2c0a
+5845	6992	7566182789527150	Proyecto_Espada.exe	f14d3ecc4b39ff18
+30	3865	7566183099347384	CMakeFiles/Proyecto_Espada.dir/main.cpp.obj	3c1a0524fb73c843
+3866	4997	7566183137708295	Proyecto_Espada.exe	f14d3ecc4b39ff18

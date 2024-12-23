@@ -39,6 +39,9 @@ void key_callback ( GLFWwindow *window, int key, int scancode, int action, int m
         }else if(key == GLFW_KEY_ESCAPE)
         {
             glfwSetWindowShouldClose(window, GLFW_TRUE);
+        }else if(key == GLFW_KEY_LEFT)
+        {
+            IGV::Renderer::getInstancia().getCamara().rotarSobreLookAtEjeY(false);
         }
     }
 }

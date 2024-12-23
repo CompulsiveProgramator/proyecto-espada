@@ -14,7 +14,7 @@ namespace IGV
     IGV::Renderer::Renderer() {
         escena = new Escena();
         camara = new Camara(-1 * 4.5, 1 * 4.5, -1 * 4.5, 1 * 4.5
-                , 1, 200, igvPunto3D{6,4,8}, igvPunto3D{0,0,0}, {0,1,0});
+                , 1, 200, glm::vec3(6,4,8), glm::vec3(0,0,0), glm::vec3(0,1,0));
         configuraOpenGL();
     }
 
@@ -71,6 +71,14 @@ namespace IGV
         glEnable(GL_LIGHTING);
         glEnable(GL_NORMALIZE);
         glEnable(GL_TEXTURE_2D);
+    }
+
+    /**
+     * Getter de la camara de escena
+     * @return
+     */
+    Camara &Renderer::getCamara() {
+        return *camara;
     }
 }
 

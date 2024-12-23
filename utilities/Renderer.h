@@ -29,6 +29,7 @@ namespace IGV{
         static Renderer& getInstancia();
         void refrescar();
         Escena& getEscena();
+        Camara& getCamara();
         static void modificarTamañoVentana(int ancho, int alto);
     };
 }
