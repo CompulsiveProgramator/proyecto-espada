@@ -67,7 +67,7 @@ void IGV::Escena::visualizar() {
             std::vector<GLfloat> pos = mallas[i].getPosicionesVertices();
             std::vector<GLuint> indices = mallas[i].getIndices();
             glVertexPointer(3, GL_FLOAT, 0, pos.data());
-            glDrawElements(GL_QUADS, indices.size(), GL_UNSIGNED_INT, indices.data());
+            glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, indices.data());
             glDisableClientState(GL_VERTEX_ARRAY);
         }
     }
