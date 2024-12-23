@@ -14,16 +14,19 @@ namespace IGV{
     class Malla {
     private:
         std::vector<GLfloat> posicionesVertices;
+        std::vector<GLfloat> normales;
         std::vector<GLuint> indices;
         Material material;
     public:
-        Malla(std::vector<GLfloat> pos, std::vector<GLuint> ind, Material mat);
+        Malla(std::vector<GLfloat> pos, std::vector<GLfloat> norm, std::vector<GLuint> ind, Material mat);
 
         const std::vector<GLfloat> &getPosicionesVertices() const;
 
         const Material &getMaterial() const;
 
         const std::vector<GLuint> &getIndices() const;
+
+        const std::vector<GLfloat> &getNormales() const;
     };
 }
 

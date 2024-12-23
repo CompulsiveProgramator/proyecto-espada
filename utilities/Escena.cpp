@@ -37,7 +37,15 @@ void IGV::Escena::pintar_ejes() {
  * Constructor de la escena
  */
 IGV::Escena::Escena() {
-
+    luzPuntual = new FuenteLuz(0,
+                                                 igvPunto3D(1,1,1),
+                                                 Color(0.0, 0.0, 0.0, 1.0),
+                                                 Color(1, 1, 1, 1),
+                                                 Color(1, 1, 1, 1),
+                                                 1,
+                                                 1,
+                                                 1
+    );
 }
 
 /**
@@ -45,6 +53,7 @@ IGV::Escena::Escena() {
  */
 IGV::Escena::~Escena() {
     delete modelo;
+    delete luzPuntual;
 }
 
 /**
@@ -58,17 +67,33 @@ void IGV::Escena::visualizar() {
         pintar_ejes();
     }
 
+    if( luzPuntual )
+    {
+        luzPuntual->aplicar();
+    }
+
     if ( modelo )
     {
         std::vector<IGV::Malla> mallas = modelo->getMallas();
         for(int i = 0 ; i < mallas.size() ; i++)
         {
-            glEnableClientState(GL_VERTEX_ARRAY);
             std::vector<GLfloat> pos = mallas[i].getPosicionesVertices();
+            std::vector<GLfloat> norm = mallas[i].getNormales();
             std::vector<GLuint> indices = mallas[i].getIndices();
+            Material material = mallas[i].getMaterial();
+
+            GLfloat Es = material.getEs();
+
+            glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, &material.getKd()[0]);
+            glMaterialfv(GL_FRONT, GL_SPECULAR, &material.getKs()[0]);
+            glMaterialfv(GL_FRONT, GL_SHININESS, &Es);
+            glEnableClientState(GL_VERTEX_ARRAY);
             glVertexPointer(3, GL_FLOAT, 0, pos.data());
+            glEnableClientState(GL_NORMAL_ARRAY);
+            glNormalPointer(GL_FLOAT, 0, norm.data());
             glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, indices.data());
             glDisableClientState(GL_VERTEX_ARRAY);
+            glDisableClientState(GL_NORMAL_ARRAY);
         }
     }
 }

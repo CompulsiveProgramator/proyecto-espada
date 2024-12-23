@@ -27,6 +27,7 @@ namespace IGV
             objl::Mesh *mesh = &loader.LoadedMeshes[i];
 
             std::vector<GLfloat> posicionesVertices;
+            std::vector<GLfloat> normales;
             std::vector<GLuint> indices;
 
             for(int j = 0 ; j < mesh->Vertices.size() ; j++)
@@ -34,6 +35,10 @@ namespace IGV
                 posicionesVertices.push_back(mesh->Vertices[j].Position.X);
                 posicionesVertices.push_back(mesh->Vertices[j].Position.Y);
                 posicionesVertices.push_back(mesh->Vertices[j].Position.Z);
+
+                normales.push_back(mesh->Vertices[j].Normal.X);
+                normales.push_back(mesh->Vertices[j].Normal.Y);
+                normales.push_back(mesh->Vertices[j].Normal.Z);
             }
 
             for(int j = 0 ; j < mesh->Indices.size() ; j++)
@@ -41,13 +46,14 @@ namespace IGV
                 indices.push_back(mesh->Indices[j]);
             }
 
+            std::cout << mesh->MeshMaterial.Ka.X << " " << mesh->MeshMaterial.Ka.Y << " " << mesh->MeshMaterial.Ka.Z << "\n";
             glm::vec3 ka = glm::vec3(mesh->MeshMaterial.Ka.X, mesh->MeshMaterial.Ka.Y, mesh->MeshMaterial.Ka.Z);
             glm::vec3 kd = glm::vec3(mesh->MeshMaterial.Kd.X, mesh->MeshMaterial.Kd.Y, mesh->MeshMaterial.Kd.Z);
             glm::vec3 ks = glm::vec3(mesh->MeshMaterial.Ks.X, mesh->MeshMaterial.Ks.Y, mesh->MeshMaterial.Ks.Z);
             GLfloat exponenteEspecular = mesh->MeshMaterial.Ns;
             Material material(ka, kd, ks, exponenteEspecular);
 
-            Malla nuevaMalla(posicionesVertices, indices, material);
+            Malla nuevaMalla(posicionesVertices, normales, indices, material);
             mallas.push_back(nuevaMalla);
         }
     }

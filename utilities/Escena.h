@@ -7,6 +7,7 @@
 
 #include <GL/gl.h>
 #include "modelo/Modelo.h"
+#include "FuenteLuz.h"
 
 namespace IGV{
     /**
@@ -16,7 +17,7 @@ namespace IGV{
     private:
         bool ejes = true; // Para dibujar los ejes de coordenadas X,Y,Z
         Modelo *modelo = nullptr;
-
+        FuenteLuz *luzPuntual = nullptr;
         void pintar_ejes();
     public:
         Escena();

@@ -25,6 +25,12 @@ add_executable(Proyecto_Espada main.cpp
         utilities/modelo/Material.cpp
         utilities/modelo/Material.h
         utilities/modelo/OBJ_Loader.h
+        utilities/FuenteLuz.h
+        utilities/FuenteLuz.cpp
+        utilities/Color.h
+        utilities/Color.cpp
+        utilities/ventanas/Ventana.cpp
+        utilities/ventanas/Ventana.h
 )
 
 target_include_directories(Proyecto_Espada PUBLIC imgui)
