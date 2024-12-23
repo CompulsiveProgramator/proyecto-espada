@@ -11,7 +11,7 @@ namespace IGV
     * Constructor del modelo
     * @param rutaArchivo La ruta hacia el archivo OBJ
     */
-    IGV::Modelo::Modelo(std::string rutaArchivo) {
+    IGV::Modelo::Modelo(std::string rutaArchivo):matrizModelado(glm::translate(glm::vec3(0,0,0))) {
         objl::Loader loader;
 
         if(!loader.LoadFile(rutaArchivo))
@@ -46,7 +46,6 @@ namespace IGV
                 indices.push_back(mesh->Indices[j]);
             }
 
-            std::cout << mesh->MeshMaterial.Ka.X << " " << mesh->MeshMaterial.Ka.Y << " " << mesh->MeshMaterial.Ka.Z << "\n";
             glm::vec3 ka = glm::vec3(mesh->MeshMaterial.Ka.X, mesh->MeshMaterial.Ka.Y, mesh->MeshMaterial.Ka.Z);
             glm::vec3 kd = glm::vec3(mesh->MeshMaterial.Kd.X, mesh->MeshMaterial.Kd.Y, mesh->MeshMaterial.Kd.Z);
             glm::vec3 ks = glm::vec3(mesh->MeshMaterial.Ks.X, mesh->MeshMaterial.Ks.Y, mesh->MeshMaterial.Ks.Z);
@@ -60,5 +59,25 @@ namespace IGV
 
     std::vector<Malla> IGV::Modelo::getMallas() {
         return mallas;
+    }
+
+    void Modelo::escalarUniforme(float i) {
+        matrizModelado = glm::scale(glm::vec3(i,i,i)) * matrizModelado;
+    }
+
+    /**
+     * Getter de la matriz de modelado del modelo
+     * @return
+     */
+    glm::mat4 Modelo::getMatrizModelado() {
+        return matrizModelado;
+    }
+
+    /**
+     * Metodo para trasladar el modelo sobre el eje Y
+     * @param distancia La distancia a trasladar
+     */
+    void Modelo::aplicarTraslacionEjeY(float distancia) {
+        matrizModelado = glm::translate(glm::vec3(0, distancia, 0)) * matrizModelado;
     }
 }

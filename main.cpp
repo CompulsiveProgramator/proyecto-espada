@@ -42,9 +42,18 @@ void key_callback ( GLFWwindow *window, int key, int scancode, int action, int m
         }else if(key == GLFW_KEY_LEFT)
         {
             IGV::Renderer::getInstancia().getCamara().rotarSobreLookAtEjeY(false);
+        }else if(key == GLFW_KEY_RIGHT)
+        {
+            IGV::Renderer::getInstancia().getCamara().rotarSobreLookAtEjeY(true);
         }else if(key == GLFW_KEY_A)
         {
             IGV::Renderer::getInstancia().getEscena().agregarModelo("../modelos/espada.obj");
+        }else if(key == GLFW_KEY_S)
+        {
+            IGV::Renderer::getInstancia().getEscena().getModelo().escalarUniforme(1.1);
+        }else if(key == GLFW_KEY_DOWN)
+        {
+            IGV::Renderer::getInstancia().getEscena().getModelo().aplicarTraslacionEjeY(-0.1);
         }
     }
 }
@@ -82,7 +91,7 @@ int main( int argc, char **argv ) {
 
     // Bucle principal
     while (!glfwWindowShouldClose(window)) {
-        glClear(GL_COLOR_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         IGV::Renderer::getInstancia().refrescar();
 

@@ -2,9 +2,8 @@
 // Created by secre on 22/12/2024.
 //
 
+#include <glm/gtc/type_ptr.hpp>
 #include "Escena.h"
-
-#include <utility>
 
 /**
  * Metodo para pintar los ejes X,Y,Z
@@ -13,6 +12,7 @@ void IGV::Escena::pintar_ejes() {
     GLfloat rojo[] = { 1,0,0,1.0 };
     GLfloat verde[] = { 0, 1, 0, 1.0 };
     GLfloat azul[] = { 0, 0, 1, 1.0 };
+    GLfloat negro[] = { 0, 0, 0, 1.0};
 
     glMaterialfv ( GL_FRONT, GL_EMISSION, rojo );
     glBegin ( GL_LINES );
@@ -31,6 +31,8 @@ void IGV::Escena::pintar_ejes() {
     glVertex3f ( 0, 0, 1000 );
     glVertex3f ( 0, 0, -1000 );
     glEnd ();
+
+    glMaterialfv ( GL_FRONT, GL_EMISSION, negro );
 }
 
 /**
@@ -74,6 +76,11 @@ void IGV::Escena::visualizar() {
 
     if ( modelo )
     {
+        glm::mat4 matModelado = modelo->getMatrizModelado();
+        glMatrixMode(GL_MODELVIEW);
+        // A la matriz de vision, proyeccion de la camara, se le multiplica ( por la derecha ;3 ) la matriz de modelado del modelo
+        glMultMatrixf(glm::value_ptr(matModelado));
+
         std::vector<IGV::Malla> mallas = modelo->getMallas();
         for(int i = 0 ; i < mallas.size() ; i++)
         {
@@ -117,4 +124,8 @@ bool IGV::Escena::getEjes() {
 void IGV::Escena::agregarModelo(std::string rutaArchivo) {
     delete modelo;
     modelo = new Modelo(std::move(rutaArchivo));
+}
+
+IGV::Modelo& IGV::Escena::getModelo() {
+    return *modelo;
 }

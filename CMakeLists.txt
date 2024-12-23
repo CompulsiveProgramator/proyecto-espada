@@ -29,7 +29,6 @@ add_executable(Proyecto_Espada main.cpp
         utilities/FuenteLuz.cpp
         utilities/Color.h
         utilities/Color.cpp
-        utilities/ventanas/Ventana.cpp
         utilities/ventanas/Ventana.h
 )
 

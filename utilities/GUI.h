@@ -5,10 +5,6 @@
 #ifndef PROYECTO_ESPADA_GUI_H
 #define PROYECTO_ESPADA_GUI_H
 
-/// Los includes de IMGUI:
-#include <imgui.h>
-#include <imgui_impl_glfw.h>
-#include <imgui_impl_opengl3.h>
 
 namespace IGV{
     /**

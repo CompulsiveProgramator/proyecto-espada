@@ -5,8 +5,11 @@
 #ifndef PROYECTO_ESPADA_MODELO_H
 #define PROYECTO_ESPADA_MODELO_H
 
+#define GLM_ENABLE_EXPERIMENTAL
+
 #include <iostream>
 #include <vector>
+#include <glm/gtx/transform.hpp>
 #include "Malla.h"
 
 namespace IGV{
@@ -16,9 +19,13 @@ namespace IGV{
     class Modelo {
     private:
         std::vector<Malla> mallas; /// Las mallas de triangulos
+        glm::mat4 matrizModelado;
     public:
         Modelo(std::string rutaArchivo);
         std::vector<Malla> getMallas();
+        glm::mat4 getMatrizModelado();
+        void escalarUniforme(float i);
+        void aplicarTraslacionEjeY(float distancia);
     };
 }
 
