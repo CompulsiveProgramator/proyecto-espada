@@ -6,6 +6,7 @@
 #define PROYECTO_ESPADA_ESCENA_H
 
 #include <GL/gl.h>
+#include "modelo/Modelo.h"
 
 namespace IGV{
     /**
@@ -14,6 +15,7 @@ namespace IGV{
     class Escena {
     private:
         bool ejes = true; // Para dibujar los ejes de coordenadas X,Y,Z
+        Modelo *modelo = nullptr;
 
         void pintar_ejes();
     public:
@@ -23,6 +25,7 @@ namespace IGV{
         void visualizar();
         bool getEjes();
         void setEjes(bool valor);
+        void agregarModelo(std::string rutaArchivo);
     };
 }
 

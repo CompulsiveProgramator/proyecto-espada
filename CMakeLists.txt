@@ -18,6 +18,13 @@ add_executable(Proyecto_Espada main.cpp
         utilities/igvPunto3D.h
         utilities/GUI.cpp
         utilities/GUI.h
+        utilities/modelo/Modelo.cpp
+        utilities/modelo/Modelo.h
+        utilities/modelo/Malla.cpp
+        utilities/modelo/Malla.h
+        utilities/modelo/Material.cpp
+        utilities/modelo/Material.h
+        utilities/modelo/OBJ_Loader.h
 )
 
 target_include_directories(Proyecto_Espada PUBLIC imgui)

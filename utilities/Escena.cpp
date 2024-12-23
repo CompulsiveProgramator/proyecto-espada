@@ -4,6 +4,8 @@
 
 #include "Escena.h"
 
+#include <utility>
+
 /**
  * Metodo para pintar los ejes X,Y,Z
  */
@@ -42,7 +44,7 @@ IGV::Escena::Escena() {
  * Destructor de la escena
  */
 IGV::Escena::~Escena() {
-
+    delete modelo;
 }
 
 /**
@@ -56,13 +58,7 @@ void IGV::Escena::visualizar() {
         pintar_ejes();
     }
 
-    GLfloat color[] = {0.1, 0, 0, 1.0 };
-    glMaterialfv(GL_FRONT, GL_EMISSION, color);
-    glBegin(GL_TRIANGLES);
-    glVertex3f(-1,0,0);
-    glVertex3f(1,0,0);
-    glVertex3f(0,1,0);
-    glEnd();
+
 }
 
 /**
@@ -79,4 +75,9 @@ void IGV::Escena::setEjes(bool valor) {
  */
 bool IGV::Escena::getEjes() {
     return ejes;
+}
+
+void IGV::Escena::agregarModelo(std::string rutaArchivo) {
+    delete modelo;
+    modelo = new Modelo(std::move(rutaArchivo));
 }
