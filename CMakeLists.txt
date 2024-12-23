@@ -30,6 +30,8 @@ add_executable(Proyecto_Espada main.cpp
         utilities/Color.h
         utilities/Color.cpp
         utilities/ventanas/Ventana.h
+        utilities/ventanas/VentanaGestionModelo.cpp
+        utilities/ventanas/VentanaGestionModelo.h
 )
 
 target_include_directories(Proyecto_Espada PUBLIC imgui)

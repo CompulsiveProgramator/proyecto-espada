@@ -5,6 +5,7 @@
 #ifndef PROYECTO_ESPADA_GUI_H
 #define PROYECTO_ESPADA_GUI_H
 
+#include "ventanas/VentanaGestionModelo.h"
 
 namespace IGV{
     /**
@@ -16,6 +17,7 @@ namespace IGV{
         static GUI *instancia;
         GUI();
 
+        VentanaGestionModelo ventanaGestionModelo;
     public:
         static GUI& getInstancia();
         void refrescar();

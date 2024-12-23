@@ -1,6 +1,7 @@
 #include <iostream>
 #include <GLFW/glfw3.h>
 #include "utilities/Renderer.h"
+#include "utilities/ventanas/Ventana.h"
 
 /**
  * Callback llamado cuando redimensionamos la pantalla
@@ -89,15 +90,29 @@ int main( int argc, char **argv ) {
     glfwSetFramebufferSizeCallback ( window, framebuffer_size_callback );
     glfwSetKeyCallback ( window, key_callback );
 
+    /// Inicialización  de DearIMGui
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO();
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+    ImGui_ImplGlfw_InitForOpenGL(window, true);
+    ImGui_ImplOpenGL3_Init();
+
     // Bucle principal
     while (!glfwWindowShouldClose(window)) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         IGV::Renderer::getInstancia().refrescar();
+        IGV::GUI::getInstancia().refrescar();
 
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
+
+    /// Liberamos los recursos de ImGui
+    ImGui_ImplOpenGL3_Shutdown();
+    ImGui_ImplGlfw_Shutdown();
+    ImGui::DestroyContext ();
 
     glfwDestroyWindow ( window ); // - Cerramos y destruimos la ventana de la aplicación.
     window = nullptr;

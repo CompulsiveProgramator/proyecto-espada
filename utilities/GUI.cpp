@@ -10,7 +10,7 @@ namespace IGV{
     /**
      * Constructor de la GUI
      */
-    GUI::GUI() {
+    GUI::GUI(): ventanaGestionModelo() {
 
     }
 
@@ -27,8 +27,18 @@ namespace IGV{
         return *instancia;
     }
 
+    /**
+     * Metodo que pinta la ventana la GUI
+     */
     void GUI::refrescar() {
+        ImGui_ImplOpenGL3_NewFrame();
+        ImGui_ImplGlfw_NewFrame();
+        ImGui::NewFrame();
 
+        ventanaGestionModelo.refrescarVentana();
+
+        ImGui::Render();
+        ImGui_ImplOpenGL3_RenderDrawData ( ImGui::GetDrawData() );
     }
 }
 
