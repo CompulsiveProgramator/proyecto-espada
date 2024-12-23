@@ -18,6 +18,12 @@ namespace IGV{
         Material material;
     public:
         Malla(std::vector<GLfloat> pos, std::vector<GLuint> ind, Material mat);
+
+        const std::vector<GLfloat> &getPosicionesVertices() const;
+
+        const Material &getMaterial() const;
+
+        const std::vector<GLuint> &getIndices() const;
     };
 }
 

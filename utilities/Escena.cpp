@@ -58,7 +58,19 @@ void IGV::Escena::visualizar() {
         pintar_ejes();
     }
 
-
+    if ( modelo )
+    {
+        std::vector<IGV::Malla> mallas = modelo->getMallas();
+        for(int i = 0 ; i < mallas.size() ; i++)
+        {
+            glEnableClientState(GL_VERTEX_ARRAY);
+            std::vector<GLfloat> pos = mallas[i].getPosicionesVertices();
+            std::vector<GLuint> indices = mallas[i].getIndices();
+            glVertexPointer(3, GL_FLOAT, 0, pos.data());
+            glDrawElements(GL_QUADS, indices.size(), GL_UNSIGNED_INT, indices.data());
+            glDisableClientState(GL_VERTEX_ARRAY);
+        }
+    }
 }
 
 /**

@@ -10,3 +10,15 @@ IGV::Malla::Malla(std::vector<GLfloat> pos, std::vector<GLuint> ind, Material ma
     posicionesVertices = std::move(pos);
     indices = std::move(ind);
 }
+
+const std::vector<GLfloat> &IGV::Malla::getPosicionesVertices() const {
+    return posicionesVertices;
+}
+
+const IGV::Material &IGV::Malla::getMaterial() const {
+    return material;
+}
+
+const std::vector<GLuint> &IGV::Malla::getIndices() const {
+    return indices;
+}

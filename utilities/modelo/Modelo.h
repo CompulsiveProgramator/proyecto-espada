@@ -18,6 +18,7 @@ namespace IGV{
         std::vector<Malla> mallas; /// Las mallas de triangulos
     public:
         Modelo(std::string rutaArchivo);
+        std::vector<Malla> getMallas();
     };
 }
 
