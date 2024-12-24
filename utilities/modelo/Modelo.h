@@ -33,6 +33,7 @@ namespace IGV{
         void aplicarRotacionEjeY(float angulo);
         void aplicarRotacionEjeZ(float angulo);
         void aplicarEscaladoEjeX(float proporcion);
+        void aplicarEscaladoEjeY(float proporcion);
         void resetearMatrizModelado();
     };
 }

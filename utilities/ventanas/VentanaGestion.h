@@ -34,7 +34,9 @@ namespace IGV{
         float rotacionZ = 0;
 
         // Para los escalados:
-        float escaladoX = 0;
+        float escaladoX = 1;
+        float escaladoY = 1;
+        float escaladoZ = 1;
 
         void visualizarMenuModelo();
         void visualizarMenuTransformaciones();
