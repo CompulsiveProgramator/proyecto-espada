@@ -65,3 +65,7 @@
 85	8241	7567490476433797	CMakeFiles/Proyecto_Espada.dir/utilities/ventanas/VentanaGestion.cpp.obj	7ce80fae5eda0a2e
 73	9824	7567490476311990	CMakeFiles/Proyecto_Espada.dir/utilities/modelo/Modelo.cpp.obj	c6232d7b4ba75cb
 9824	11452	7567490573823204	Proyecto_Espada.exe	a4d655054f4ca6a1
+39	5605	7567504428831299	CMakeFiles/Proyecto_Espada.dir/main.cpp.obj	3c1a0524fb73c843
+51	6950	7567504428957115	CMakeFiles/Proyecto_Espada.dir/utilities/GUI.cpp.obj	83b1158c08bd1476
+60	7035	7567504429044171	CMakeFiles/Proyecto_Espada.dir/utilities/ventanas/VentanaGestion.cpp.obj	7ce80fae5eda0a2e
+7035	8784	7567504498790191	Proyecto_Espada.exe	a4d655054f4ca6a1

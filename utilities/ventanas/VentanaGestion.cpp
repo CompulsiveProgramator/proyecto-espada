@@ -74,10 +74,13 @@ namespace IGV{
             {
                 ImGui::Text("Traslación");
                 ImGui::DragFloat("X", &traslacionX, 0.005f, 0.0f, 1.0f, "%.3f", ImGuiSliderFlags_None);
+                ImGui::DragFloat("Y", &traslacionY, 0.005f, 0.0f, 1.0f, "%.3f", ImGuiSliderFlags_None);
+                //ImGui::DragFloat("Z", &traslacionZ, 0.005f, 0.0f, 1.0f, "%.3f", ImGuiSliderFlags_None);
 
                 if(ImGui::Button("Aplicar"))
                 {
                     Renderer::getInstancia().getEscena().getModelo().aplicarTraslacionEjeX(traslacionX);
+                    Renderer::getInstancia().getEscena().getModelo().aplicarTraslacionEjeY(traslacionY);
                 }
             }
         }catch(std::exception &e)
