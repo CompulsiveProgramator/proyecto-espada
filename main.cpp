@@ -45,6 +45,9 @@ void cursorPosition_callback(GLFWwindow *window, double xpos, double ypos) {
             if(tipoMovimiento == ORBIT)
             {
                 IGV::Renderer::getInstancia().getCamara().rotarSobreLookAtEjeX(difY > 0);
+            }else if(tipoMovimiento == ZOOM)
+            {
+                IGV::Renderer::getInstancia().getCamara().zoom(difY > 0);
             }
             lastYpos = ypos;
         }

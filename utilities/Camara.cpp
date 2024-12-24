@@ -86,3 +86,17 @@ void IGV::Camara::rotarSobreLookAtEjeY(bool antihorario) {
         posicionCamara = rotacionSobrePosicionLookAt * glm::vec4(posicionCamara, 1);
     }
 }
+
+/**
+ * Metodo para hacer zoom con la camara
+ * @param positivo true si aumentamos el angulo de vision, false si lo disminuimos
+ */
+void IGV::Camara::zoom(bool positivo) {
+    if(positivo){
+        angulo += 5.0;
+    }else{
+        if((angulo - 5) > 0){
+            angulo -= 5.0;
+        }
+    }
+}

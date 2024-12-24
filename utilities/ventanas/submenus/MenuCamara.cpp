@@ -12,7 +12,7 @@ void IGV::MenuCamara::refrescarMenu() {
     {
         ImGui::Checkbox("Seguir raton", &seguirRaton);
 
-        const char* tiposMovimientoCamara[] = {"Orbit"};
+        const char* tiposMovimientoCamara[] = {"Orbit", "Zoom"};
         static int tipoMovimientoCamaraActual = 0; // Índice de la opción seleccionada
 
         ImGui::Text("Opciones de movimiento:");
@@ -24,6 +24,7 @@ void IGV::MenuCamara::refrescarMenu() {
                 if (ImGui::Selectable(tiposMovimientoCamara[n], is_selected))
                 {
                     tipoMovimientoCamaraActual = n; // Guarda la opción seleccionada
+                    tipoMovimientoCamara = TipoMovimientoCamara(n);
                 }
 
                 // Marca el elemento seleccionado para que esté resaltado

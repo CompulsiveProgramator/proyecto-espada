@@ -8,7 +8,8 @@
 #include "Menu.h"
 
 enum TipoMovimientoCamara{
-    ORBIT
+    ORBIT,
+    ZOOM
 };
 
 namespace IGV{
