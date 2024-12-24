@@ -23,12 +23,18 @@ namespace IGV{
     class VentanaGestion: public Ventana {
     private:
         std::string nombreModelo;
+        // Para las traslaciones:
         float traslacionX = 0;
         float traslacionY = 0;
         float traslacionZ = 0;
+
+        // Para las rotaciones:
         float rotacionX = 0;
         float rotacionY = 0;
         float rotacionZ = 0;
+
+        // Para los escalados:
+        float escaladoX = 0;
 
         void visualizarMenuModelo();
         void visualizarMenuTransformaciones();

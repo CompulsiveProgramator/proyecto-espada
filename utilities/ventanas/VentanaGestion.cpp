@@ -100,7 +100,7 @@ namespace IGV{
                     ImGui::TreePop();
                 }
 
-                if(ImGui::TreeNode("Rotaciones"))
+                if(ImGui::TreeNode("Rotación"))
                 {
                     ImGui::DragFloat("X", &rotacionX, 0.5f, -90.0f, 90.0f, "%.3f", ImGuiSliderFlags_None);
                     ImGui::DragFloat("Y", &rotacionY, 0.5f, -90.0f, 90.0f, "%.3f", ImGuiSliderFlags_None);
@@ -118,6 +118,18 @@ namespace IGV{
                         Renderer::getInstancia().getEscena().getModelo().aplicarRotacionEjeX(rotacionX);
                         Renderer::getInstancia().getEscena().getModelo().aplicarRotacionEjeY(rotacionY);
                         Renderer::getInstancia().getEscena().getModelo().aplicarRotacionEjeZ(rotacionZ);
+                    }
+
+                    ImGui::TreePop();
+                }
+
+                if(ImGui::TreeNode("Escalado"))
+                {
+                    ImGui::DragFloat("X", &escaladoX, 0.005f, -2.0f, 2.0f, "%.3f", ImGuiSliderFlags_None);
+
+                    if(ImGui::Button("Aplicar"))
+                    {
+                        Renderer::getInstancia().getEscena().getModelo().aplicarEscaladoEjeX(escaladoX);
                     }
 
                     ImGui::TreePop();

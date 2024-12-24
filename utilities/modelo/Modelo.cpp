@@ -124,4 +124,12 @@ namespace IGV
     void Modelo::resetearMatrizModelado() {
         matrizModelado = glm::translate(glm::vec3(0,0,0));
     }
+
+    /**
+     * Metodo para aplicar un escalado al modelo sobre el eje X
+     * @param proporcion La proporcion de escalada ( Ej; 2 -> Duplicamos el tamaño en X , 0.5 -> Dividimos a la mitad el tamaño en X , 1 -> Se queda igual !!!
+     */
+    void Modelo::aplicarEscaladoEjeX(float proporcion) {
+        matrizModelado = glm::scale(glm::vec3(proporcion, 1, 1)) * matrizModelado;
+    }
 }
