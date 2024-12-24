@@ -1,3 +1,4 @@
+#include <iostream>
 #include "FuenteLuz.h"
 
 // M�todos constructores
@@ -199,8 +200,6 @@ bool FuenteLuz::esta_encendida ()
  */
 void FuenteLuz::aplicar ()
 {
-
-    // TODO: APARTADO A
     // si la luz est� encendida
     //	activar la luz
     //	establecer la posici�n de la luz
@@ -214,29 +213,52 @@ void FuenteLuz::aplicar ()
 
     if(tipoLuz == PUNTUAL) // luz puntual
     {
-        glLightfv(GL_LIGHT0, GL_POSITION, posicion.cloneToFloatArray());
-        glLightfv(GL_LIGHT0, GL_AMBIENT_AND_DIFFUSE, colorAmbiente.cloneToFloatArray());
-        glLightfv(GL_LIGHT0, GL_SPECULAR, colorEspecular.cloneToFloatArray());
+        float *pos = posicion.cloneToFloatArray();
+        float *Ka = colorAmbiente.cloneToFloatArray();
+        float *Kd = colorDifuso.cloneToFloatArray();
+        float *Ks = colorEspecular.cloneToFloatArray();
+
+        glLightfv(GL_LIGHT0, GL_POSITION, pos);
+        glLightfv(GL_LIGHT0, GL_AMBIENT, Ka);
+        glLightfv(GL_LIGHT0, GL_DIFFUSE, Kd);
+        glLightfv(GL_LIGHT0, GL_SPECULAR, Ks);
         glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, float(aten_a0));
         glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, (float)aten_a1);
         glLightf(GL_LIGHT0, GL_QUADRATIC_ATTENUATION, (float)aten_a2);
         glEnable(GL_LIGHT0);
+
+        // Que no me entere yo que haya memory leaks ;)
+        delete [] pos;
+        delete [] Ka;
+        delete [] Kd;
+        delete [] Ks;
     }
     else if(tipoLuz == FOCAL) // luz focal ( como la lampara de mi cuarto )
     {
-        glLightfv(GL_LIGHT0, GL_POSITION, posicion.cloneToFloatArray());
-        glLightfv(GL_LIGHT0, GL_AMBIENT_AND_DIFFUSE, colorAmbiente.cloneToFloatArray());
-        glLightfv(GL_LIGHT0, GL_SPECULAR, colorEspecular.cloneToFloatArray());
+        float *pos = posicion.cloneToFloatArray();
+        float *Kd = colorDifuso.cloneToFloatArray();
+        float *Ks = colorEspecular.cloneToFloatArray();
+        float *direccionFoco = direccion_foco.cloneToFloatArray();
+
+        glLightfv(GL_LIGHT0, GL_POSITION, pos);
+        glLightfv(GL_LIGHT0, GL_AMBIENT_AND_DIFFUSE, Kd);
+        glLightfv(GL_LIGHT0, GL_SPECULAR, Ks);
         glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, float(aten_a0));
         glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, (float)aten_a1);
         glLightf(GL_LIGHT0, GL_QUADRATIC_ATTENUATION, (float)aten_a2);
-        glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, direccion_foco.cloneToFloatArray());
+        glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, direccionFoco);
         glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, (float)angulo_foco);
         glLightf(GL_LIGHT0, GL_SPOT_EXPONENT, (float)exponente_foco);
         glEnable(GL_LIGHT0);
+
+        // Que no me entere yo que haya memory leaks ;)
+        delete [] pos;
+        delete [] Kd;
+        delete [] Ks;
+        delete [] direccionFoco;
     }
     // si la luz est� apagada
-    //	desactivar la luz
+    //	desactivar la luz todo
 
 }
 

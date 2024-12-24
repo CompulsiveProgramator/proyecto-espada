@@ -41,12 +41,12 @@ void IGV::Escena::pintar_ejes() {
 IGV::Escena::Escena() {
     luzPuntual = new FuenteLuz(0,
                                                  igvPunto3D(1,1,1),
-                                                 Color(0.0, 0.0, 0.0, 1.0),
-                                                 Color(1, 1, 1, 1),
+                                                 Color(0.1, 0.1, 0.1, 1.0),
+                                                 Color(0.6, 0.6, 0.6, 1),
                                                  Color(1, 1, 1, 1),
                                                  1,
-                                                 1,
-                                                 1
+                                                 0,
+                                                 0
     );
 }
 
