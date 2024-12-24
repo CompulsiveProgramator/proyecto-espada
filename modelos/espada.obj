@@ -1,6 +1,6 @@
 # Blender 4.3.1
 # www.blender.org
-mtllib textura_espada.mtl
+mtllib espada.mtl
 o sword.001
 v -0.098109 1.102543 0.027017
 v -0.098109 2.857174 0.027017
