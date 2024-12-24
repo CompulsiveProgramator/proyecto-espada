@@ -125,22 +125,35 @@ namespace IGV{
 
                 if(ImGui::TreeNode("Escalado"))
                 {
-                    ImGui::DragFloat("X", &escaladoX, 0.005f, -2.0f, 2.0f, "%.3f", ImGuiSliderFlags_None);
-                    ImGui::DragFloat("Y", &escaladoY, 0.005f, -2.0f, 2.0f, "%.3f", ImGuiSliderFlags_None);
-                    ImGui::DragFloat("Z", &escaladoZ, 0.005f, -2.0f, 2.0f, "%.3f", ImGuiSliderFlags_None);
+                    ImGui::Checkbox("Escalado uniforme", &escaladoUniformeActivo);
+
+                    if(escaladoUniformeActivo)
+                    {
+                        ImGui::DragFloat("Uniforme", &escaladoUniforme, 0.005f, -2.0f, 2.0f, "%.3f", ImGuiSliderFlags_None);
+                    }else{
+                        ImGui::DragFloat("X", &escaladoX, 0.005f, -2.0f, 2.0f, "%.3f", ImGuiSliderFlags_None);
+                        ImGui::DragFloat("Y", &escaladoY, 0.005f, -2.0f, 2.0f, "%.3f", ImGuiSliderFlags_None);
+                        ImGui::DragFloat("Z", &escaladoZ, 0.005f, -2.0f, 2.0f, "%.3f", ImGuiSliderFlags_None);
+                    }
 
                     if(ImGui::Button("Resetear valores"))
                     {
                         escaladoX = 1;
                         escaladoY = 1;
                         escaladoZ = 1;
+                        escaladoUniforme = 1;
                     }
 
                     if(ImGui::Button("Aplicar"))
                     {
-                        Renderer::getInstancia().getEscena().getModelo().aplicarEscaladoEjeX(escaladoX);
-                        Renderer::getInstancia().getEscena().getModelo().aplicarEscaladoEjeY(escaladoY);
-                        Renderer::getInstancia().getEscena().getModelo().aplicarEscaladoEjeZ(escaladoZ);
+                        if(escaladoUniformeActivo)
+                        {
+                            Renderer::getInstancia().getEscena().getModelo().escalarUniforme(escaladoUniforme);
+                        }else{
+                            Renderer::getInstancia().getEscena().getModelo().aplicarEscaladoEjeX(escaladoX);
+                            Renderer::getInstancia().getEscena().getModelo().aplicarEscaladoEjeY(escaladoY);
+                            Renderer::getInstancia().getEscena().getModelo().aplicarEscaladoEjeZ(escaladoZ);
+                        }
                     }
 
                     ImGui::TreePop();

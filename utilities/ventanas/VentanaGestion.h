@@ -37,6 +37,8 @@ namespace IGV{
         float escaladoX = 1;
         float escaladoY = 1;
         float escaladoZ = 1;
+        float escaladoUniforme = 1;
+        bool escaladoUniformeActivo = false;
 
         void visualizarMenuModelo();
         void visualizarMenuTransformaciones();
