@@ -7,9 +7,13 @@
 
 #include "Menu.h"
 
+/**
+ * Enum para elegir el tipo de movimiento de la camara
+ */
 enum TipoMovimientoCamara{
     ORBIT,
-    ZOOM
+    ZOOM,
+    CRANE
 };
 
 namespace IGV{

@@ -46,6 +46,7 @@ namespace IGV{
                glm::vec3 _vectorVertical);
 
         void aplicar();
+        void desplazarSobreEjeY(float desplazamiento);
         void rotarSobreLookAtEjeX(bool antihorario);
         void rotarSobreLookAtEjeY(bool antihorario);
         void zoom(bool positivo);

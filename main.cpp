@@ -1,5 +1,6 @@
 #include <iostream>
 #include <GLFW/glfw3.h>
+#include <math.h>
 #include "utilities/Renderer.h"
 #include "utilities/GUI.h"
 
@@ -37,18 +38,32 @@ void cursorPosition_callback(GLFWwindow *window, double xpos, double ypos) {
             {
                 IGV::Renderer::getInstancia().getCamara().rotarSobreLookAtEjeY(difX > 0);
             }
+
             lastXpos = xpos;
         }
 
         if(abs(difY) > 100)
         {
+            float signo;
+            if(difY > 0)
+            {
+                signo = 1;
+            }else
+            {
+                signo = -1;
+            }
+
             if(tipoMovimiento == ORBIT)
             {
                 IGV::Renderer::getInstancia().getCamara().rotarSobreLookAtEjeX(difY > 0);
             }else if(tipoMovimiento == ZOOM)
             {
                 IGV::Renderer::getInstancia().getCamara().zoom(difY > 0);
+            }else if(tipoMovimiento == CRANE)
+            {
+                IGV::Renderer::getInstancia().getCamara().desplazarSobreEjeY(signo*1);
             }
+
             lastYpos = ypos;
         }
     }

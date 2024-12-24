@@ -100,3 +100,11 @@ void IGV::Camara::zoom(bool positivo) {
         }
     }
 }
+
+/**
+ * Metodo para desplazar sobre el ejeY la camara
+ * @param desplazamiento El desplazamiento
+ */
+void IGV::Camara::desplazarSobreEjeY(float desplazamiento) {
+        posicionCamara[Y] += desplazamiento;
+}

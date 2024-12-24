@@ -12,7 +12,7 @@ void IGV::MenuCamara::refrescarMenu() {
     {
         ImGui::Checkbox("Seguir raton", &seguirRaton);
 
-        const char* tiposMovimientoCamara[] = {"Orbit", "Zoom"};
+        const char* tiposMovimientoCamara[] = {"Orbit", "Zoom", "Crane"};
         static int tipoMovimientoCamaraActual = 0; // Índice de la opción seleccionada
 
         ImGui::Text("Opciones de movimiento:");
