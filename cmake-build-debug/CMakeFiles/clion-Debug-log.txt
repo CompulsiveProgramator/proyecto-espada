@@ -84,7 +84,7 @@ glu/system: Already installed! (6 of 8)
 opengl-registry/20240721: Already installed! (7 of 8)
 freeglut/3.4.0: Already installed! (8 of 8)
 WARN: deprecated: Usage of deprecated Conan 1.X features that will be removed in Conan 2.X:
-WARN: deprecated:     'cpp_info.filenames' used in: opengl/system, glfw/3.3.8
+WARN: deprecated:     'cpp_info.filenames' used in: glfw/3.3.8, opengl/system
 WARN: deprecated:     'cpp_info.names' used in: freeglut/3.4.0, glfw/3.3.8
 WARN: deprecated:     'cpp_info.build_modules' used in: glfw/3.3.8
 
@@ -127,6 +127,6 @@ Install finished successfully
 -- Conan: Component target declared 'FreeGLUT::freeglut_static'
 -- CMake-Conan: find_package(glu) found, 'conan install' already ran
 -- Conan: Target declared 'glu::glu'
--- Configuring done (3.8s)
+-- Configuring done (1.9s)
 -- Generating done (0.1s)
 -- Build files have been written to: C:/Users/secre/CLionProjects/IG/Proyecto_Espada/cmake-build-debug

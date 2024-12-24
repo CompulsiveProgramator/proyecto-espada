@@ -32,6 +32,9 @@ add_executable(Proyecto_Espada main.cpp
         utilities/ventanas/Ventana.h
         utilities/ventanas/VentanaGestion.cpp
         utilities/ventanas/VentanaGestion.h
+        utilities/ventanas/submenus/MenuTransformaciones.cpp
+        utilities/ventanas/submenus/MenuTransformaciones.h
+        utilities/ventanas/submenus/Menu.h
 )
 
 target_include_directories(Proyecto_Espada PUBLIC imgui)
