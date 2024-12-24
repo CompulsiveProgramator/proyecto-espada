@@ -10,7 +10,7 @@ namespace IGV{
     /**
      * Constructor de la GUI
      */
-    GUI::GUI(): ventanaGestionModelo() {
+    GUI::GUI(): ventanaGestion() {
 
     }
 
@@ -35,7 +35,7 @@ namespace IGV{
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
 
-        ventanaGestionModelo.refrescarVentana();
+        ventanaGestion.refrescarVentana();
 
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData ( ImGui::GetDrawData() );
@@ -46,7 +46,11 @@ namespace IGV{
      * @return
      */
     bool GUI::getSeguirMovimientoRaton() {
-        return ventanaGestionModelo.getSeguirRaton();
+        return ventanaGestion.getSeguirRaton();
+    }
+
+    TipoMovimientoCamara GUI::getTipoMovimientoCamara() {
+        return ventanaGestion.getTipoMovimientoCamara();
     }
 }
 

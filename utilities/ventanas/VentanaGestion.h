@@ -9,6 +9,7 @@
 #include "Ventana.h"
 #include "../Renderer.h"
 #include "submenus/MenuTransformaciones.h"
+#include "submenus/MenuCamara.h"
 
 namespace IGV{
     /**
@@ -24,15 +25,14 @@ namespace IGV{
     class VentanaGestion: public Ventana {
     private:
         std::string nombreModelo;
-        bool seguirRaton = false;
         MenuTransformaciones menuTransformaciones; // El menu para aplicar transformaciones al modelo
+        MenuCamara menuCamara;
 
         void visualizarMenuModelo();
-        void visualizarMenuTransformaciones();
-        void visualizarMenuCamara();
     public:
         void refrescarVentana() override;
         bool getSeguirRaton();
+        TipoMovimientoCamara getTipoMovimientoCamara();
     };
 }
 

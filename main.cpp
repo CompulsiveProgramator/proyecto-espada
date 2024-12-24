@@ -28,16 +28,24 @@ void cursorPosition_callback(GLFWwindow *window, double xpos, double ypos) {
         difX = xpos - lastXpos;
         difY = ypos - lastYpos;
 
+        TipoMovimientoCamara tipoMovimiento = IGV::GUI::getInstancia().getTipoMovimientoCamara();
+
         // Si nos movemos 100 pixeles en la
         if(abs(difX) > 100)
         {
-            IGV::Renderer::getInstancia().getCamara().rotarSobreLookAtEjeY(difX > 0);
+            if(tipoMovimiento == ORBIT)
+            {
+                IGV::Renderer::getInstancia().getCamara().rotarSobreLookAtEjeY(difX > 0);
+            }
             lastXpos = xpos;
         }
 
         if(abs(difY) > 100)
         {
-            IGV::Renderer::getInstancia().getCamara().rotarSobreLookAtEjeX(difY > 0);
+            if(tipoMovimiento == ORBIT)
+            {
+                IGV::Renderer::getInstancia().getCamara().rotarSobreLookAtEjeX(difY > 0);
+            }
             lastYpos = ypos;
         }
     }

@@ -13,7 +13,7 @@ namespace IGV{
         ImGui::Begin("Ventana gestión");
         visualizarMenuModelo();
         menuTransformaciones.refrescarMenu();
-        visualizarMenuCamara();
+        menuCamara.refrescarMenu();
         ImGui::End();
     }
 
@@ -79,29 +79,15 @@ namespace IGV{
     }
 
     /**
-     * Metodo para aplicar transformaciones al modelo de la escena
-     */
-    void VentanaGestion::visualizarMenuTransformaciones() {
-
-    }
-
-    /**
-     * Metodo para visualizar el menu para modificar los parametros de la camara
-     */
-    void VentanaGestion::visualizarMenuCamara() {
-        if(ImGui::CollapsingHeader("Cámara"))
-        {
-            ImGui::Checkbox("Seguir raton", &seguirRaton);
-
-        }
-    }
-
-    /**
      * Metodo para consultar si debemos seguir el movimiento del raton, al arrastrarlo
      * por la ventana pulsado
      * @return
      */
     bool VentanaGestion::getSeguirRaton() {
-        return seguirRaton;
+        return menuCamara.getSeguirRaton();
+    }
+
+    TipoMovimientoCamara VentanaGestion::getTipoMovimientoCamara() {
+        return menuCamara.getTipoMovimiento();
     }
 }

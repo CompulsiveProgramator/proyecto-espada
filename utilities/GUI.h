@@ -17,11 +17,12 @@ namespace IGV{
         static GUI *instancia;
         GUI();
 
-        VentanaGestion ventanaGestionModelo;
+        VentanaGestion ventanaGestion;
     public:
         static GUI& getInstancia();
         void refrescar();
         bool getSeguirMovimientoRaton();
+        TipoMovimientoCamara getTipoMovimientoCamara();
     };
 }
 

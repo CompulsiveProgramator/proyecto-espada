@@ -35,6 +35,8 @@ add_executable(Proyecto_Espada main.cpp
         utilities/ventanas/submenus/MenuTransformaciones.cpp
         utilities/ventanas/submenus/MenuTransformaciones.h
         utilities/ventanas/submenus/Menu.h
+        utilities/ventanas/submenus/MenuCamara.cpp
+        utilities/ventanas/submenus/MenuCamara.h
 )
 
 target_include_directories(Proyecto_Espada PUBLIC imgui)
