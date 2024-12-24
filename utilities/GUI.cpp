@@ -40,5 +40,13 @@ namespace IGV{
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData ( ImGui::GetDrawData() );
     }
+
+    /**
+     * Para consultar a la ventana de gestion, si tenemos que seguir el movimiento del raton
+     * @return
+     */
+    bool GUI::getSeguirMovimientoRaton() {
+        return ventanaGestionModelo.getSeguirRaton();
+    }
 }
 

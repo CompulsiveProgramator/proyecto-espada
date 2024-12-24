@@ -21,6 +21,7 @@ namespace IGV{
     public:
         static GUI& getInstancia();
         void refrescar();
+        bool getSeguirMovimientoRaton();
     };
 }
 

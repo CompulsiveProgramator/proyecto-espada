@@ -27,24 +27,25 @@ namespace IGV{
         float traslacionX = 0;
         float traslacionY = 0;
         float traslacionZ = 0;
-
         // Para las rotaciones:
         float rotacionX = 0;
         float rotacionY = 0;
         float rotacionZ = 0;
-
         // Para los escalados:
         float escaladoX = 1;
         float escaladoY = 1;
         float escaladoZ = 1;
         float escaladoUniforme = 1;
         bool escaladoUniformeActivo = false;
+        //
+        bool seguirRaton = false;
 
         void visualizarMenuModelo();
         void visualizarMenuTransformaciones();
         void visualizarMenuCamara();
     public:
         void refrescarVentana() override;
+        bool getSeguirRaton();
     };
 }
 

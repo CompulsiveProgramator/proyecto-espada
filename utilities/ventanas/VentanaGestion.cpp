@@ -185,7 +185,16 @@ namespace IGV{
     void VentanaGestion::visualizarMenuCamara() {
         if(ImGui::CollapsingHeader("Cámara"))
         {
-
+            ImGui::Checkbox("Seguir raton", &seguirRaton);
         }
+    }
+
+    /**
+     * Metodo para consultar si debemos seguir el movimiento del raton, al arrastrarlo
+     * por la ventana pulsado
+     * @return
+     */
+    bool VentanaGestion::getSeguirRaton() {
+        return seguirRaton;
     }
 }

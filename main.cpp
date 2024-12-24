@@ -3,6 +3,34 @@
 #include "utilities/Renderer.h"
 #include "utilities/GUI.h"
 
+double lastXpos = 0, lastYpos = 0; //Empezamos a contar desde arriba a la izquierda de la pantalla en glfw, pero en open gl es de la esquina inferior derecha ;)
+bool ratonPulsado = false; // Para saber si el raton ha sido pulsado
+
+/**
+ * Callback para seguir el movimiento del raton
+ * @param window La ventana
+ * @param xpos La posicion en X del cursor
+ * @param ypos La posicion en Y del cursor respecto de la esquina superior izquierda de la ventana
+ */
+void cursorPosition_callback(GLFWwindow *window, double xpos, double ypos) {
+    /**
+     * 1o. Guardo la posicion inicial del raton
+     * 2o. Si mantengo el raton pulsado, y lo muevo, miro cuanto se ha movido en vertical y horizontal, y si son al menos 100 pixeles actualizamos la posicion de la camara
+     * 3o. Guardo la posicion del raton de nuevo
+     */
+
+    if (!IGV::GUI::getInstancia().getSeguirMovimientoRaton()) {
+        return;
+    }
+
+    double difX, difY;
+    if(ratonPulsado) {
+        difX = xpos - lastXpos;
+        difY = ypos - lastYpos;
+
+    }
+}
+
 /**
  * Callback llamado cuando redimensionamos la pantalla
  * @param window
@@ -59,6 +87,23 @@ void key_callback ( GLFWwindow *window, int key, int scancode, int action, int m
     }
 }
 
+/**
+ * Callback para cuando se pulsa el raton
+ * @param window
+ * @param button
+ * @param action
+ * @param mods
+ */
+void mouse_button_callback ( GLFWwindow *window, int button, int action, int mods ) {
+    if(action == GLFW_PRESS)
+    {
+        ratonPulsado = true;
+    }else if(action == GLFW_RELEASE)
+    {
+        ratonPulsado = false;
+    }
+}
+
 int main( int argc, char **argv ) {
     //IGV::Renderer::getInstancia().configurar_ventana(argc, argv, 600,300,100,100, "Proyecto espada");
     //IGV::Renderer::getInstancia().inicia_bucle_visualizacion();
@@ -89,6 +134,8 @@ int main( int argc, char **argv ) {
     glfwSetWindowRefreshCallback ( window, window_refresh_callback );
     glfwSetFramebufferSizeCallback ( window, framebuffer_size_callback );
     glfwSetKeyCallback ( window, key_callback );
+    glfwSetCursorPosCallback(window, cursorPosition_callback);
+    glfwSetMouseButtonCallback(window, mouse_button_callback);
 
     /// Inicialización  de DearIMGui
     IMGUI_CHECKVERSION();

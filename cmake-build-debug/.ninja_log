@@ -23,3 +23,11 @@
 36	6517	7567537747012563	CMakeFiles/Proyecto_Espada.dir/utilities/modelo/Modelo.cpp.obj	c6232d7b4ba75cb
 39	1148	7566811453682286	CMakeFiles/Proyecto_Espada.dir/utilities/Color.cpp.obj	f37d2855da27867f
 16	1422	7567397009355156	CMakeFiles/Proyecto_Espada.dir/utilities/FuenteLuz.cpp.obj	4e65424b8939a9b4
+29	3979	7567597874201816	CMakeFiles/Proyecto_Espada.dir/main.cpp.obj	3c1a0524fb73c843
+3981	5660	7567597913719452	Proyecto_Espada.exe	a4d655054f4ca6a1
+33	5744	7567606131679365	CMakeFiles/Proyecto_Espada.dir/main.cpp.obj	3c1a0524fb73c843
+45	7052	7567606131815720	CMakeFiles/Proyecto_Espada.dir/utilities/GUI.cpp.obj	83b1158c08bd1476
+57	7119	7567606131935756	CMakeFiles/Proyecto_Espada.dir/utilities/ventanas/VentanaGestion.cpp.obj	7ce80fae5eda0a2e
+7119	8844	7567606202536056	Proyecto_Espada.exe	a4d655054f4ca6a1
+27	5392	7567607215759703	CMakeFiles/Proyecto_Espada.dir/utilities/ventanas/VentanaGestion.cpp.obj	7ce80fae5eda0a2e
+5393	7064	7567607269415367	Proyecto_Espada.exe	a4d655054f4ca6a1
