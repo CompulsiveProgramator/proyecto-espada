@@ -26,6 +26,9 @@ namespace IGV{
         float traslacionX = 0;
         float traslacionY = 0;
         float traslacionZ = 0;
+        float rotacionX = 0;
+        float rotacionY = 0;
+        float rotacionZ = 0;
 
         void visualizarMenuModelo();
         void visualizarMenuTransformaciones();

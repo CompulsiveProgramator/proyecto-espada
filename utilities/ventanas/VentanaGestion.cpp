@@ -72,6 +72,11 @@ namespace IGV{
         try{
             if(ImGui::CollapsingHeader("Transformaciones"))
             {
+                if(ImGui::Button("Resetear matriz de modelado"))
+                {
+                    Renderer::getInstancia().getEscena().getModelo().resetearMatrizModelado();
+                }
+
                 if(ImGui::TreeNode("Traslación"))
                 {
                     ImGui::DragFloat("X", &traslacionX, 0.005f, -1.0f, 1.0f, "%.3f", ImGuiSliderFlags_None);
@@ -90,6 +95,29 @@ namespace IGV{
                         Renderer::getInstancia().getEscena().getModelo().aplicarTraslacionEjeX(traslacionX);
                         Renderer::getInstancia().getEscena().getModelo().aplicarTraslacionEjeY(traslacionY);
                         Renderer::getInstancia().getEscena().getModelo().aplicarTraslacionEjeZ(traslacionZ);
+                    }
+
+                    ImGui::TreePop();
+                }
+
+                if(ImGui::TreeNode("Rotaciones"))
+                {
+                    ImGui::DragFloat("X", &rotacionX, 0.5f, -90.0f, 90.0f, "%.3f", ImGuiSliderFlags_None);
+                    ImGui::DragFloat("Y", &rotacionY, 0.5f, -90.0f, 90.0f, "%.3f", ImGuiSliderFlags_None);
+                    ImGui::DragFloat("Z", &rotacionZ, 0.5f, -90.0f, 90.0f, "%.3f", ImGuiSliderFlags_None);
+
+                    if(ImGui::Button("Resetear valores"))
+                    {
+                        rotacionX = 0;
+                        rotacionY = 0;
+                        rotacionZ = 0;
+                    }
+
+                    if(ImGui::Button("Aplicar"))
+                    {
+                        Renderer::getInstancia().getEscena().getModelo().aplicarRotacionEjeX(rotacionX);
+                        Renderer::getInstancia().getEscena().getModelo().aplicarRotacionEjeY(rotacionY);
+                        Renderer::getInstancia().getEscena().getModelo().aplicarRotacionEjeZ(rotacionZ);
                     }
 
                     ImGui::TreePop();

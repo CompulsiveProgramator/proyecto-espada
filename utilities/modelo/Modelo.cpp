@@ -101,4 +101,27 @@ namespace IGV
     void Modelo::aplicarTraslacionEjeZ(float distancia) {
         matrizModelado = glm::translate(glm::vec3(0, 0, distancia)) * matrizModelado;
     }
+
+    /**
+     * Metodo para rotar el modelo respecto del eje X !!!
+     * @param angulo El angulo en grados sexagesimales [-360, 360]
+     */
+    void Modelo::aplicarRotacionEjeX(float angulo) {
+        matrizModelado = glm::rotate(glm::radians(angulo), glm::vec3(1, 0, 0)) * matrizModelado;
+    }
+
+    void Modelo::aplicarRotacionEjeY(float angulo) {
+        matrizModelado = glm::rotate(glm::radians(angulo), glm::vec3(0, 1, 0)) * matrizModelado;
+    }
+
+    void Modelo::aplicarRotacionEjeZ(float angulo) {
+        matrizModelado = glm::rotate(glm::radians(angulo), glm::vec3(0, 0, 1)) * matrizModelado;
+    }
+
+    /**
+     * Metodo para devolver al origen al modelo ;)
+     */
+    void Modelo::resetearMatrizModelado() {
+        matrizModelado = glm::translate(glm::vec3(0,0,0));
+    }
 }

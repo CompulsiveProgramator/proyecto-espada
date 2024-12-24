@@ -29,6 +29,10 @@ namespace IGV{
         void aplicarTraslacionEjeX(float distancia);
         void aplicarTraslacionEjeY(float distancia);
         void aplicarTraslacionEjeZ(float distancia);
+        void aplicarRotacionEjeX(float angulo);
+        void aplicarRotacionEjeY(float angulo);
+        void aplicarRotacionEjeZ(float angulo);
+        void resetearMatrizModelado();
     };
 }
 
