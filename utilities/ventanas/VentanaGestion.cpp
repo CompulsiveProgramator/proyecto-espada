@@ -72,15 +72,27 @@ namespace IGV{
         try{
             if(ImGui::CollapsingHeader("Transformaciones"))
             {
-                ImGui::Text("Traslación");
-                ImGui::DragFloat("X", &traslacionX, 0.005f, 0.0f, 1.0f, "%.3f", ImGuiSliderFlags_None);
-                ImGui::DragFloat("Y", &traslacionY, 0.005f, 0.0f, 1.0f, "%.3f", ImGuiSliderFlags_None);
-                //ImGui::DragFloat("Z", &traslacionZ, 0.005f, 0.0f, 1.0f, "%.3f", ImGuiSliderFlags_None);
-
-                if(ImGui::Button("Aplicar"))
+                if(ImGui::TreeNode("Traslación"))
                 {
-                    Renderer::getInstancia().getEscena().getModelo().aplicarTraslacionEjeX(traslacionX);
-                    Renderer::getInstancia().getEscena().getModelo().aplicarTraslacionEjeY(traslacionY);
+                    ImGui::DragFloat("X", &traslacionX, 0.005f, -1.0f, 1.0f, "%.3f", ImGuiSliderFlags_None);
+                    ImGui::DragFloat("Y", &traslacionY, 0.005f, -1.0f, 1.0f, "%.3f", ImGuiSliderFlags_None);
+                    ImGui::DragFloat("Z", &traslacionZ, 0.005f, -1.0f, 1.0f, "%.3f", ImGuiSliderFlags_None);
+
+                    if(ImGui::Button("Resetear valores"))
+                    {
+                        traslacionX = 0;
+                        traslacionY = 0;
+                        traslacionZ = 0;
+                    }
+
+                    if(ImGui::Button("Aplicar"))
+                    {
+                        Renderer::getInstancia().getEscena().getModelo().aplicarTraslacionEjeX(traslacionX);
+                        Renderer::getInstancia().getEscena().getModelo().aplicarTraslacionEjeY(traslacionY);
+                        Renderer::getInstancia().getEscena().getModelo().aplicarTraslacionEjeZ(traslacionZ);
+                    }
+
+                    ImGui::TreePop();
                 }
             }
         }catch(std::exception &e)

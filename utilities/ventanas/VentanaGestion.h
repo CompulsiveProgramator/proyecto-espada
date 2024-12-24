@@ -25,7 +25,7 @@ namespace IGV{
         std::string nombreModelo;
         float traslacionX = 0;
         float traslacionY = 0;
-        //float traslacionZ = 0;
+        float traslacionZ = 0;
 
         void visualizarMenuModelo();
         void visualizarMenuTransformaciones();

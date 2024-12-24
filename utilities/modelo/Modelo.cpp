@@ -86,7 +86,19 @@ namespace IGV
         matrizModelado = glm::translate(glm::vec3(0, distancia, 0)) * matrizModelado;
     }
 
+    /**
+     * Metodo para trasladar el modelo sobre el eje X
+     * @param distancia La distancia a trasladar
+     */
     void Modelo::aplicarTraslacionEjeX(float distancia) {
         matrizModelado = glm::translate(glm::vec3(distancia, 0, 0)) * matrizModelado;
+    }
+
+    /**
+     * Metodo para trasladar el modelo sobre el eje Z
+     * @param distancia La distancia a trasladar
+     */
+    void Modelo::aplicarTraslacionEjeZ(float distancia) {
+        matrizModelado = glm::translate(glm::vec3(0, 0, distancia)) * matrizModelado;
     }
 }

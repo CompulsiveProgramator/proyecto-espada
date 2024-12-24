@@ -28,6 +28,7 @@ namespace IGV{
         void escalarUniforme(float i);
         void aplicarTraslacionEjeX(float distancia);
         void aplicarTraslacionEjeY(float distancia);
+        void aplicarTraslacionEjeZ(float distancia);
     };
 }
 
