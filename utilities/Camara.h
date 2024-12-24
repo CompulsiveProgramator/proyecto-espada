@@ -39,6 +39,12 @@ namespace IGV{
                glm::vec3 _lookAt,
                glm::vec3 _vectorVertical);
 
+        Camara(GLdouble _angulo, GLdouble _raspecto,
+                GLdouble _znear, GLdouble _zfar,
+                glm::vec3 _posicion,
+               glm::vec3 _lookAt,
+               glm::vec3 _vectorVertical);
+
         void aplicar();
         void rotarSobreLookAtEjeX(bool antihorario);
         void rotarSobreLookAtEjeY(bool antihorario);

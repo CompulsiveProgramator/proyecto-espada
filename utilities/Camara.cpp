@@ -24,6 +24,22 @@ IGV::Camara::Camara(GLdouble _xmin, GLdouble _xmax, GLdouble _ymin, GLdouble _ym
 }
 
 /**
+ * Constructor de la camara en perspectiva
+ * @param _angulo
+ * @param _raspecto
+ * @param _znear
+ * @param _zfar
+ * @param _posicion
+ * @param _lookAt
+ * @param _vectorVertical
+ */
+IGV::Camara::Camara(GLdouble _angulo, GLdouble _raspecto, GLdouble _znear, GLdouble _zfar, glm::vec3 _posicion,
+                    glm::vec3 _lookAt, glm::vec3 _vectorVertical):angulo(_angulo), raspecto(_raspecto),
+                                                                  znear(_znear), zfar(_zfar), posicionCamara(_posicion), lookAt(_lookAt), vectorVertical(_vectorVertical){
+    tipo = IGV_PERSPECTIVA;
+}
+
+/**
  * Metodo para aplicar la transformacion de vision, de esta bonita camara, a la escena
  */
 void IGV::Camara::aplicar() {
@@ -33,6 +49,9 @@ void IGV::Camara::aplicar() {
     if( tipo == IGV_PARALELA )
     {
         glOrtho(xwmin, xwmax, ywmin, ywmax, znear, zfar);
+    }else if( tipo == IGV_PERSPECTIVA)
+    {
+        gluPerspective(angulo, raspecto, znear, zfar);
     }
 
     glMatrixMode(GL_MODELVIEW);
