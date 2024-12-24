@@ -34,6 +34,7 @@ namespace IGV{
         void aplicarRotacionEjeZ(float angulo);
         void aplicarEscaladoEjeX(float proporcion);
         void aplicarEscaladoEjeY(float proporcion);
+        void aplicarEscaladoEjeZ(float proporcion);
         void resetearMatrizModelado();
     };
 }

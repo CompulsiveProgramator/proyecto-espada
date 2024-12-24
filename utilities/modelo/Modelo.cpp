@@ -140,4 +140,8 @@ namespace IGV
     void Modelo::aplicarEscaladoEjeY(float proporcion) {
         matrizModelado = glm::scale(glm::vec3(1, proporcion, 1)) * matrizModelado;
     }
+
+    void Modelo::aplicarEscaladoEjeZ(float proporcion) {
+        matrizModelado = glm::scale(glm::vec3(1,1,proporcion)) * matrizModelado;
+    }
 }

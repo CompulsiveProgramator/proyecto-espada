@@ -140,6 +140,7 @@ namespace IGV{
                     {
                         Renderer::getInstancia().getEscena().getModelo().aplicarEscaladoEjeX(escaladoX);
                         Renderer::getInstancia().getEscena().getModelo().aplicarEscaladoEjeY(escaladoY);
+                        Renderer::getInstancia().getEscena().getModelo().aplicarEscaladoEjeZ(escaladoZ);
                     }
 
                     ImGui::TreePop();
