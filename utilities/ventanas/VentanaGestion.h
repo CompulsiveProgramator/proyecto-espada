@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include "Ventana.h"
+#include "../Renderer.h"
 
 namespace IGV{
     /**
@@ -23,9 +24,9 @@ namespace IGV{
     private:
         std::string nombreModelo;
 
-        static void visualizarMenuModelo();
-        static void visualizarMenuTransformaciones();
-        static void visualizarMenuCamara();
+        void visualizarMenuModelo();
+        void visualizarMenuTransformaciones();
+        void visualizarMenuCamara();
     public:
         void refrescarVentana() override;
     };

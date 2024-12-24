@@ -7,7 +7,6 @@
 
 #include <iostream>
 #include "Escena.h"
-#include "GUI.h"
 #include "Camara.h"
 
 namespace IGV{

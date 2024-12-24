@@ -129,3 +129,11 @@ void IGV::Escena::agregarModelo(std::string rutaArchivo) {
 IGV::Modelo& IGV::Escena::getModelo() {
     return *modelo;
 }
+
+/**
+ * Metodo para eliminar el modelo actual, si existe
+ */
+void IGV::Escena::eliminarModelo() {
+    delete modelo;
+    modelo = nullptr;
+}

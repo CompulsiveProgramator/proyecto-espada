@@ -28,6 +28,8 @@ namespace IGV{
         void setEjes(bool valor);
         void agregarModelo(std::string rutaArchivo);
         IGV::Modelo& getModelo();
+
+        void eliminarModelo();
     };
 }
 

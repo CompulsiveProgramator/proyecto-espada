@@ -1,7 +1,7 @@
 #include <iostream>
 #include <GLFW/glfw3.h>
 #include "utilities/Renderer.h"
-#include "utilities/ventanas/Ventana.h"
+#include "utilities/GUI.h"
 
 /**
  * Callback llamado cuando redimensionamos la pantalla

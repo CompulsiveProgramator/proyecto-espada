@@ -30,7 +30,7 @@ add_executable(Proyecto_Espada main.cpp
         utilities/Color.h
         utilities/Color.cpp
         utilities/ventanas/Ventana.h
-        utilities/ventanas/VentanaGestionModelo.cpp
+        utilities/ventanas/VentanaGestion.cpp
         utilities/ventanas/VentanaGestion.h
 )
 
