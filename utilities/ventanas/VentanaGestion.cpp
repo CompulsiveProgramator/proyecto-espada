@@ -13,6 +13,7 @@ namespace IGV{
         ImGui::Begin("Ventana gestión");
         visualizarMenuModelo();
         visualizarMenuTransformaciones();
+        visualizarMenuCamara();
         ImGui::End();
     }
 
@@ -61,6 +62,15 @@ namespace IGV{
                 }else{
                     Renderer::getInstancia().getEscena().agregarModelo(nombreModelo);
                 }
+            }
+
+            std::string rutaModelo = Renderer::getInstancia().getEscena().getRutaModelo();
+            if(rutaModelo == "")
+            {
+                ImGui::Text("No hay ningun modelo cargado");
+            }else{
+                std::string aux = "El modelo cargado se encuentra en: " + rutaModelo;
+                ImGui::Text(aux.c_str());
             }
         }
     }
@@ -164,5 +174,15 @@ namespace IGV{
             std::cout << e.what() << "\n";
         }
 
+    }
+
+    /**
+     * Metodo para visualizar el menu para modificar los parametros de la camara
+     */
+    void VentanaGestion::visualizarMenuCamara() {
+        if(ImGui::CollapsingHeader("Cámara"))
+        {
+
+        }
     }
 }

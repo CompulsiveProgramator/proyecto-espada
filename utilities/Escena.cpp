@@ -125,7 +125,8 @@ bool IGV::Escena::getEjes() {
 
 void IGV::Escena::agregarModelo(std::string rutaArchivo) {
     delete modelo;
-    modelo = new Modelo(std::move(rutaArchivo));
+    modelo = new Modelo(rutaArchivo);
+    rutaModelo = rutaArchivo;
 }
 
 IGV::Modelo& IGV::Escena::getModelo() {
@@ -138,4 +139,13 @@ IGV::Modelo& IGV::Escena::getModelo() {
 void IGV::Escena::eliminarModelo() {
     delete modelo;
     modelo = nullptr;
+    rutaModelo = "";
+}
+
+/**
+ * Metodo para consultar la ruta al modelo cargado en escena ;)
+ * @return La ruta al modelo cargado en escena, desde la raiz del proyecto, o "" si no hay un modelo cargado
+ */
+std::string IGV::Escena::getRutaModelo(){
+    return rutaModelo;
 }

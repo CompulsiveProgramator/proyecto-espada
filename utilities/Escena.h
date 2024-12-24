@@ -17,6 +17,7 @@ namespace IGV{
     private:
         bool ejes = true; // Para dibujar los ejes de coordenadas X,Y,Z
         Modelo *modelo = nullptr;
+        std::string rutaModelo;
         FuenteLuz *luzPuntual = nullptr;
         void pintar_ejes();
     public:
@@ -28,8 +29,8 @@ namespace IGV{
         void setEjes(bool valor);
         void agregarModelo(std::string rutaArchivo);
         IGV::Modelo& getModelo();
-
         void eliminarModelo();
+        std::string getRutaModelo();
     };
 }
 
