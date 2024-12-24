@@ -21,10 +21,12 @@ namespace IGV{
         std::vector<Malla> mallas; /// Las mallas de triangulos
         glm::mat4 matrizModelado;
     public:
+        Modelo();
         Modelo(std::string rutaArchivo);
         std::vector<Malla> getMallas();
         glm::mat4 getMatrizModelado();
         void escalarUniforme(float i);
+        void aplicarTraslacionEjeX(float distancia);
         void aplicarTraslacionEjeY(float distancia);
     };
 }

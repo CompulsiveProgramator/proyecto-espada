@@ -12,6 +12,7 @@ namespace IGV{
         ImGui::SetNextWindowPos(ImVec2(10, 10));
         ImGui::Begin("Ventana gestión");
         visualizarMenuModelo();
+        visualizarMenuTransformaciones();
         ImGui::End();
     }
 
@@ -62,5 +63,27 @@ namespace IGV{
                 }
             }
         }
+    }
+
+    /**
+     * Metodo para aplicar transformaciones al modelo de la escena
+     */
+    void VentanaGestion::visualizarMenuTransformaciones() {
+        try{
+            if(ImGui::CollapsingHeader("Transformaciones"))
+            {
+                ImGui::Text("Traslación");
+                ImGui::DragFloat("X", &traslacionX, 0.005f, 0.0f, 1.0f, "%.3f", ImGuiSliderFlags_None);
+
+                if(ImGui::Button("Aplicar"))
+                {
+                    Renderer::getInstancia().getEscena().getModelo().aplicarTraslacionEjeX(traslacionX);
+                }
+            }
+        }catch(std::exception &e)
+        {
+            std::cout << e.what() << "\n";
+        }
+
     }
 }

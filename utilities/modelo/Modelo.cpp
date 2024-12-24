@@ -8,6 +8,11 @@
 namespace IGV
 {
     /**
+     * Constructor por defecto, que crea un modelo completamente vacio
+     */
+    Modelo::Modelo():matrizModelado(glm::translate(glm::vec3(0,0,0))), mallas() {}
+
+    /**
     * Constructor del modelo
     * @param rutaArchivo La ruta hacia el archivo OBJ
     */
@@ -79,5 +84,9 @@ namespace IGV
      */
     void Modelo::aplicarTraslacionEjeY(float distancia) {
         matrizModelado = glm::translate(glm::vec3(0, distancia, 0)) * matrizModelado;
+    }
+
+    void Modelo::aplicarTraslacionEjeX(float distancia) {
+        matrizModelado = glm::translate(glm::vec3(distancia, 0, 0)) * matrizModelado;
     }
 }

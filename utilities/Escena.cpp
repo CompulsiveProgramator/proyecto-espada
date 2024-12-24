@@ -48,6 +48,8 @@ IGV::Escena::Escena() {
                                                  0,
                                                  0
     );
+
+    modelo = new Modelo();
 }
 
 /**

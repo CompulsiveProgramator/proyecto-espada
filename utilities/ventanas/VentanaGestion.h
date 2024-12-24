@@ -23,6 +23,7 @@ namespace IGV{
     class VentanaGestion: public Ventana {
     private:
         std::string nombreModelo;
+        float traslacionX = 0;
 
         void visualizarMenuModelo();
         void visualizarMenuTransformaciones();
