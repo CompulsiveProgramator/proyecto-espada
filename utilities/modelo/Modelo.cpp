@@ -62,7 +62,7 @@ namespace IGV
         }
     }
 
-    std::vector<Malla> IGV::Modelo::getMallas() {
+    std::vector<Malla>& IGV::Modelo::getMallas() {
         return mallas;
     }
 

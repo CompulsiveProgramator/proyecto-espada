@@ -23,7 +23,7 @@ namespace IGV{
     public:
         Modelo();
         Modelo(std::string rutaArchivo);
-        std::vector<Malla> getMallas();
+        std::vector<Malla>& getMallas();
         glm::mat4 getMatrizModelado();
         void escalarUniforme(float i);
         void aplicarTraslacionEjeX(float distancia);

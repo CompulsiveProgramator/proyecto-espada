@@ -48,6 +48,7 @@ namespace IGV
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(0, 0, 0, 1);
         glPolygonMode ( GL_FRONT_AND_BACK, GL_FILL );
+        glViewport(0, 0, ancho_ventana, alto_ventana);
 
         camara->aplicar();
         escena->visualizar();
@@ -55,6 +56,8 @@ namespace IGV
 
     void Renderer::modificarTamañoVentana(int ancho, int alto) {
         glViewport(0, 0, ancho, alto);
+        instancia->ancho_ventana = ancho;
+        instancia->alto_ventana = alto;
     }
 
     /**
@@ -82,6 +85,50 @@ namespace IGV
      */
     Camara &Renderer::getCamara() {
         return *camara;
+    }
+
+    /**
+     * Metodo para comprobar si donde se ha clicado, hay una malla
+     */
+    void Renderer::comprobarSiHayMalla() {
+        escena->comprobarSiHayMalla();
+    }
+
+    /**
+     * Getter para consultar el ancho de la ventana de la app
+     * @return
+     */
+    int Renderer::getAnchoVentana() const {
+        return ancho_ventana;
+    }
+
+    /**
+     * Getter para consultar el alto de la ventana de la app
+     * @return
+     */
+    int Renderer::getAltoVentana() const {
+        return alto_ventana;
+    }
+
+    /**
+     * Metodo para obtener la malla seleccionada
+     * @return
+     */
+    Malla *Renderer::getMallaSeleccionada() {
+        return escena->getMallaElegida();
+    }
+
+    /**
+     * Metodo para pasar la posicion del cursor a la escena
+     * @param x
+     * @param y
+     */
+    void Renderer::pasarPosicionCursor(int x, int y) {
+        escena->pasarPosicionCursor(x, y);
+    }
+
+    void Renderer::deseleccionarMalla() {
+        escena->deseleccionarMalla();
     }
 }
 

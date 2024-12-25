@@ -49,8 +49,28 @@ namespace IGV{
         return ventanaGestion.getSeguirRaton();
     }
 
+    /**
+     * Metodo para obtener el tipo de movimiento de camara, seleccionado en la GUI
+     * @return El tipo de movimiento ( Ej: Orbit )
+     */
     TipoMovimientoCamara GUI::getTipoMovimientoCamara() {
         return ventanaGestion.getTipoMovimientoCamara();
+    }
+
+    /**
+     * Metodo para pasarle a la GUI la malla seleccionada
+     * @param pMalla La malla seleccionada
+     */
+    void GUI::pasarMallaSeleccionada(Malla *pMalla) {
+        ventanaGestion.pasarMallaSeleccionada(pMalla);
+    }
+
+    /**
+     * Metodo para obtener si estamos o no en modo de seleccion de malla ;)
+     * @return True si estamos, y false si no
+     */
+    bool GUI::getModoSeleccion() {
+        return ventanaGestion.getModoSeleccion();
     }
 }
 

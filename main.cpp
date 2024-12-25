@@ -1,12 +1,13 @@
 #include <iostream>
 #include <GLFW/glfw3.h>
-#include <math.h>
+#include <chrono>
 #include "utilities/Renderer.h"
 #include "utilities/GUI.h"
+#include "Constantes.h"
 
 double lastXpos = 0, lastYpos = 0; //Empezamos a contar desde arriba a la izquierda de la pantalla en glfw, pero en open gl es de la esquina inferior derecha ;)
 bool ratonPulsado = false; // Para saber si el raton ha sido pulsado
-
+auto tiempoUltimoClick = std::chrono::system_clock::now(); // Para comprobar si se ha hecho doble click con el raton
 /**
  * Callback para seguir el movimiento del raton
  * @param window La ventana
@@ -20,51 +21,51 @@ void cursorPosition_callback(GLFWwindow *window, double xpos, double ypos) {
      * 3o. Guardo la posicion del raton de nuevo
      */
 
-    if (!IGV::GUI::getInstancia().getSeguirMovimientoRaton()) {
-        return;
-    }
+    IGV::Renderer::getInstancia().pasarPosicionCursor(int(xpos), IGV::Renderer::getInstancia().getAltoVentana() - int(ypos));
 
-    double difX, difY;
-    if(ratonPulsado) {
-        difX = xpos - lastXpos;
-        difY = ypos - lastYpos;
+    if (IGV::GUI::getInstancia().getSeguirMovimientoRaton()) {
+        double difX, difY;
+        if(ratonPulsado) {
+            difX = xpos - lastXpos;
+            difY = ypos - lastYpos;
 
-        TipoMovimientoCamara tipoMovimiento = IGV::GUI::getInstancia().getTipoMovimientoCamara();
+            TipoMovimientoCamara tipoMovimiento = IGV::GUI::getInstancia().getTipoMovimientoCamara();
 
-        // Si nos movemos 100 pixeles en la
-        if(abs(difX) > 100)
-        {
-            if(tipoMovimiento == ORBIT)
+            // Si nos movemos 100 pixeles en la
+            if(abs(difX) > 100)
             {
-                IGV::Renderer::getInstancia().getCamara().rotarSobreLookAtEjeY(difX > 0);
+                if(tipoMovimiento == ORBIT)
+                {
+                    IGV::Renderer::getInstancia().getCamara().rotarSobreLookAtEjeY(difX > 0);
+                }
+
+                lastXpos = xpos;
             }
 
-            lastXpos = xpos;
-        }
+            if(abs(difY) > 100)
+            {
+                float signo;
+                if(difY > 0)
+                {
+                    signo = 1;
+                }else
+                {
+                    signo = -1;
+                }
 
-        if(abs(difY) > 100)
-        {
-            float signo;
-            if(difY > 0)
-            {
-                signo = 1;
-            }else
-            {
-                signo = -1;
+                if(tipoMovimiento == ORBIT)
+                {
+                    IGV::Renderer::getInstancia().getCamara().rotarSobreLookAtEjeX(difY > 0);
+                }else if(tipoMovimiento == ZOOM)
+                {
+                    IGV::Renderer::getInstancia().getCamara().zoom(difY > 0);
+                }else if(tipoMovimiento == CRANE)
+                {
+                    IGV::Renderer::getInstancia().getCamara().desplazarSobreEjeY(signo*1);
+                }
+
+                lastYpos = ypos;
             }
-
-            if(tipoMovimiento == ORBIT)
-            {
-                IGV::Renderer::getInstancia().getCamara().rotarSobreLookAtEjeX(difY > 0);
-            }else if(tipoMovimiento == ZOOM)
-            {
-                IGV::Renderer::getInstancia().getCamara().zoom(difY > 0);
-            }else if(tipoMovimiento == CRANE)
-            {
-                IGV::Renderer::getInstancia().getCamara().desplazarSobreEjeY(signo*1);
-            }
-
-            lastYpos = ypos;
         }
     }
 }
@@ -136,6 +137,20 @@ void mouse_button_callback ( GLFWwindow *window, int button, int action, int mod
     if(action == GLFW_PRESS)
     {
         ratonPulsado = true;
+
+        auto tiempoClickAhora = std::chrono::system_clock::now();
+
+        std::chrono::duration<float, std::milli> duration = tiempoClickAhora - tiempoUltimoClick;
+        tiempoUltimoClick = tiempoClickAhora;
+
+        if(duration.count() < 300)
+        {
+            if(IGV::GUI::getInstancia().getModoSeleccion())
+            {
+                IGV::Renderer::getInstancia().comprobarSiHayMalla();
+            }
+        }
+
     }else if(action == GLFW_RELEASE)
     {
         ratonPulsado = false;
@@ -159,7 +174,7 @@ int main( int argc, char **argv ) {
     // glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);  // Core Profile (opcional)
 
     // Crear ventana
-    GLFWwindow* window = glfwCreateWindow(800, 600, "OpenGL Compatibility Profile", nullptr, nullptr);
+    GLFWwindow* window = glfwCreateWindow(Constantes::anchoVentana, Constantes::altoVentana, "Proyecto espada", nullptr, nullptr);
     if (!window) {
         std::cout << "Failed to open GLFW window" << std::endl;
         glfwTerminate();
@@ -185,10 +200,10 @@ int main( int argc, char **argv ) {
 
     // Bucle principal
     while (!glfwWindowShouldClose(window)) {
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
         IGV::Renderer::getInstancia().refrescar();
         IGV::GUI::getInstancia().refrescar();
+
+        IGV::GUI::getInstancia().pasarMallaSeleccionada(IGV::Renderer::getInstancia().getMallaSeleccionada());
 
         glfwSwapBuffers(window);
         glfwPollEvents();

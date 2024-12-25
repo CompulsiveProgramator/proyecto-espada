@@ -10,6 +10,7 @@
 #include "../Renderer.h"
 #include "submenus/MenuTransformaciones.h"
 #include "submenus/MenuCamara.h"
+#include "submenus/MenuMaterial.h"
 
 namespace IGV{
     /**
@@ -27,12 +28,15 @@ namespace IGV{
         std::string nombreModelo;
         MenuTransformaciones menuTransformaciones; // El menu para aplicar transformaciones al modelo
         MenuCamara menuCamara;
+        MenuMaterial menuMaterial;
 
         void visualizarMenuModelo();
     public:
         void refrescarVentana() override;
         bool getSeguirRaton();
         TipoMovimientoCamara getTipoMovimientoCamara();
+        void pasarMallaSeleccionada(Malla *pMalla);
+        bool getModoSeleccion();
     };
 }
 

@@ -14,6 +14,7 @@ namespace IGV{
         visualizarMenuModelo();
         menuTransformaciones.refrescarMenu();
         menuCamara.refrescarMenu();
+        menuMaterial.refrescarMenu();
         ImGui::End();
     }
 
@@ -89,5 +90,21 @@ namespace IGV{
 
     TipoMovimientoCamara VentanaGestion::getTipoMovimientoCamara() {
         return menuCamara.getTipoMovimiento();
+    }
+
+    /**
+     * Metodo para pasar una malla al menu de gestion de malla
+     * @param pMalla La malla a gestionar ;0
+     */
+    void VentanaGestion::pasarMallaSeleccionada(Malla *pMalla) {
+        menuMaterial.setMalla(pMalla);
+    }
+
+    /**
+     * Metodo para consultar si estamos en modo de seleccion de malla, para poder desde el Menu de Material modificar sus propiedades de material!!!
+     * @return
+     */
+    bool VentanaGestion::getModoSeleccion() {
+        return menuMaterial.getSeleccionMalla();
     }
 }

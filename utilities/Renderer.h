@@ -8,6 +8,7 @@
 #include <iostream>
 #include "Escena.h"
 #include "Camara.h"
+#include "../Constantes.h"
 
 namespace IGV{
     /**
@@ -22,6 +23,7 @@ namespace IGV{
 
         Escena *escena = nullptr;
         Camara *camara = nullptr;
+        int ancho_ventana = Constantes::anchoVentana, alto_ventana = Constantes::altoVentana;
         void configuraOpenGL();
     public:
         ~Renderer();
@@ -30,6 +32,12 @@ namespace IGV{
         Escena& getEscena();
         Camara& getCamara();
         static void modificarTamañoVentana(int ancho, int alto);
+        void comprobarSiHayMalla();
+        int getAnchoVentana() const;
+        int getAltoVentana() const;
+        Malla* getMallaSeleccionada();
+        void pasarPosicionCursor(int x, int y);
+        void deseleccionarMalla();
     };
 }
 
