@@ -11,6 +11,7 @@
 #include "submenus/MenuTransformaciones.h"
 #include "submenus/MenuCamara.h"
 #include "submenus/MenuMaterial.h"
+#include "submenus/MenuIluminacion.h"
 
 namespace IGV{
     /**
@@ -29,6 +30,7 @@ namespace IGV{
         MenuTransformaciones menuTransformaciones; // El menu para aplicar transformaciones al modelo
         MenuCamara menuCamara;
         MenuMaterial menuMaterial;
+        MenuIluminacion menuIluminacion;
 
         void visualizarMenuModelo();
     public:
@@ -37,6 +39,7 @@ namespace IGV{
         TipoMovimientoCamara getTipoMovimientoCamara();
         void pasarMallaSeleccionada(Malla *pMalla);
         bool getModoSeleccion();
+        void pasarLuzPuntual(FuenteLuz *luzP);
     };
 }
 

@@ -2,6 +2,7 @@
 // Created by secre on 22/12/2024.
 //
 
+#include <GL/glu.h>
 #include "Camara.h"
 
 /**

@@ -14,8 +14,6 @@ add_executable(Proyecto_Espada main.cpp
         utilities/Escena.h
         utilities/Camara.cpp
         utilities/Camara.h
-        utilities/igvPunto3D.cpp
-        utilities/igvPunto3D.h
         utilities/GUI.cpp
         utilities/GUI.h
         utilities/modelo/Modelo.cpp
@@ -26,8 +24,6 @@ add_executable(Proyecto_Espada main.cpp
         utilities/modelo/OBJ_Loader.h
         utilities/FuenteLuz.h
         utilities/FuenteLuz.cpp
-        utilities/Color.h
-        utilities/Color.cpp
         utilities/ventanas/Ventana.h
         utilities/ventanas/VentanaGestion.cpp
         utilities/ventanas/VentanaGestion.h
@@ -39,6 +35,8 @@ add_executable(Proyecto_Espada main.cpp
         Constantes.h
         utilities/ventanas/submenus/MenuMaterial.cpp
         utilities/ventanas/submenus/MenuMaterial.h
+        utilities/ventanas/submenus/MenuIluminacion.cpp
+        utilities/ventanas/submenus/MenuIluminacion.h
 )
 
 target_include_directories(Proyecto_Espada PUBLIC imgui)

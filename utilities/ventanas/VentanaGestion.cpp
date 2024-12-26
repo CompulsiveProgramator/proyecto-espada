@@ -15,6 +15,7 @@ namespace IGV{
         menuTransformaciones.refrescarMenu();
         menuCamara.refrescarMenu();
         menuMaterial.refrescarMenu();
+        menuIluminacion.refrescarMenu();
         ImGui::End();
     }
 
@@ -106,5 +107,9 @@ namespace IGV{
      */
     bool VentanaGestion::getModoSeleccion() {
         return menuMaterial.getSeleccionMalla();
+    }
+
+    void VentanaGestion::pasarLuzPuntual(FuenteLuz *luzP) {
+        menuIluminacion.pasarLuzPuntual(luzP);
     }
 }

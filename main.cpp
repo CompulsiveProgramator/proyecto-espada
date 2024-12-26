@@ -204,6 +204,7 @@ int main( int argc, char **argv ) {
         IGV::GUI::getInstancia().refrescar();
 
         IGV::GUI::getInstancia().pasarMallaSeleccionada(IGV::Renderer::getInstancia().getMallaSeleccionada());
+        IGV::GUI::getInstancia().pasarLuzPuntual(IGV::Renderer::getInstancia().getEscena().getLuzPuntual());
 
         glfwSwapBuffers(window);
         glfwPollEvents();

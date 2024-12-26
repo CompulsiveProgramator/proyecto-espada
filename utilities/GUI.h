@@ -25,6 +25,7 @@ namespace IGV{
         TipoMovimientoCamara getTipoMovimientoCamara();
         bool getModoSeleccion();
         void pasarMallaSeleccionada(Malla *Malla);
+        void pasarLuzPuntual(FuenteLuz *luzP);
     };
 }
 

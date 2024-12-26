@@ -274,7 +274,18 @@ void IGV::Escena::pasarPosicionCursor(int x, int y) {
     ypos = y;
 }
 
+/**
+ * Metodo para deseleccionar la malla elegida, si es que la hay
+ */
 void IGV::Escena::deseleccionarMalla() {
     mallaElegida = nullptr;
+}
+
+/**
+ * Metodo para consultar la luz puntual de la escena
+ * @return
+ */
+FuenteLuz *IGV::Escena::getLuzPuntual() {
+    return luzPuntual;
 }
 

@@ -72,5 +72,13 @@ namespace IGV{
     bool GUI::getModoSeleccion() {
         return ventanaGestion.getModoSeleccion();
     }
+
+    /**
+     * Metodo para pasar la luz puntual a la GUI
+     * @param luzP La luz puntual
+     */
+    void GUI::pasarLuzPuntual(FuenteLuz *luzP) {
+        ventanaGestion.pasarLuzPuntual(luzP);
+    }
 }
 

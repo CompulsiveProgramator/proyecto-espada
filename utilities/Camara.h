@@ -10,7 +10,12 @@
 #include <GL/gl.h>
 #include <glm/gtx/transform.hpp>
 #include <glm/mat4x4.hpp>
-#include "igvPunto3D.h"
+
+enum posicion{
+    X,
+    Y,
+    Z
+};
 
 enum tipoCamara
 {
