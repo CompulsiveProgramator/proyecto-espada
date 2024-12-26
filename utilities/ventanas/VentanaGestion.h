@@ -40,6 +40,8 @@ namespace IGV{
         void pasarMallaSeleccionada(Malla *pMalla);
         bool getModoSeleccion();
         void pasarLuzPuntual(FuenteLuz *luzP);
+
+        void pasarLuzFocal(FuenteLuz *luzF);
     };
 }
 

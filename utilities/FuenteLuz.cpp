@@ -4,7 +4,7 @@
 // M�todos constructores
 
 /**
- * Construye una fuente de luz puntual encendida por defecto
+ * Construye una fuente de luz puntual encendidaPuntual por defecto
  * @param _idLuz Identificador de la luz (GL_LIGHT0 a GL_LIGHT7)
  * @param _posicion Ubicaci�n de la luz en la escena
  * @param cAmb Color de la componente ambiente de la luz
@@ -28,7 +28,7 @@ FuenteLuz::FuenteLuz (const unsigned int _idLuz
 {}
 
 /**
- * Construye una fuente de tipo foco encendida por defecto
+ * Construye una fuente de tipo foco encendidaPuntual por defecto
  * @param _idLuz Identificador de la luz (GL_LIGHT0 a GL_LIGHT7)
  * @param _posicion Ubicaci�n de la luz en la escena
  * @param cAmb Color de la componente ambiente de la luz
@@ -171,8 +171,8 @@ void FuenteLuz::getAtenuacion (double &a0, double &a1, double &a2 )
 }
 
 /**
- * Cambia el estado de la luz a encendida
- * @post La luz pasa a estar encendida
+ * Cambia el estado de la luz a encendidaPuntual
+ * @post La luz pasa a estar encendidaPuntual
  */
 void FuenteLuz::encender ()
 {  encendida = true;
@@ -188,8 +188,8 @@ void FuenteLuz::apagar ()
 
 /**
  * Consulta el estado de la luz
- * @retval true Si la luz est� encendida
- * @retval false Si la luz no est� encendida
+ * @retval true Si la luz est� encendidaPuntual
+ * @retval false Si la luz no est� encendidaPuntual
  */
 bool FuenteLuz::esta_encendida ()
 {  return encendida;
@@ -200,7 +200,7 @@ bool FuenteLuz::esta_encendida ()
  */
 void FuenteLuz::aplicar ()
 {
-    // si la luz est� encendida
+    // si la luz est� encendidaPuntual
     //	activar la luz
     //	establecer la posici�n de la luz
     //	establecer los colores ambiental, difuso y especular
@@ -208,6 +208,14 @@ void FuenteLuz::aplicar ()
     //	establecer la atenuaci�n angular y la direcci�n del foco
     if(!encendida)
     {
+        if(tipoLuz == PUNTUAL)
+        {
+            glDisable(GL_LIGHT0);
+        }else if(tipoLuz == FOCAL)
+        {
+            glDisable(GL_LIGHT1);
+        }
+
         return;
     }
 
@@ -225,7 +233,8 @@ void FuenteLuz::aplicar ()
     else if(tipoLuz == FOCAL) // luz focal ( como la lampara de mi cuarto )
     {
         glLightfv(GL_LIGHT1, GL_POSITION, &posicion[0]);
-        glLightfv(GL_LIGHT1, GL_AMBIENT_AND_DIFFUSE, &colorDifuso[0]);
+        glLightfv(GL_LIGHT1, GL_AMBIENT, &colorAmbiente[0]);
+        glLightfv(GL_LIGHT1, GL_DIFFUSE, &colorDifuso[0]);
         glLightfv(GL_LIGHT1, GL_SPECULAR, &colorEspecular[0]);
         glLightf(GL_LIGHT1, GL_CONSTANT_ATTENUATION, float(aten_a0));
         glLightf(GL_LIGHT1, GL_LINEAR_ATTENUATION, (float)aten_a1);
@@ -238,7 +247,7 @@ void FuenteLuz::aplicar ()
 }
 
 /**
- * Metodo que mueve la posicion de la luz en el eje Y
+ * Metodo que mueve la posicionPuntual de la luz en el eje Y
  * @param d El desplazamiento
  */
 void FuenteLuz::moverEjeY(double d) {
@@ -246,7 +255,7 @@ void FuenteLuz::moverEjeY(double d) {
 }
 
 /**
- * Metodo que mueve la posicion de la luz en el eje X
+ * Metodo que mueve la posicionPuntual de la luz en el eje X
  * @param d El desplazamiento
  */
 void FuenteLuz::moverEjeX(double d) {

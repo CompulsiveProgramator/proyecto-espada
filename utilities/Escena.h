@@ -53,6 +53,7 @@ namespace IGV{
         void pasarPosicionCursor(int x, int y);
         void deseleccionarMalla();
         FuenteLuz *getLuzPuntual();
+        FuenteLuz *getLuzFocal();
     };
 }
 

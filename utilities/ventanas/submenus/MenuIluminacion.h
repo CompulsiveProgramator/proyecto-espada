@@ -12,11 +12,16 @@ namespace IGV{
     class MenuIluminacion: public Menu {
     private:
         FuenteLuz *luzPuntual = nullptr;
-        glm::vec3 posicion;
+        glm::vec3 posicionPuntual;
+        bool encendidaPuntual = true;
+
+        FuenteLuz *luzFocal = nullptr;
+        glm::vec3 posicionFocal;
+        bool encendidaFocal = true;
     public:
         void refrescarMenu() override;
-
         void pasarLuzPuntual(FuenteLuz *pLuz);
+        void pasarLuzFocal(FuenteLuz *pLuz);
     };
 }
 

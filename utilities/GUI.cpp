@@ -80,5 +80,13 @@ namespace IGV{
     void GUI::pasarLuzPuntual(FuenteLuz *luzP) {
         ventanaGestion.pasarLuzPuntual(luzP);
     }
+
+    /**
+     * Metodo para pasar la luz focal a la GUI
+     * @param luzF La luz focal
+     */
+    void GUI::pasarLuzFocal(FuenteLuz *luzF) {
+        ventanaGestion.pasarLuzFocal(luzF);
+    }
 }
 

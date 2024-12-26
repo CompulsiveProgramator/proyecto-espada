@@ -11,14 +11,14 @@ auto tiempoUltimoClick = std::chrono::system_clock::now(); // Para comprobar si 
 /**
  * Callback para seguir el movimiento del raton
  * @param window La ventana
- * @param xpos La posicion en X del cursor
- * @param ypos La posicion en Y del cursor respecto de la esquina superior izquierda de la ventana
+ * @param xpos La posicionPuntual en X del cursor
+ * @param ypos La posicionPuntual en Y del cursor respecto de la esquina superior izquierda de la ventana
  */
 void cursorPosition_callback(GLFWwindow *window, double xpos, double ypos) {
     /**
-     * 1o. Guardo la posicion inicial del raton
-     * 2o. Si mantengo el raton pulsado, y lo muevo, miro cuanto se ha movido en vertical y horizontal, y si son al menos 100 pixeles actualizamos la posicion de la camara
-     * 3o. Guardo la posicion del raton de nuevo
+     * 1o. Guardo la posicionPuntual inicial del raton
+     * 2o. Si mantengo el raton pulsado, y lo muevo, miro cuanto se ha movido en vertical y horizontal, y si son al menos 100 pixeles actualizamos la posicionPuntual de la camara
+     * 3o. Guardo la posicionPuntual del raton de nuevo
      */
 
     IGV::Renderer::getInstancia().pasarPosicionCursor(int(xpos), IGV::Renderer::getInstancia().getAltoVentana() - int(ypos));
@@ -202,10 +202,9 @@ int main( int argc, char **argv ) {
     while (!glfwWindowShouldClose(window)) {
         IGV::Renderer::getInstancia().refrescar();
         IGV::GUI::getInstancia().refrescar();
-
         IGV::GUI::getInstancia().pasarMallaSeleccionada(IGV::Renderer::getInstancia().getMallaSeleccionada());
         IGV::GUI::getInstancia().pasarLuzPuntual(IGV::Renderer::getInstancia().getEscena().getLuzPuntual());
-
+        IGV::GUI::getInstancia().pasarLuzFocal(IGV::Renderer::getInstancia().getEscena().getLuzFocal());
         glfwSwapBuffers(window);
         glfwPollEvents();
     }

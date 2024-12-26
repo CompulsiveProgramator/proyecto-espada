@@ -83,12 +83,12 @@ void IGV::Escena::visualizar() {
         pintar_ejes();
     }
 
-    if( luzPuntual->esta_encendida() )
+    if( luzPuntual )
     {
         luzPuntual->aplicar();
     }
 
-    if( luzFocal->esta_encendida() )
+    if( luzFocal )
     {
         luzFocal->aplicar();
     }
@@ -287,5 +287,13 @@ void IGV::Escena::deseleccionarMalla() {
  */
 FuenteLuz *IGV::Escena::getLuzPuntual() {
     return luzPuntual;
+}
+
+/**
+ * Metodo para consultar la luz focal de la escena
+ * @return
+ */
+FuenteLuz *IGV::Escena::getLuzFocal() {
+    return luzFocal;
 }
 

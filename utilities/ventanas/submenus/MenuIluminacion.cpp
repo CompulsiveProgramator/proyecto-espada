@@ -13,21 +13,47 @@ void IGV::MenuIluminacion::refrescarMenu() {
     {
         if(luzPuntual)
         {
-            if(ImGui::TreeNode("LuzPuntual"))
+            if(ImGui::TreeNode("Luz puntual"))
             {
                 if(ImGui::TreeNode("Posicion"))
                 {
-                    ImGui::DragFloat("X", &posicion[0], 0.005f, -3, 3, "%.3f");
-                    ImGui::DragFloat("Y", &posicion[1], 0.005f, -3, 3, "%.3f");
-                    ImGui::DragFloat("Z", &posicion[2], 0.005f, -3, 3, "%.3f");
+                    ImGui::DragFloat("X", &posicionPuntual[0], 0.005f, -3, 3, "%.3f");
+                    ImGui::DragFloat("Y", &posicionPuntual[1], 0.005f, -3, 3, "%.3f");
+                    ImGui::DragFloat("Z", &posicionPuntual[2], 0.005f, -3, 3, "%.3f");
 
-                    luzPuntual->setPosicion(posicion);
+                    luzPuntual->setPosicion(posicionPuntual);
 
                     ImGui::TreePop();
                 }
+
+                ImGui::Checkbox("Activa", &encendidaPuntual);
+
+                if(encendidaPuntual)
+                {
+                    luzPuntual->encender();
+                }else{
+                    luzPuntual->apagar();
+                }
+
                 ImGui::TreePop();
             }
 
+        }
+
+        if(luzFocal)
+        {
+            if(ImGui::TreeNode("Luz focal"))
+            {
+                ImGui::Checkbox("Activa", &encendidaFocal);
+
+                if(encendidaFocal)
+                {
+                    luzFocal->encender();
+                }else{
+                    luzFocal->apagar();
+                }
+                ImGui::TreePop();
+            }
         }
     }
 }
@@ -38,5 +64,14 @@ void IGV::MenuIluminacion::refrescarMenu() {
  */
 void IGV::MenuIluminacion::pasarLuzPuntual(FuenteLuz *pLuz) {
     luzPuntual = pLuz;
-    posicion = luzPuntual->getPosicion();
+    posicionPuntual = luzPuntual->getPosicion();
+}
+
+/**
+ * Funcion para asignar la luz focal al menu
+ * @param pLuz La luz focal en la escena
+ */
+void IGV::MenuIluminacion::pasarLuzFocal(FuenteLuz *pLuz) {
+    luzFocal = pLuz;
+    posicionFocal = luzFocal->getPosicion();
 }

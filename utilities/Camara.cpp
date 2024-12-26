@@ -13,7 +13,7 @@
  * @param _ymax
  * @param _znear La distancia al plano de corte cercano
  * @param _zfar La distancia al plano de corte lejano
- * @param _posicion La posicion de la camara
+ * @param _posicion La posicionPuntual de la camara
  * @param _lookAt El punto al que mira la camara
  * @param _vectorVertical El vector vertical a la camara
  */

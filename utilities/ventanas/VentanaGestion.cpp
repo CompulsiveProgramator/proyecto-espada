@@ -112,4 +112,8 @@ namespace IGV{
     void VentanaGestion::pasarLuzPuntual(FuenteLuz *luzP) {
         menuIluminacion.pasarLuzPuntual(luzP);
     }
+
+    void VentanaGestion::pasarLuzFocal(FuenteLuz *luzF) {
+        menuIluminacion.pasarLuzFocal(luzF);
+    }
 }

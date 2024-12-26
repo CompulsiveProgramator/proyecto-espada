@@ -119,7 +119,7 @@ namespace IGV
     }
 
     /**
-     * Metodo para pasar la posicion del cursor a la escena
+     * Metodo para pasar la posicionPuntual del cursor a la escena
      * @param x
      * @param y
      */

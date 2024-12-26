@@ -34,7 +34,7 @@ class FuenteLuz
       double angulo_foco = 0;   ///< �ngulo de apertura del foco
       double exponente_foco = 0;   ///< Exponente para el c�lculo de la atenuaci�n del foco
 
-      bool encendida = false; ///< Indica si la luz est� encendida o no
+      bool encendida = false; ///< Indica si la luz est� encendidaPuntual o no
 
       // M�todos
 

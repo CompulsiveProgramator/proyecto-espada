@@ -72,8 +72,8 @@ namespace IGV
             /*
              * Ahora, cada malla crea una copia del material que recibe
              *
-             * Pero, si cuando leo el material, consulto su nombre, y no esta dentro del vector de materiales, puedo meterlo adentro y pasarle su posicion a la malla
-             * para que luego pueda consultarlo. Y si ya esta, simplemente no copio de nuevo el material y busco su posicion en el vector y le paso esa "i" a la malla
+             * Pero, si cuando leo el material, consulto su nombre, y no esta dentro del vector de materiales, puedo meterlo adentro y pasarle su posicionPuntual a la malla
+             * para que luego pueda consultarlo. Y si ya esta, simplemente no copio de nuevo el material y busco su posicionPuntual en el vector y le paso esa "i" a la malla
              *
              * ;)
              */
@@ -167,7 +167,7 @@ namespace IGV
 
     /**
      * Metodo auxiliar para que cada malla pueda consultar su material
-     * @param i La posicion en el vector de materiales [0, n-1]
+     * @param i La posicionPuntual en el vector de materiales [0, n-1]
      * @return La direccion del material
      */
     Material *Modelo::getMaterial(int i) {
@@ -177,7 +177,7 @@ namespace IGV
     /**
      * Metodo auxiliar, para ver si un material leido ya esta creado o no
      * @param nombreMat El nombre del material a buscar
-     * @return La posicion del material si se ha encontrado, o -1 si no existe
+     * @return La posicionPuntual del material si se ha encontrado, o -1 si no existe
      */
     int Modelo::buscaMaterial(std::string nombreMat) {
         for(int i = 0 ; i < materiales.size() ; i++)
