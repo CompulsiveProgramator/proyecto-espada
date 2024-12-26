@@ -1,18 +1,8 @@
 #ifndef __IGVFUENTELUZ
 #define __IGVFUENTELUZ
 
-#if defined(__APPLE__) && defined(__MACH__)
-#include <GLUT/glut.h>
-#include <OpenGL/gl.h>
-#include <OpenGL/glu.h>
-#else
-
-#include <GL/glut.h>
-
-#endif   // defined(__APPLE__) && defined(__MACH__)
-
-#include "igvPunto3D.h"
-#include "Color.h"
+#include <glm/vec3.hpp>
+#include "GL/gl.h"
 
 enum TipoLuz{
     PUNTUAL,
@@ -29,18 +19,18 @@ class FuenteLuz
 
       TipoLuz tipoLuz; ///< El tipo de luz
 
-      igvPunto3D posicion = { 0, 0, 0 }; ///< Posici�n de la luz
+      glm::vec3 posicion = { 0, 0, 0 }; ///< Posici�n de la luz
 
-      Color colorAmbiente = {0, 0, 0 }; ///< Color ambiental de la luz
-      Color colorDifuso = {0, 0, 0 }; ///< Color difuso de la luz
-      Color colorEspecular = {0, 0, 0 }; ///< Color especular de la luz
+      glm::vec3 colorAmbiente = {0, 0, 0 }; ///< Color ambiental de la luz
+      glm::vec3 colorDifuso = {0, 0, 0 }; ///< Color difuso de la luz
+      glm::vec3 colorEspecular = {0, 0, 0 }; ///< Color especular de la luz
 
       double aten_a0 = 0; ///< Coeficiente de atenuaci�n a0
       double aten_a1 = 0; ///< Coeficiente de atenuaci�n a1
       double aten_a2 = 0; ///< Coeficiente de atenuaci�n a2
 
       // par�metros para definir un foco
-      igvPunto3D direccion_foco = { 0, 0, 0 };   ///< Vector que indica la direcci�n hacia la que apunta el foco
+      glm::vec3 direccion_foco = { 0, 0, 0 };   ///< Vector que indica la direcci�n hacia la que apunta el foco
       double angulo_foco = 0;   ///< �ngulo de apertura del foco
       double exponente_foco = 0;   ///< Exponente para el c�lculo de la atenuaci�n del foco
 
@@ -55,29 +45,29 @@ class FuenteLuz
 
       // Otros constructores
       // Construye una luz puntual
-      FuenteLuz (const unsigned int _idLuz, const igvPunto3D &_posicion
-                     , const Color &cAmb, const Color &cDif
-                     , const Color &cEsp, const double a0, const double a1
+      FuenteLuz (const unsigned int _idLuz, const glm::vec3 &_posicion
+                     , const glm::vec3 &cAmb, const glm::vec3 &cDif
+                     , const glm::vec3 &cEsp, const double a0, const double a1
                      , const double a2);
 
       // Construye un foco
-      FuenteLuz (const unsigned int _idLuz, const igvPunto3D &_posicion
-                     , const Color &cAmb, const Color &cDif
-                     , const Color &cEsp, const double a0, const double a1
-                     , const double a2, const igvPunto3D &dir_foco
+      FuenteLuz (const unsigned int _idLuz, const glm::vec3 &_posicion
+                     , const glm::vec3 &cAmb, const glm::vec3 &cDif
+                     , const glm::vec3 &cEsp, const double a0, const double a1
+                     , const double a2, const glm::vec3 &dir_foco
                      , const double ang_foco, const double exp_foco);
 
       // M�todos
-      igvPunto3D &getPosicion (); // devuelve la posici�n de la luz
-      void setPosicion ( igvPunto3D pos ); // establece la posici�n de la luz
+      glm::vec3 &getPosicion (); // devuelve la posici�n de la luz
+      void setPosicion ( glm::vec3 pos ); // establece la posici�n de la luz
 
-      void set (const Color &cAmb, const Color &cDif, const Color &cEsp );
-      void setAmbiental ( const Color &cAmb );
-      void setDifuso ( const Color &cDif );
-      void setEspecular ( const Color &cEsp );
-      Color &getAmbiental ();
-      Color &getDifuso ();
-      Color &getEspecular ();
+      void set (const glm::vec3 &cAmb, const glm::vec3 &cDif, const glm::vec3 &cEsp );
+      void setAmbiental ( const glm::vec3 &cAmb );
+      void setDifuso ( const glm::vec3 &cDif );
+      void setEspecular ( const glm::vec3 &cEsp );
+      glm::vec3 &getAmbiental ();
+      glm::vec3 &getDifuso ();
+      glm::vec3 &getEspecular ();
 
       void setAtenuacion ( double a0, double a1, double a2 );
       void getAtenuacion ( double &a0, double &a1, double &a2 );

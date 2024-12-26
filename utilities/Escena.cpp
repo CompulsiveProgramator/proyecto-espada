@@ -40,15 +40,25 @@ void IGV::Escena::pintar_ejes() {
  */
 IGV::Escena::Escena() {
     luzPuntual = new FuenteLuz(0,
-                               igvPunto3D(1,1,1),
-                               Color(0.1, 0.1, 0.1, 1.0),
-                               Color(0.6, 0.6, 0.6, 1),
-                               Color(1, 1, 1, 1),
+                               glm::vec3(1,1,1),
+                               glm::vec3(0.1, 0.1, 0.1),
+                               glm::vec3(0.6, 0.6, 0.6),
+                               glm::vec3(1, 1, 1),
                                1,
                                0,
                                0
     );
 
+    luzFocal = new FuenteLuz(1, glm::vec3(0,0,1),
+                             glm::vec3(0.1, 0.1, 0.1),
+                             glm::vec3(0.6, 0.6, 0.6),
+                             glm::vec3(1, 1, 1),
+                             1,
+                             0,
+                             0,
+                             glm::vec3(0,0,-1),
+                             15.0f,
+                             1.0f);
     //modelo = new Modelo();
 }
 
@@ -73,10 +83,16 @@ void IGV::Escena::visualizar() {
         pintar_ejes();
     }
 
-    if( luzPuntual )
+    if( luzPuntual->esta_encendida() )
     {
         luzPuntual->aplicar();
     }
+
+    if( luzFocal->esta_encendida() )
+    {
+        luzFocal->aplicar();
+    }
+
 
     if ( modelo )
     {
@@ -95,10 +111,7 @@ void IGV::Escena::visualizar() {
 
             GLfloat Es = material->getEs();
 
-             //ToDo Ver porque no se actualiza el Kd en este material desde la GUI, porque estoy usando referencias!!!
-
-            glMaterialfv(GL_FRONT, GL_AMBIENT, &material->getKa()[0]);
-            glMaterialfv(GL_FRONT, GL_DIFFUSE, &material->getKd()[0]);
+            glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, &material->getKd()[0]);
             glMaterialfv(GL_FRONT, GL_SPECULAR, &material->getKs()[0]);
             glMaterialfv(GL_FRONT, GL_SHININESS, &Es);
             glEnableClientState(GL_VERTEX_ARRAY);

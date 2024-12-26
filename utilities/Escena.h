@@ -27,6 +27,7 @@ namespace IGV{
         Modelo *modelo = nullptr;
         std::string rutaModelo;
         FuenteLuz *luzPuntual = nullptr;
+        FuenteLuz *luzFocal = nullptr;
         // Para elegir una malla
         bool consultarMalla = false;
         int xpos, ypos;

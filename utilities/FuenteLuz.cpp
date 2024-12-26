@@ -16,8 +16,8 @@
  * @pre Se asume que los par�metros tienen valores v�lidos
  */
 FuenteLuz::FuenteLuz (const unsigned int _idLuz
-                             , const igvPunto3D &_posicion, const Color &cAmb
-                             , const Color &cDif, const Color &cEsp
+                             , const glm::vec3 &_posicion, const glm::vec3 &cAmb
+                             , const glm::vec3 &cDif, const glm::vec3 &cEsp
                              , const double a0, const double a1, const double a2):
                            idLuz ( _idLuz ), posicion( _posicion )
                            , colorAmbiente( cAmb ), colorDifuso( cDif )
@@ -43,10 +43,10 @@ FuenteLuz::FuenteLuz (const unsigned int _idLuz
  * @pre Se asume que los par�metros tienen valores v�lidos
  */
 FuenteLuz::FuenteLuz (const unsigned int _idLuz
-                             , const igvPunto3D &_posicion, const Color &cAmb
-                             , const Color &cDif, const Color &cEsp
+                             , const glm::vec3 &_posicion, const glm::vec3 &cAmb
+                             , const glm::vec3 &cDif, const glm::vec3 &cEsp
                              , const double a0, const double a1, const double a2
-                             , const igvPunto3D &dir_foco, const double ang_foco
+                             , const glm::vec3 &dir_foco, const double ang_foco
                              , const double exp_foco): idLuz( _idLuz )
                            , posicion( _posicion ), colorAmbiente( cAmb )
                            , colorDifuso( cDif ), colorEspecular( cEsp )
@@ -61,7 +61,7 @@ FuenteLuz::FuenteLuz (const unsigned int _idLuz
  * Consulta la posici�n de la luz
  * @return Una referencia a la posici�n de la luz
  */
-igvPunto3D &FuenteLuz::getPosicion ()
+glm::vec3 &FuenteLuz::getPosicion ()
 {  return posicion;
 }
 
@@ -71,7 +71,7 @@ igvPunto3D &FuenteLuz::getPosicion ()
  * @post La posici�n de la luz cambia
  * @pre Se asume que el par�metro es v�lido
  */
-void FuenteLuz::setPosicion (igvPunto3D pos )
+void FuenteLuz::setPosicion (glm::vec3 pos )
 {  posicion = pos;
 }
 
@@ -83,8 +83,8 @@ void FuenteLuz::setPosicion (igvPunto3D pos )
  * @pre Se asume que los par�metros son v�lidos
  * @post El color de la luz cambia
  */
-void FuenteLuz::set (const Color &cAmb, const Color &cDif
-                         , const Color &cEsp )
+void FuenteLuz::set (const glm::vec3 &cAmb, const glm::vec3 &cDif
+                         , const glm::vec3 &cEsp )
 {  colorAmbiente = cAmb;
    colorDifuso = cDif;
    colorEspecular = cEsp;
@@ -96,7 +96,7 @@ void FuenteLuz::set (const Color &cAmb, const Color &cDif
  * @pre Se asume que el par�metro es v�lido
  * @post El color de la componente ambiente de la luz cambia
  */
-void FuenteLuz::setAmbiental (const Color &cAmb )
+void FuenteLuz::setAmbiental (const glm::vec3 &cAmb )
 {  colorAmbiente = cAmb;
 }
 
@@ -106,7 +106,7 @@ void FuenteLuz::setAmbiental (const Color &cAmb )
  * @pre Se asume que el par�metro es v�lido
  * @post El color de la componente difusa de la luz cambia
  */
-void FuenteLuz::setDifuso (const Color &cDif )
+void FuenteLuz::setDifuso (const glm::vec3 &cDif )
 {  colorDifuso = cDif;
 }
 
@@ -116,7 +116,7 @@ void FuenteLuz::setDifuso (const Color &cDif )
  * @pre Se asume que el par�metro es v�lido
  * @post El color de la componente especular de la luz cambia
  */
-void FuenteLuz::setEspecular (const Color &cEsp )
+void FuenteLuz::setEspecular (const glm::vec3 &cEsp )
 {  colorEspecular = cEsp;
 }
 
@@ -124,7 +124,7 @@ void FuenteLuz::setEspecular (const Color &cEsp )
  * Consulta el color de la componente ambiente de la luz
  * @return Una referencia a la componente ambiente de la luz
  */
-Color &FuenteLuz::getAmbiental ()
+glm::vec3 &FuenteLuz::getAmbiental ()
 {  return colorAmbiente;
 }
 
@@ -132,7 +132,7 @@ Color &FuenteLuz::getAmbiental ()
  * Consulta el color de la componente difusa de la luz
  * @return Una referencia a la componente difusa de la luz
  */
- Color &FuenteLuz::getDifuso ()
+glm::vec3 &FuenteLuz::getDifuso ()
 {  return colorDifuso;
 }
 
@@ -140,7 +140,7 @@ Color &FuenteLuz::getAmbiental ()
  * Consulta el color de la componente especular de la luz
  * @return Una referencia a la componente especular de la luz
  */
-Color &FuenteLuz::getEspecular ()
+glm::vec3 &FuenteLuz::getEspecular ()
 {  return colorEspecular;
 }
 
@@ -213,53 +213,28 @@ void FuenteLuz::aplicar ()
 
     if(tipoLuz == PUNTUAL) // luz puntual
     {
-        float *pos = posicion.cloneToFloatArray();
-        float *Ka = colorAmbiente.cloneToFloatArray();
-        float *Kd = colorDifuso.cloneToFloatArray();
-        float *Ks = colorEspecular.cloneToFloatArray();
-
-        glLightfv(GL_LIGHT0, GL_POSITION, pos);
-        glLightfv(GL_LIGHT0, GL_AMBIENT, Ka);
-        glLightfv(GL_LIGHT0, GL_DIFFUSE, Kd);
-        glLightfv(GL_LIGHT0, GL_SPECULAR, Ks);
+        glLightfv(GL_LIGHT0, GL_POSITION, &posicion[0]);
+        glLightfv(GL_LIGHT0, GL_AMBIENT, &colorAmbiente[0]);
+        glLightfv(GL_LIGHT0, GL_DIFFUSE, &colorDifuso[0]);
+        glLightfv(GL_LIGHT0, GL_SPECULAR, &colorEspecular[0]);
         glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, float(aten_a0));
         glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, (float)aten_a1);
         glLightf(GL_LIGHT0, GL_QUADRATIC_ATTENUATION, (float)aten_a2);
         glEnable(GL_LIGHT0);
-
-        // Que no me entere yo que haya memory leaks ;)
-        delete [] pos;
-        delete [] Ka;
-        delete [] Kd;
-        delete [] Ks;
     }
     else if(tipoLuz == FOCAL) // luz focal ( como la lampara de mi cuarto )
     {
-        float *pos = posicion.cloneToFloatArray();
-        float *Kd = colorDifuso.cloneToFloatArray();
-        float *Ks = colorEspecular.cloneToFloatArray();
-        float *direccionFoco = direccion_foco.cloneToFloatArray();
-
-        glLightfv(GL_LIGHT0, GL_POSITION, pos);
-        glLightfv(GL_LIGHT0, GL_AMBIENT_AND_DIFFUSE, Kd);
-        glLightfv(GL_LIGHT0, GL_SPECULAR, Ks);
-        glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, float(aten_a0));
-        glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, (float)aten_a1);
-        glLightf(GL_LIGHT0, GL_QUADRATIC_ATTENUATION, (float)aten_a2);
-        glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, direccionFoco);
-        glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, (float)angulo_foco);
-        glLightf(GL_LIGHT0, GL_SPOT_EXPONENT, (float)exponente_foco);
-        glEnable(GL_LIGHT0);
-
-        // Que no me entere yo que haya memory leaks ;)
-        delete [] pos;
-        delete [] Kd;
-        delete [] Ks;
-        delete [] direccionFoco;
+        glLightfv(GL_LIGHT1, GL_POSITION, &posicion[0]);
+        glLightfv(GL_LIGHT1, GL_AMBIENT_AND_DIFFUSE, &colorDifuso[0]);
+        glLightfv(GL_LIGHT1, GL_SPECULAR, &colorEspecular[0]);
+        glLightf(GL_LIGHT1, GL_CONSTANT_ATTENUATION, float(aten_a0));
+        glLightf(GL_LIGHT1, GL_LINEAR_ATTENUATION, (float)aten_a1);
+        glLightf(GL_LIGHT1, GL_QUADRATIC_ATTENUATION, (float)aten_a2);
+        glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, &direccion_foco[0]);
+        glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, (float)angulo_foco);
+        glLightf(GL_LIGHT1, GL_SPOT_EXPONENT, (float)exponente_foco);
+        glEnable(GL_LIGHT1);
     }
-    // si la luz est� apagada
-    //	desactivar la luz todo
-
 }
 
 /**
@@ -267,7 +242,7 @@ void FuenteLuz::aplicar ()
  * @param d El desplazamiento
  */
 void FuenteLuz::moverEjeY(double d) {
-    posicion[Y] += d;
+    posicion[1] += d;
 }
 
 /**
@@ -275,6 +250,6 @@ void FuenteLuz::moverEjeY(double d) {
  * @param d El desplazamiento
  */
 void FuenteLuz::moverEjeX(double d) {
-    posicion[X] += d;
+    posicion[0] += d;
 }
 
