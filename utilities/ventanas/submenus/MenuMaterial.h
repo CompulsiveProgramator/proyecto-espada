@@ -13,6 +13,9 @@ namespace IGV{
     private:
         Malla *malla = nullptr;
         bool seleccionMalla = false; // Para activar/desactivar el modo de seleccion de malla con el doble click
+        glm::vec3 colorDifuso;
+        glm::vec3 colorEspecular;
+
     public:
         void refrescarMenu() override;
         void setMalla(Malla *malla1);

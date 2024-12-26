@@ -16,7 +16,7 @@ void IGV::MenuCamara::refrescarMenu() {
         static int tipoMovimientoCamaraActual = 0; // Índice de la opción seleccionada
 
         ImGui::Text("Opciones de movimiento:");
-        if (ImGui::BeginCombo("##", tiposMovimientoCamara[tipoMovimientoCamaraActual])) // Etiqueta del combo
+        if (ImGui::BeginCombo("##a", tiposMovimientoCamara[tipoMovimientoCamaraActual])) // Etiqueta del combo
         {
             for (int n = 0; n < IM_ARRAYSIZE(tiposMovimientoCamara); n++)
             {

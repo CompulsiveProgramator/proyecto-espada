@@ -62,8 +62,8 @@ namespace IGV
         }
     }
 
-    std::vector<Malla>& IGV::Modelo::getMallas() {
-        return mallas;
+    std::vector<Malla>* IGV::Modelo::getMallas() {
+        return &mallas;
     }
 
     void Modelo::escalarUniforme(float i) {

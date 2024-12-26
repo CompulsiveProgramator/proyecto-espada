@@ -19,13 +19,9 @@ namespace IGV{
         Material material;
     public:
         Malla(std::vector<GLfloat> pos, std::vector<GLfloat> norm, std::vector<GLuint> ind, Material mat);
-
         const std::vector<GLfloat> &getPosicionesVertices() const;
-
-        const Material &getMaterial() const;
-
+        Material *getMaterial();
         const std::vector<GLuint> &getIndices() const;
-
         const std::vector<GLfloat> &getNormales() const;
     };
 }

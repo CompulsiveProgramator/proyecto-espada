@@ -85,19 +85,21 @@ void IGV::Escena::visualizar() {
         // A la matriz de vision, proyeccion de la camara, se le multiplica ( por la derecha ;3 ) la matriz de modelado del modelo
         glMultMatrixf(glm::value_ptr(matModelado));
 
-        std::vector<IGV::Malla> mallas = modelo->getMallas();
-        for(int i = 0 ; i < mallas.size() ; i++)
+        std::vector<IGV::Malla> *mallas = modelo->getMallas();
+        for(int i = 0 ; i < mallas->size() ; i++)
         {
-            std::vector<GLfloat> pos = mallas[i].getPosicionesVertices();
-            std::vector<GLfloat> norm = mallas[i].getNormales();
-            std::vector<GLuint> indices = mallas[i].getIndices();
-            Material material = mallas[i].getMaterial();
+            std::vector<GLfloat> pos = mallas->data()[i].getPosicionesVertices();
+            std::vector<GLfloat> norm = mallas->data()[i].getNormales();
+            std::vector<GLuint> indices = mallas->data()[i].getIndices();
+            Material *material = mallas->data()[i].getMaterial();
 
-            GLfloat Es = material.getEs();
+            GLfloat Es = material->getEs();
 
-            glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, &material.getKd()[0]);
-            glMaterialfv(GL_FRONT, GL_SPECULAR, &material.getKs()[0]);
-            glMaterialfv(GL_FRONT, GL_SHININESS, &Es); // Aqui estoy pasando 250, cuando el limite es 128
+             //ToDo Ver porque no se actualiza el Kd en este material desde la GUI, porque estoy usando referencias!!!
+
+            glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, &material->getKd()[0]);
+            glMaterialfv(GL_FRONT, GL_SPECULAR, &material->getKs()[0]);
+            glMaterialfv(GL_FRONT, GL_SHININESS, &Es);
             glEnableClientState(GL_VERTEX_ARRAY);
             glVertexPointer(3, GL_FLOAT, 0, pos.data());
             glEnableClientState(GL_NORMAL_ARRAY);
@@ -200,30 +202,33 @@ void IGV::Escena::seleccionMalla() {
         // A la matriz de vision, proyeccion de la camara, se le multiplica ( por la derecha ;3 ) la matriz de modelado del modelo
         glMultMatrixf(glm::value_ptr(matModelado));
 
-        std::vector<IGV::Malla> mallas = modelo->getMallas();
-        std::vector<glm::vec3> colores = creaVectorColores(mallas.size());
-        for(int i = 0 ; i < mallas.size() ; i++)
+        std::vector<IGV::Malla> *mallas = modelo->getMallas();
+        std::vector<glm::vec3> colores = creaVectorColores(mallas->size());
+        for(int i = 0 ; i < mallas->size() ; i++)
         {
-            std::vector<GLfloat> pos = mallas[i].getPosicionesVertices();
-            std::vector<GLuint> indices = mallas[i].getIndices();
+            std::vector<GLfloat> pos = mallas->data()[i].getPosicionesVertices();
+            std::vector<GLuint> indices = mallas->data()[i].getIndices();
 
+            float colorNegro[3] = {0,0,0};
             glMaterialfv(GL_FRONT, GL_EMISSION, &colores[i][0]);
             glColor3fv(&colores[i][0]);
             glEnableClientState(GL_VERTEX_ARRAY);
             glVertexPointer(3, GL_FLOAT, 0, pos.data());
             glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, indices.data());
             glDisableClientState(GL_VERTEX_ARRAY);
+            glMaterialfv(GL_FRONT, GL_EMISSION, colorNegro); /// Importante desactivar el emision!!!
+            glColor3fv(colorNegro);
         }
 
         float colorLeido[3];
         glReadPixels(xpos, ypos, 1, 1, GL_RGB, GL_FLOAT, colorLeido);
 
         bool encontrado = false;
-        for(int i = 0 ; i < mallas.size(); i++)
+        for(int i = 0 ; i < mallas->size(); i++)
         {
             if( flotantesIguales(colorLeido[0], colores[i][0]) && flotantesIguales(colorLeido[1], colores[i][1]) && flotantesIguales(colorLeido[2], colores[i][2]))
             {
-                mallaElegida = &mallas[i];
+                mallaElegida = &mallas->data()[i];
                 encontrado = true;
             }
         }

@@ -23,8 +23,8 @@ const std::vector<GLfloat> &IGV::Malla::getPosicionesVertices() const {
     return posicionesVertices;
 }
 
-const IGV::Material &IGV::Malla::getMaterial() const {
-    return material;
+IGV::Material *IGV::Malla::getMaterial(){
+    return &material;
 }
 
 const std::vector<GLuint> &IGV::Malla::getIndices() const {

@@ -15,9 +15,31 @@ void IGV::MenuMaterial::refrescarMenu() {
 
        if(malla != nullptr)
        {
-           float a = malla->getMaterial().getKd()[0];
-           std::string mensajeVictoria = std::to_string(a);
-           ImGui::Text(mensajeVictoria.c_str());
+           if(ImGui::TreeNode("Color difuso"))
+           {
+               ImGui::DragFloat("R", &colorDifuso[X], 0.005f, 0.0f, 1.0f, "%.3f");
+               ImGui::DragFloat("G", &colorDifuso[Y], 0.005f, 0.0f, 1.0f, "%.3f");
+               ImGui::DragFloat("B", &colorDifuso[Z], 0.005f, 0.0f, 1.0f, "%.3f");
+
+               if(ImGui::Button("Aplicar")){
+                   malla->getMaterial()->setKd(colorDifuso);
+               }
+
+               ImGui::TreePop();
+           }
+
+           if(ImGui::TreeNode("Color especular"))
+           {
+               ImGui::DragFloat("R", &colorEspecular[X], 0.005f, 0.0f, 1.0f, "%.3f");
+               ImGui::DragFloat("G", &colorEspecular[Y], 0.005f, 0.0f, 1.0f, "%.3f");
+               ImGui::DragFloat("B", &colorEspecular[Z], 0.005f, 0.0f, 1.0f, "%.3f");
+
+               if (ImGui::Button("Aplicar")) {
+                   malla->getMaterial()->setKs(colorEspecular);
+               }
+
+               ImGui::TreePop();
+           }
 
            if(ImGui::Button("Deseleccionar malla"))
            {
@@ -30,10 +52,21 @@ void IGV::MenuMaterial::refrescarMenu() {
 
 /**
  * Setter del atributo de malla
- * @param malla1
+ * @param malla1 El puntero a la malla
  */
 void IGV::MenuMaterial::setMalla(IGV::Malla *malla1) {
-    malla = malla1;
+    if(malla != malla1)
+    {
+        malla = malla1;
+        if(malla)
+        {
+            colorDifuso = malla->getMaterial()->getKd();
+            colorEspecular = malla->getMaterial()->getKs();
+        }else{
+            colorDifuso = glm::vec3(0);
+            colorEspecular = glm::vec3(0);
+        }
+    }
 }
 
 /**

@@ -24,14 +24,12 @@ namespace IGV{
         GLfloat Es;
     public:
         Material(const glm::vec3 &ka, const glm::vec3 &kd, const glm::vec3 &ks, GLfloat es);
-
-        const glm::vec3 &getKa() const;
-
-        const glm::vec3 &getKd() const;
-
-        const glm::vec3 &getKs() const;
-
-        GLfloat getEs() const;
+        glm::vec3 &getKa();
+        glm::vec3 &getKd();
+        glm::vec3 &getKs();
+        GLfloat getEs();
+        void setKd(glm::vec3 &Kd1);
+        void setKs(glm::vec3 &Ks1);
     };
 }
 

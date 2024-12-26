@@ -24,7 +24,7 @@ namespace IGV{
         bool getSeguirMovimientoRaton();
         TipoMovimientoCamara getTipoMovimientoCamara();
         bool getModoSeleccion();
-        void pasarMallaSeleccionada(Malla *pMalla);
+        void pasarMallaSeleccionada(Malla *Malla);
     };
 }
 
