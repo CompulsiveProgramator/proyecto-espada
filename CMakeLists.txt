@@ -21,7 +21,6 @@ add_executable(Proyecto_Espada main.cpp
         utilities/modelo/Modelo.cpp
         utilities/modelo/Modelo.h
         utilities/modelo/Malla.cpp
-        utilities/modelo/Malla.h
         utilities/modelo/Material.cpp
         utilities/modelo/Material.h
         utilities/modelo/OBJ_Loader.h

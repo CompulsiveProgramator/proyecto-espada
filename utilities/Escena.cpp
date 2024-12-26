@@ -97,7 +97,8 @@ void IGV::Escena::visualizar() {
 
              //ToDo Ver porque no se actualiza el Kd en este material desde la GUI, porque estoy usando referencias!!!
 
-            glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, &material->getKd()[0]);
+            glMaterialfv(GL_FRONT, GL_AMBIENT, &material->getKa()[0]);
+            glMaterialfv(GL_FRONT, GL_DIFFUSE, &material->getKd()[0]);
             glMaterialfv(GL_FRONT, GL_SPECULAR, &material->getKs()[0]);
             glMaterialfv(GL_FRONT, GL_SHININESS, &Es);
             glEnableClientState(GL_VERTEX_ARRAY);

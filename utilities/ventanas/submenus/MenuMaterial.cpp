@@ -15,6 +15,20 @@ void IGV::MenuMaterial::refrescarMenu() {
 
        if(malla != nullptr)
        {
+           if(ImGui::TreeNode("Color ambiente"))
+           {
+               ImGui::DragFloat("R", &colorAmbiente[X], 0.005, 0.0f, 1.0f, "%.3f");
+               ImGui::DragFloat("G", &colorAmbiente[Y], 0.005, 0.0f, 1.0f, "%.3f");
+               ImGui::DragFloat("B", &colorAmbiente[Z], 0.005, 0.0f, 1.0f, "%.3f");
+
+               if(ImGui::Button("Aplicar"))
+               {
+                   malla->getMaterial()->setKa(colorAmbiente);
+               }
+
+               ImGui::TreePop();
+           }
+
            if(ImGui::TreeNode("Color difuso"))
            {
                ImGui::DragFloat("R", &colorDifuso[X], 0.005f, 0.0f, 1.0f, "%.3f");
@@ -41,6 +55,17 @@ void IGV::MenuMaterial::refrescarMenu() {
                ImGui::TreePop();
            }
 
+           if(ImGui::TreeNode("Exponente especular"))
+           {
+               ImGui::DragFloat("Valor", &exponenteEspecular, 0.5f, 0.0f, 127.0f, "%.3f");
+
+               if (ImGui::Button("Aplicar")) {
+                   malla->getMaterial()->setEs(exponenteEspecular);
+               }
+
+               ImGui::TreePop();
+           }
+
            if(ImGui::Button("Deseleccionar malla"))
            {
                malla = nullptr;
@@ -60,11 +85,15 @@ void IGV::MenuMaterial::setMalla(IGV::Malla *malla1) {
         malla = malla1;
         if(malla)
         {
+            colorAmbiente = malla->getMaterial()->getKa();
             colorDifuso = malla->getMaterial()->getKd();
             colorEspecular = malla->getMaterial()->getKs();
+            exponenteEspecular = malla->getMaterial()->getEs();
         }else{
+            colorAmbiente = glm::vec3(0);
             colorDifuso = glm::vec3(0);
             colorEspecular = glm::vec3(0);
+            exponenteEspecular = 0;
         }
     }
 }

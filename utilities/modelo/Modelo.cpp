@@ -10,7 +10,7 @@ namespace IGV
     /**
      * Constructor por defecto, que crea un modelo completamente vacio
      */
-    Modelo::Modelo():matrizModelado(glm::translate(glm::vec3(0,0,0))), mallas() {}
+    Modelo::Modelo():matrizModelado(glm::translate(glm::vec3(0,0,0))), mallas(), materiales() {}
 
     /**
     * Constructor del modelo
@@ -51,14 +51,34 @@ namespace IGV
                 indices.push_back(mesh->Indices[j]);
             }
 
-            glm::vec3 ka = glm::vec3(mesh->MeshMaterial.Ka.X, mesh->MeshMaterial.Ka.Y, mesh->MeshMaterial.Ka.Z);
-            glm::vec3 kd = glm::vec3(mesh->MeshMaterial.Kd.X, mesh->MeshMaterial.Kd.Y, mesh->MeshMaterial.Kd.Z);
-            glm::vec3 ks = glm::vec3(mesh->MeshMaterial.Ks.X, mesh->MeshMaterial.Ks.Y, mesh->MeshMaterial.Ks.Z);
-            GLfloat exponenteEspecular = mesh->MeshMaterial.Ns;
-            Material material(ka, kd, ks, exponenteEspecular);
+            int posicionMaterial = buscaMaterial(mesh->MeshMaterial.name);
+            if(posicionMaterial == -1)
+            {
+                glm::vec3 ka = glm::vec3(mesh->MeshMaterial.Ka.X, mesh->MeshMaterial.Ka.Y, mesh->MeshMaterial.Ka.Z);
+                glm::vec3 kd = glm::vec3(mesh->MeshMaterial.Kd.X, mesh->MeshMaterial.Kd.Y, mesh->MeshMaterial.Kd.Z);
+                glm::vec3 ks = glm::vec3(mesh->MeshMaterial.Ks.X, mesh->MeshMaterial.Ks.Y, mesh->MeshMaterial.Ks.Z);
+                GLfloat exponenteEspecular = mesh->MeshMaterial.Ns;
+                std::string nombreMat = mesh->MeshMaterial.name;
+                Material material(ka, kd, ks, exponenteEspecular, nombreMat);
+                materiales.push_back(material);
 
-            Malla nuevaMalla(posicionesVertices, normales, indices, material);
-            mallas.push_back(nuevaMalla);
+                Malla nuevaMalla(posicionesVertices, normales, indices, materiales.size() - 1, this);
+                mallas.push_back(nuevaMalla);
+            }else{
+                Malla nuevaMalla(posicionesVertices, normales, indices, posicionMaterial, this);
+                mallas.push_back(nuevaMalla);
+            }
+
+            /*
+             * Ahora, cada malla crea una copia del material que recibe
+             *
+             * Pero, si cuando leo el material, consulto su nombre, y no esta dentro del vector de materiales, puedo meterlo adentro y pasarle su posicion a la malla
+             * para que luego pueda consultarlo. Y si ya esta, simplemente no copio de nuevo el material y busco su posicion en el vector y le paso esa "i" a la malla
+             *
+             * ;)
+             */
+
+
         }
     }
 
@@ -143,5 +163,31 @@ namespace IGV
 
     void Modelo::aplicarEscaladoEjeZ(float proporcion) {
         matrizModelado = glm::scale(glm::vec3(1,1,proporcion)) * matrizModelado;
+    }
+
+    /**
+     * Metodo auxiliar para que cada malla pueda consultar su material
+     * @param i La posicion en el vector de materiales [0, n-1]
+     * @return La direccion del material
+     */
+    Material *Modelo::getMaterial(int i) {
+        return &materiales[i];
+    }
+
+    /**
+     * Metodo auxiliar, para ver si un material leido ya esta creado o no
+     * @param nombreMat El nombre del material a buscar
+     * @return La posicion del material si se ha encontrado, o -1 si no existe
+     */
+    int Modelo::buscaMaterial(std::string nombreMat) {
+        for(int i = 0 ; i < materiales.size() ; i++)
+        {
+            if(materiales[i].getNombreMaterial() == nombreMat)
+            {
+                return i;
+            }
+        }
+
+        return -1;
     }
 }

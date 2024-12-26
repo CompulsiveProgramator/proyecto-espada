@@ -22,14 +22,18 @@ namespace IGV{
         glm::vec3 Kd;
         glm::vec3 Ks;
         GLfloat Es;
+        std::string nombreMaterial;
     public:
-        Material(const glm::vec3 &ka, const glm::vec3 &kd, const glm::vec3 &ks, GLfloat es);
+        Material(const glm::vec3 &ka, const glm::vec3 &kd, const glm::vec3 &ks, GLfloat es, std::string nombreMat);
         glm::vec3 &getKa();
         glm::vec3 &getKd();
         glm::vec3 &getKs();
         GLfloat getEs();
+        void setKa(glm::vec3 &Ka1);
         void setKd(glm::vec3 &Kd1);
         void setKs(glm::vec3 &Ks1);
+        void setEs(GLfloat Es1);
+        std::string getNombreMaterial();
     };
 }
 
