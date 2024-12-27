@@ -180,8 +180,8 @@ std::vector<glm::vec3> IGV::Escena::creaVectorColores(unsigned long long int siz
 
     for(int i = 0 ; i < size ; i++)
     {
-        float color = float(i)/float(size) + 0.1f;
-        colores.push_back(glm::vec3(color, 0, color));
+        float color = float(i)/float(size);
+        colores.push_back(glm::vec3(color, 0, 0));
     }
 
     return colores;
@@ -198,7 +198,7 @@ void IGV::Escena::comprobarSiHayMalla() {
  * @return
  */
 bool IGV::Escena::flotantesIguales(float a, float b) {
-    return ( abs(a-b) < 0.1 );
+    return ( abs(a-b) < 0.001 );
 }
 
 /**
