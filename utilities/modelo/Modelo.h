@@ -11,6 +11,7 @@
 #include <vector>
 #include <glm/gtx/transform.hpp>
 #include "Material.h"
+#include "Textura.h"
 
 namespace IGV{
     class Malla;
@@ -22,14 +23,17 @@ namespace IGV{
     private:
         std::vector<Malla> mallas; /// Las mallas de triangulos
         std::vector<Material> materiales;
+        std::vector<Textura> texturas;
         glm::mat4 matrizModelado;
         int buscaMaterial(std::string nombreMat);
+        int buscaTextura(std::string nombreTex);
     public:
         Modelo();
         Modelo(std::string rutaArchivo);
         std::vector<Malla>* getMallas();
         glm::mat4 getMatrizModelado();
         Material* getMaterial(int i);
+        Textura* getTextura(int i);
         void escalarUniforme(float i);
         void aplicarTraslacionEjeX(float distancia);
         void aplicarTraslacionEjeY(float distancia);
@@ -47,15 +51,19 @@ namespace IGV{
     private:
         std::vector<GLfloat> posicionesVertices;
         std::vector<GLfloat> normales;
+        std::vector<GLfloat> coordenadasTextura;
         std::vector<GLuint> indices;
         int indiceMaterial;
+        int indiceTextura;
         IGV::Modelo *miModelo = nullptr;
     public:
-        Malla(std::vector<GLfloat> pos, std::vector<GLfloat> norm, std::vector<GLuint> ind, int indiceMaterial, Modelo *miModelo1);
+        Malla(std::vector<GLfloat> pos, std::vector<GLfloat> norm, std::vector<GLfloat> text, std::vector<GLuint> ind, int _indiceMaterial, int _indiceTextura, Modelo *miModelo1);
         const std::vector<GLfloat> &getPosicionesVertices() const;
         Material *getMaterial();
+        Textura *getTextura();
         const std::vector<GLuint> &getIndices() const;
         const std::vector<GLfloat> &getNormales() const;
+        std::vector<GLfloat> &getCoordenadasTextura();
     };
 }
 

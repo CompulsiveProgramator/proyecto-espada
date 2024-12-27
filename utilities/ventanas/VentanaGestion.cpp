@@ -25,7 +25,7 @@ namespace IGV{
     void VentanaGestion::visualizarMenuModelo() {
         if(ImGui::CollapsingHeader("Modelo"))
         {
-            const char* nombresEspada[] = {"Ninguno", "Espada simple", "Xifos espartano"};
+            const char* nombresEspada[] = {"Ninguno", "Espada simple", "Xifos espartano", "Sting"};
             static int item_current_idx = 0;
 
             ImGui::Text("Selecciona la espada a visualizar:");
@@ -57,6 +57,9 @@ namespace IGV{
             }else if(nombresEspada[item_current_idx] == "Xifos espartano")
             {
                 nombreModelo = "../modelos/xifos.obj";
+            }else if(nombresEspada[item_current_idx] == "Sting")
+            {
+                nombreModelo = "../modelos/sting_sword.obj";
             }
 
             if(ImGui::Button("Aplicar"))

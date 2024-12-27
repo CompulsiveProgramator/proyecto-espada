@@ -10,7 +10,7 @@ namespace IGV
     /**
      * Constructor por defecto, que crea un modelo completamente vacio
      */
-    Modelo::Modelo():matrizModelado(glm::translate(glm::vec3(0,0,0))), mallas(), materiales() {}
+    Modelo::Modelo():matrizModelado(glm::translate(glm::vec3(0,0,0))), mallas(), materiales(), texturas() {}
 
     /**
     * Constructor del modelo
@@ -33,6 +33,7 @@ namespace IGV
 
             std::vector<GLfloat> posicionesVertices;
             std::vector<GLfloat> normales;
+            std::vector<GLfloat> coordenadasTextura; // (U, V)
             std::vector<GLuint> indices;
 
             for(int j = 0 ; j < mesh->Vertices.size() ; j++)
@@ -44,6 +45,9 @@ namespace IGV
                 normales.push_back(mesh->Vertices[j].Normal.X);
                 normales.push_back(mesh->Vertices[j].Normal.Y);
                 normales.push_back(mesh->Vertices[j].Normal.Z);
+
+                coordenadasTextura.push_back(mesh->Vertices[j].TextureCoordinate.X);
+                coordenadasTextura.push_back(mesh->Vertices[j].TextureCoordinate.Y);
             }
 
             for(int j = 0 ; j < mesh->Indices.size() ; j++)
@@ -61,24 +65,37 @@ namespace IGV
                 std::string nombreMat = mesh->MeshMaterial.name;
                 Material material(ka, kd, ks, exponenteEspecular, nombreMat);
                 materiales.push_back(material);
-
-                Malla nuevaMalla(posicionesVertices, normales, indices, materiales.size() - 1, this);
-                mallas.push_back(nuevaMalla);
-            }else{
-                Malla nuevaMalla(posicionesVertices, normales, indices, posicionMaterial, this);
-                mallas.push_back(nuevaMalla);
             }
 
-            /*
-             * Ahora, cada malla crea una copia del material que recibe
-             *
-             * Pero, si cuando leo el material, consulto su nombre, y no esta dentro del vector de materiales, puedo meterlo adentro y pasarle su posicionPuntual a la malla
-             * para que luego pueda consultarlo. Y si ya esta, simplemente no copio de nuevo el material y busco su posicionPuntual en el vector y le paso esa "i" a la malla
-             *
-             * ;)
-             */
+            bool usaTextura;
+            if(mesh->MeshMaterial.map_Kd.empty())
+            {
+                usaTextura = false;
+            }else{
+                usaTextura = true;
+            }
 
+            int posicionTextura;
+            if(usaTextura)
+            {
+                posicionTextura = buscaTextura(mesh->MeshMaterial.map_Kd);
+                if(posicionTextura == -1) // Si no se ha credo la textura, la creamos ;)
+                {
+                    Textura textura(mesh->MeshMaterial.map_Kd);
+                    texturas.push_back(textura);
+                }
+            }
 
+            posicionMaterial = buscaMaterial(mesh->MeshMaterial.name);
+            if(usaTextura)
+            {
+                posicionTextura = buscaTextura(mesh->MeshMaterial.map_Kd);
+                Malla nuevaMalla(posicionesVertices, normales, coordenadasTextura, indices, posicionMaterial, posicionTextura, this);
+                mallas.push_back(nuevaMalla);
+            }else{
+                Malla nuevaMalla(posicionesVertices, normales, coordenadasTextura, indices, posicionMaterial, -1, this);
+                mallas.push_back(nuevaMalla);
+            }
         }
     }
 
@@ -189,5 +206,31 @@ namespace IGV
         }
 
         return -1;
+    }
+
+    /**
+     * Metodo auxiliar, para ver si una textura ya ha sido creada o no
+     * @param nombreTex El nombre de la textura a buscar en "texturas"
+     * @return La posicion de la textura si se ha encontrado, o -1 si no existe
+     */
+    int Modelo::buscaTextura(std::string nombreTex) {
+        for(int i = 0 ; i < texturas.size() ; i++)
+        {
+            if(texturas[i].getNombreTextura() == nombreTex)
+            {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    /**
+     * Metodo auxiliar para que cada malla pueda consultar su textura
+     * @param i La posicion de la textura [0, n-1] n = numero de texturas
+     * @return Un puntero a la textura
+     */
+    Textura *Modelo::getTextura(int i) {
+        return &texturas[i];
     }
 }

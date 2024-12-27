@@ -106,11 +106,19 @@ void IGV::Escena::visualizar() {
         {
             std::vector<GLfloat> pos = mallas->data()[i].getPosicionesVertices();
             std::vector<GLfloat> norm = mallas->data()[i].getNormales();
+            std::vector<GLfloat> text = mallas->data()[i].getCoordenadasTextura();
             std::vector<GLuint> indices = mallas->data()[i].getIndices();
             Material *material = mallas->data()[i].getMaterial();
-
+            Textura *textura = mallas->data()[i].getTextura();
             GLfloat Es = material->getEs();
 
+            if(textura != nullptr)
+            {
+                glEnable(GL_TEXTURE_2D);
+                textura->aplicar();
+                glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+                glTexCoordPointer(2, GL_FLOAT, 0, text.data());
+            }
             glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, &material->getKd()[0]);
             glMaterialfv(GL_FRONT, GL_SPECULAR, &material->getKs()[0]);
             glMaterialfv(GL_FRONT, GL_SHININESS, &Es);
@@ -121,6 +129,11 @@ void IGV::Escena::visualizar() {
             glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, indices.data());
             glDisableClientState(GL_VERTEX_ARRAY);
             glDisableClientState(GL_NORMAL_ARRAY);
+            if(textura != nullptr)
+            {
+                glDisable(GL_TEXTURE_2D);
+                glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+            }
         }
     }
 

@@ -72,6 +72,7 @@ namespace IGV
      * Configurar Open GL
      */
     void Renderer::configuraOpenGL() {
+        glEnable(GL_BLEND);
         glEnable(GL_DEPTH_TEST);
         glEnable(GL_LIGHTING);
         glEnable(GL_NORMALIZE);

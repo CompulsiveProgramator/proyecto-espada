@@ -269,6 +269,12 @@ Proyecto_Espada_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 Proyecto_Espada_SOURCE_DIR:STATIC=C:/Users/secre/CLionProjects/IG/Proyecto_Espada
 
+//No help, variable specified on the command line.
+Python3_EXECUTABLE:UNINITIALIZED=C:/Users/secre/CLionProjects/IG/Proyecto_Espada/venv/Scripts/python.exe
+
+//No help, variable specified on the command line.
+Python_EXECUTABLE:UNINITIALIZED=C:/Users/secre/CLionProjects/IG/Proyecto_Espada/venv/Scripts/python.exe
+
 //Path to a program.
 _cmake_program:FILEPATH=C:/Program Files/CMake/bin/cmake.exe
 

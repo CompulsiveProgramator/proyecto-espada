@@ -37,6 +37,10 @@ add_executable(Proyecto_Espada main.cpp
         utilities/ventanas/submenus/MenuMaterial.h
         utilities/ventanas/submenus/MenuIluminacion.cpp
         utilities/ventanas/submenus/MenuIluminacion.h
+        utilities/modelo/Textura.cpp
+        utilities/modelo/Textura.h
+        utilities/lodepng.cpp
+        utilities/lodepng.h
 )
 
 target_include_directories(Proyecto_Espada PUBLIC imgui)
