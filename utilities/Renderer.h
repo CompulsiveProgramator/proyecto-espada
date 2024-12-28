@@ -38,6 +38,8 @@ namespace IGV{
         Malla* getMallaSeleccionada();
         void pasarPosicionCursor(int x, int y);
         void deseleccionarMalla();
+
+        void trasladarModeloEjeY(float d);
     };
 }
 

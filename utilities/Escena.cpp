@@ -162,8 +162,8 @@ void IGV::Escena::agregarModelo(std::string rutaArchivo) {
     rutaModelo = rutaArchivo;
 }
 
-IGV::Modelo& IGV::Escena::getModelo() {
-    return *modelo;
+IGV::Modelo* IGV::Escena::getModelo() {
+    return modelo;
 }
 
 /**

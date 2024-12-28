@@ -30,7 +30,6 @@ namespace IGV{
         bool escaladoUniformeActivo = false;
     public:
         MenuTransformaciones() = default;
-
         void refrescarMenu() override;
     };
 }

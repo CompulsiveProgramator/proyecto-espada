@@ -8,9 +8,15 @@ void IGV::MenuTransformaciones::refrescarMenu() {
     try{
         if(ImGui::CollapsingHeader("Transformaciones"))
         {
+            if(Renderer::getInstancia().getEscena().getModelo() == nullptr)
+            {
+                ImGui::Text("No hay ningun modelo cargado, selecciona y carga uno");
+                return;
+            }
+
             if(ImGui::Button("Resetear matriz de modelado"))
             {
-                Renderer::getInstancia().getEscena().getModelo().resetearMatrizModelado();
+                Renderer::getInstancia().getEscena().getModelo()->resetearMatrizModelado();
             }
 
             if(ImGui::TreeNode("Traslación"))
@@ -28,9 +34,9 @@ void IGV::MenuTransformaciones::refrescarMenu() {
 
                 if(ImGui::Button("Aplicar"))
                 {
-                    Renderer::getInstancia().getEscena().getModelo().aplicarTraslacionEjeX(traslacionX);
-                    Renderer::getInstancia().getEscena().getModelo().aplicarTraslacionEjeY(traslacionY);
-                    Renderer::getInstancia().getEscena().getModelo().aplicarTraslacionEjeZ(traslacionZ);
+                    Renderer::getInstancia().getEscena().getModelo()->aplicarTraslacionEjeX(traslacionX);
+                    Renderer::getInstancia().getEscena().getModelo()->aplicarTraslacionEjeY(traslacionY);
+                    Renderer::getInstancia().getEscena().getModelo()->aplicarTraslacionEjeZ(traslacionZ);
                 }
 
                 ImGui::TreePop();
@@ -51,9 +57,9 @@ void IGV::MenuTransformaciones::refrescarMenu() {
 
                 if(ImGui::Button("Aplicar"))
                 {
-                    Renderer::getInstancia().getEscena().getModelo().aplicarRotacionEjeX(rotacionX);
-                    Renderer::getInstancia().getEscena().getModelo().aplicarRotacionEjeY(rotacionY);
-                    Renderer::getInstancia().getEscena().getModelo().aplicarRotacionEjeZ(rotacionZ);
+                    Renderer::getInstancia().getEscena().getModelo()->aplicarRotacionEjeX(rotacionX);
+                    Renderer::getInstancia().getEscena().getModelo()->aplicarRotacionEjeY(rotacionY);
+                    Renderer::getInstancia().getEscena().getModelo()->aplicarRotacionEjeZ(rotacionZ);
                 }
 
                 ImGui::TreePop();
@@ -84,11 +90,11 @@ void IGV::MenuTransformaciones::refrescarMenu() {
                 {
                     if(escaladoUniformeActivo)
                     {
-                        Renderer::getInstancia().getEscena().getModelo().escalarUniforme(escaladoUniforme);
+                        Renderer::getInstancia().getEscena().getModelo()->escalarUniforme(escaladoUniforme);
                     }else{
-                        Renderer::getInstancia().getEscena().getModelo().aplicarEscaladoEjeX(escaladoX);
-                        Renderer::getInstancia().getEscena().getModelo().aplicarEscaladoEjeY(escaladoY);
-                        Renderer::getInstancia().getEscena().getModelo().aplicarEscaladoEjeZ(escaladoZ);
+                        Renderer::getInstancia().getEscena().getModelo()->aplicarEscaladoEjeX(escaladoX);
+                        Renderer::getInstancia().getEscena().getModelo()->aplicarEscaladoEjeY(escaladoY);
+                        Renderer::getInstancia().getEscena().getModelo()->aplicarEscaladoEjeZ(escaladoZ);
                     }
                 }
 

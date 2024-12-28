@@ -131,5 +131,16 @@ namespace IGV
     void Renderer::deseleccionarMalla() {
         escena->deseleccionarMalla();
     }
+
+    /**
+     * Metodo para mover el modelo de la escena en el eje Y
+     * @param d La distancia a mover en el eje Y al modelo
+     */
+    void Renderer::trasladarModeloEjeY(float d) {
+        if(escena->getModelo())
+        {
+            escena->getModelo()->aplicarTraslacionEjeY(d);
+        }
+    }
 }
 
