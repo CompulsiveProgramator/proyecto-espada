@@ -1,4 +1,7 @@
-Esta es una app gráfica hecha con OpenGL para los gráficos, GLFW para la ventana, y ImGui para la 
+# Proyecto espada
+<img width="150" alt="logo proyecto" src="imagenes/espada.png">
+
+Esta es una app gráfica bien chula, hecha con OpenGL para los gráficos, GLFW para la ventana, y ImGui para la 
 interfaz gráfica de usuario. Es un visualizador de espadas 3D, que tiene un alto grado de detalle,
 pudiendo jugar con la iluminación, los materiales de cada modelo, las transformaciones de modelado, y la cámara.
 
