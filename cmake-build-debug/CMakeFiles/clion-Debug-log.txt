@@ -92,13 +92,13 @@ WARN: deprecated:     'cpp_info.build_modules' used in: glfw/3.3.8
 conanfile.py: Writing generators to C:\Users\secre\CLionProjects\IG\Proyecto_Espada\cmake-build-debug\conan\build\Debug\generators
 conanfile.py: Generator 'CMakeDeps' calling 'generate()'
 conanfile.py: CMakeDeps necessary find_package() and targets for your CMakeLists.txt
+    find_package(glfw3)
     find_package(glad)
     find_package(FreeGLUT)
-    find_package(glfw3)
     find_package(glm)
     find_package(opengl-registry)
     find_package(opengl_system)
-    target_link_libraries(... glad::glad FreeGLUT::freeglut_static glfw glm::glm opengl-registry::opengl-registry opengl::opengl)
+    target_link_libraries(... glfw glad::glad FreeGLUT::freeglut_static glm::glm opengl-registry::opengl-registry opengl::opengl)
 conanfile.py: Calling generate()
 conanfile.py: Generators folder: C:\Users\secre\CLionProjects\IG\Proyecto_Espada\cmake-build-debug\conan\build\Debug\generators
 conanfile.py: CMakeToolchain generated: conan_toolchain.cmake
@@ -127,6 +127,6 @@ Install finished successfully
 -- Conan: Component target declared 'FreeGLUT::freeglut_static'
 -- CMake-Conan: find_package(glu) found, 'conan install' already ran
 -- Conan: Target declared 'glu::glu'
--- Configuring done (3.5s)
+-- Configuring done (1.7s)
 -- Generating done (0.1s)
 -- Build files have been written to: C:/Users/secre/CLionProjects/IG/Proyecto_Espada/cmake-build-debug
