@@ -12,4 +12,5 @@ Lo que se usa a día de hoy es el "Core Profile", que nos permite meternos en la
 gracias a los "shaders".
 
 Para la siguiente versión que será la 2.0 , la aplicación migrará completamente de Compatibility a Core Profile
-"Per aspera, ad astra"
+
+*"Per aspera, ad astra"*
