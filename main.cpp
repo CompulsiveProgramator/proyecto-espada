@@ -1,4 +1,5 @@
 #include <iostream>
+#include "glad/glad.h"
 #include <GLFW/glfw3.h>
 #include <chrono>
 #include "utilities/Renderer.h"
@@ -148,9 +149,20 @@ void mouse_button_callback ( GLFWwindow *window, int button, int action, int mod
     }
 }
 
+/**
+ * Callback llamado si hay un error de GLFW
+ * @param _errno
+ * @param desc
+ */
+void error_callback ( int errno, const char* desc )
+{
+    std::string aux (desc);
+    std::cout << "Error de GLFW número " << errno << ": " << aux << std::endl;
+}
+
 int main( int argc, char **argv ) {
-    //IGV::Renderer::getInstancia().configurar_ventana(argc, argv, 600,300,100,100, "Proyecto espada");
-    //IGV::Renderer::getInstancia().inicia_bucle_visualizacion();
+
+    glfwSetErrorCallback((GLFWerrorfun)error_callback);
 
     // Inicializar GLFW
     if (!glfwInit()) {
@@ -159,10 +171,10 @@ int main( int argc, char **argv ) {
     }
 
     // Crear una ventana con contexto OpenGL
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);  // Versión mayor (ejemplo: 3.3)
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);  // Versión menor
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE);  // Compatibility Profile
-    // glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);  // Core Profile (opcional)
+    glfwWindowHint ( GLFW_SAMPLES, 4 ); // - Activa antialiasing con 4 muestras.
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);  // Versión mayor (ejemplo: 3.3)
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);  // Versión menor
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);  // Compatibility Profile
 
     // Crear ventana
     GLFWwindow* window = glfwCreateWindow(Constantes::anchoVentana, Constantes::altoVentana, "Proyecto espada", nullptr, nullptr);
@@ -173,6 +185,16 @@ int main( int argc, char **argv ) {
     }
 
     glfwMakeContextCurrent(window);
+
+    // - Ahora inicializamos GLAD.
+    if ( !gladLoadGLLoader ( (GLADloadproc) glfwGetProcAddress ) )
+    {
+        std::cout << "GLAD initialization failed" << std::endl;
+        glfwDestroyWindow ( window ); // - Liberamos los recursos que ocupaba GLFW.
+        window = nullptr;
+        glfwTerminate ();
+        return -3;
+    }
 
     // Los callbacks:
     glfwSetWindowRefreshCallback ( window, window_refresh_callback );
@@ -188,6 +210,13 @@ int main( int argc, char **argv ) {
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init();
+
+    // - Interrogamos a OpenGL para que nos informe de las propiedades del contexto
+    // 3D construido.
+    std::cout << glGetString ( GL_RENDERER ) << std::endl
+              << glGetString ( GL_VENDOR ) << std::endl
+              << glGetString ( GL_VERSION ) << std::endl
+              << glGetString ( GL_SHADING_LANGUAGE_VERSION ) << std::endl;
 
     // Bucle principal
     while (!glfwWindowShouldClose(window)) {

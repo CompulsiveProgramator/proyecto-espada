@@ -6,7 +6,7 @@
 #define PROYECTO_ESPADA_ESCENA_H
 
 /**
- * Para ver como visualizar la escena
+ * Para ver como chequearMallaSeleccionada la escena
  */
 enum ModoVisualizacion{
     NORMAL, //Verla normal
@@ -40,7 +40,7 @@ namespace IGV{
         Escena();
         ~Escena();
 
-        void visualizar();
+        void chequearMallaSeleccionada();
         bool getEjes();
         void setEjes(bool valor);
         void agregarModelo(std::string rutaArchivo);
@@ -54,6 +54,7 @@ namespace IGV{
         void deseleccionarMalla();
         FuenteLuz *getLuzPuntual();
         FuenteLuz *getLuzFocal();
+        std::vector<FuenteLuz*> getLuces();
     };
 }
 

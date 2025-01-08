@@ -8,6 +8,7 @@
 #include <iostream>
 #include "Escena.h"
 #include "Camara.h"
+#include "ShaderProgram.h"
 #include "../Constantes.h"
 
 namespace IGV{
@@ -23,6 +24,7 @@ namespace IGV{
 
         Escena *escena = nullptr;
         Camara *camara = nullptr;
+        ShaderProgram shader;
         int ancho_ventana = Constantes::anchoVentana, alto_ventana = Constantes::altoVentana;
         void configuraOpenGL();
     public:

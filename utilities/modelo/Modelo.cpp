@@ -16,7 +16,9 @@ namespace IGV
     * Constructor del modelo
     * @param rutaArchivo La ruta hacia el archivo OBJ
     */
-    IGV::Modelo::Modelo(std::string rutaArchivo):matrizModelado(glm::translate(glm::vec3(0,0,0))) {
+    IGV::Modelo::Modelo(std::string rutaArchivo):matrizModelado(glm::translate(glm::vec3(0,0,0))), mallas() {
+        mallas.reserve(100); // Para que solo se realoquen las mallas cuando haya 100 elementos o mas
+
         objl::Loader loader;
 
         if(!loader.LoadFile(rutaArchivo))
@@ -90,11 +92,11 @@ namespace IGV
             if(usaTextura)
             {
                 posicionTextura = buscaTextura(mesh->MeshMaterial.map_Kd);
-                Malla nuevaMalla(posicionesVertices, normales, coordenadasTextura, indices, posicionMaterial, posicionTextura, this);
-                mallas.push_back(nuevaMalla);
+
+                mallas.emplace_back(posicionesVertices, normales, coordenadasTextura, indices, posicionMaterial, posicionTextura, this);
             }else{
-                Malla nuevaMalla(posicionesVertices, normales, coordenadasTextura, indices, posicionMaterial, -1, this);
-                mallas.push_back(nuevaMalla);
+
+                mallas.emplace_back(posicionesVertices, normales, coordenadasTextura, indices, posicionMaterial, -1, this);
             }
         }
     }

@@ -2,6 +2,7 @@
 // Created by secre on 22/12/2024.
 //
 
+#include "glad/glad.h"
 #include "Renderer.h"
 
 namespace IGV
@@ -11,7 +12,7 @@ namespace IGV
     /**
      * Constructor de la ventana
      */
-    IGV::Renderer::Renderer() {
+    IGV::Renderer::Renderer(): shader() {
         escena = new Escena();
         //Camara paralela:
         //        camara = new Camara(-1 * 4.5, 1 * 4.5, -1 * 4.5, 1 * 4.5
@@ -26,6 +27,7 @@ namespace IGV
     Renderer::~Renderer() {
         delete instancia;
         delete camara;
+        delete escena;
     }
 
     /**
@@ -50,8 +52,11 @@ namespace IGV
         glPolygonMode ( GL_FRONT_AND_BACK, GL_FILL );
         glViewport(0, 0, ancho_ventana, alto_ventana);
 
-        camara->aplicar();
-        escena->visualizar();
+        //escena->chequearMallaSeleccionada();
+        if(escena->getModelo())
+        {
+            shader.ejecutarShaderProgram(escena->getModelo(), camara, escena->getLuces());
+        }
     }
 
     void Renderer::modificarTamañoVentana(int ancho, int alto) {
@@ -74,10 +79,12 @@ namespace IGV
     void Renderer::configuraOpenGL() {
         glEnable(GL_BLEND);
         glEnable(GL_DEPTH_TEST);
-        glEnable(GL_LIGHTING);
-        glEnable(GL_NORMALIZE);
+        glDepthFunc(GL_LEQUAL);
+        glPrimitiveRestartIndex(0xFFFF);
+        glEnable(GL_PRIMITIVE_RESTART);
+        glEnable(GL_PROGRAM_POINT_SIZE);
+        glEnable(GL_MULTISAMPLE);
         glEnable(GL_TEXTURE_2D);
-        glShadeModel(GL_SMOOTH);
     }
 
     /**

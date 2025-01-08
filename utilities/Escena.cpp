@@ -71,73 +71,14 @@ IGV::Escena::~Escena() {
 }
 
 /**
- * Metodo para visualizar la escena
+ * Metodo para chequearMallaSeleccionada la escena
  */
-void IGV::Escena::visualizar() {
-    glPushMatrix();
-
-    seleccionMalla();
-
-    if( ejes )
-    {
-        pintar_ejes();
-    }
-
-    if( luzPuntual )
-    {
-        luzPuntual->aplicar();
-    }
-
-    if( luzFocal )
-    {
-        luzFocal->aplicar();
-    }
-
-
-    if ( modelo )
-    {
-        glm::mat4 matModelado = modelo->getMatrizModelado();
-        glMatrixMode(GL_MODELVIEW);
-        // A la matriz de vision, proyeccion de la camara, se le multiplica ( por la derecha ;3 ) la matriz de modelado del modelo
-        glMultMatrixf(glm::value_ptr(matModelado));
-
-        std::vector<IGV::Malla> *mallas = modelo->getMallas();
-        for(int i = 0 ; i < mallas->size() ; i++)
-        {
-            std::vector<GLfloat> pos = mallas->data()[i].getPosicionesVertices();
-            std::vector<GLfloat> norm = mallas->data()[i].getNormales();
-            std::vector<GLfloat> text = mallas->data()[i].getCoordenadasTextura();
-            std::vector<GLuint> indices = mallas->data()[i].getIndices();
-            Material *material = mallas->data()[i].getMaterial();
-            Textura *textura = mallas->data()[i].getTextura();
-            GLfloat Es = material->getEs();
-
-            if(textura != nullptr)
-            {
-                glEnable(GL_TEXTURE_2D);
-                textura->aplicar();
-                glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-                glTexCoordPointer(2, GL_FLOAT, 0, text.data());
-            }
-            glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, &material->getKd()[0]);
-            glMaterialfv(GL_FRONT, GL_SPECULAR, &material->getKs()[0]);
-            glMaterialfv(GL_FRONT, GL_SHININESS, &Es);
-            glEnableClientState(GL_VERTEX_ARRAY);
-            glVertexPointer(3, GL_FLOAT, 0, pos.data());
-            glEnableClientState(GL_NORMAL_ARRAY);
-            glNormalPointer(GL_FLOAT, 0, norm.data());
-            glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, indices.data());
-            glDisableClientState(GL_VERTEX_ARRAY);
-            glDisableClientState(GL_NORMAL_ARRAY);
-            if(textura != nullptr)
-            {
-                glDisable(GL_TEXTURE_2D);
-                glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-            }
-        }
-    }
-
-    glPopMatrix();
+void IGV::Escena::chequearMallaSeleccionada() {
+//    if(ejes)
+//    {
+//        pintar_ejes();
+//    }
+//    seleccionMalla();
 }
 
 /**
@@ -308,5 +249,15 @@ FuenteLuz *IGV::Escena::getLuzPuntual() {
  */
 FuenteLuz *IGV::Escena::getLuzFocal() {
     return luzFocal;
+}
+
+/**
+ * Metodo que devuelve las luces de la escena, empaquetadas como un vector de punteros
+ * @return El vector con los punteros a cada luz
+ */
+std::vector<FuenteLuz *> IGV::Escena::getLuces() {
+    std::vector<FuenteLuz*> aux;
+    aux.push_back(luzPuntual);
+    return aux;
 }
 

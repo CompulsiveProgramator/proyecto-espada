@@ -2,8 +2,8 @@
 // Created by secre on 23/12/2024.
 //
 
+#include "glad/glad.h"
 #include "Modelo.h"
-
 #include <utility>
 
 /**
@@ -18,6 +18,8 @@ IGV::Malla::Malla(std::vector<GLfloat> pos, std::vector<GLfloat> norm, std::vect
     normales = std::move(norm);
     coordenadasTextura = std::move(text);
     indices = std::move(ind);
+    numIndices = indices.size();
+    crearVao();
 }
 
 const std::vector<GLfloat> &IGV::Malla::getPosicionesVertices() const {
@@ -59,4 +61,67 @@ IGV::Textura *IGV::Malla::getTextura() {
     }else{
         return miModelo->getTextura(indiceTextura);
     }
+}
+
+/**
+ * Metodo auxiliar para crear el VAO, con el que podre pintar mi espada!!!
+ */
+void IGV::Malla::crearVao() {
+    // Generamos los buffers de OpenGL vacios:
+    glGenVertexArrays(1, &idVAO);
+    glGenBuffers(1, &idVBO1);
+    glGenBuffers(1, &idVBO2);
+    glGenBuffers(1, &idIBO);
+
+    glBindVertexArray(idVAO);
+
+    glBindBuffer(GL_ARRAY_BUFFER, idVBO1);
+    glBufferData(GL_ARRAY_BUFFER, posicionesVertices.size() * sizeof(GLfloat), posicionesVertices.data(), GL_STATIC_DRAW);
+    glEnableVertexAttribArray(0); //Esto es para decir que el contenido que vamos a leer para este VBO ira al "layout = 0" de nuestro vertex shader
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE,3 * sizeof(GLfloat), nullptr); // index es para activar el layout
+
+    glBindBuffer(GL_ARRAY_BUFFER, idVBO2);
+    glBufferData(GL_ARRAY_BUFFER, normales.size() * sizeof(GLfloat), normales.data(), GL_STATIC_DRAW);
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), nullptr);
+
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, idIBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint) * indices.size(), indices.data(), GL_STATIC_DRAW);
+
+    //ToDo Ver porque salta el error 1280 de OpenGL
+    GLenum err = glGetError();
+    if (err != GL_NO_ERROR) {
+        std::cerr << "OpenGL Error: " << err << std::endl;
+    }
+}
+
+/**
+ * Metodo para obtener el id del VAO de la malla
+ * @return El id del VAO
+ */
+GLuint IGV::Malla::getIdVao() {
+    return idVAO;
+}
+
+/**
+ * Metodo para obtener el id del IBO de la malla
+ * @return El id del IBO
+ */
+GLuint IGV::Malla::getIdIbo() {
+    return idIBO;
+}
+
+/**
+ * Destructor de la clase
+ */
+IGV::Malla::~Malla() {
+    std::cout << "Se destruye la malla" << "\n";
+    glDeleteVertexArrays(1, &idVAO);
+    glDeleteBuffers(1, &idIBO);
+    glDeleteBuffers(1, &idVBO1);
+    glDeleteBuffers(1, &idVBO2);
+}
+
+unsigned long IGV::Malla::getNumIndices() {
+    return numIndices;
 }

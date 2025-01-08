@@ -2,7 +2,6 @@
 // Created by secre on 22/12/2024.
 //
 
-#include <GL/glu.h>
 #include "Camara.h"
 
 /**
@@ -41,23 +40,19 @@ IGV::Camara::Camara(GLdouble _angulo, GLdouble _raspecto, GLdouble _znear, GLdou
 }
 
 /**
- * Metodo para aplicar la transformacion de vision, de esta bonita camara, a la escena
+ * Devuelve la matriz de la transformación de visión de la cámara, para llevarla al origen de coordenadas
+ * @return La matriz de visión
  */
-void IGV::Camara::aplicar() {
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
+glm::mat4 IGV::Camara::getMatrizVision() {
+    return glm::lookAt(posicionCamara, lookAt, vectorVertical);
+}
 
-    if( tipo == IGV_PARALELA )
-    {
-        glOrtho(xwmin, xwmax, ywmin, ywmax, znear, zfar);
-    }else if( tipo == IGV_PERSPECTIVA)
-    {
-        gluPerspective(angulo, raspecto, znear, zfar);
-    }
-
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-    gluLookAt(posicionCamara[X], posicionCamara[Y], posicionCamara[Z], lookAt[X], lookAt[Y], lookAt[Z], vectorVertical[X], vectorVertical[Y], vectorVertical[Z]);
+/**
+ * Devuelve la matriz de la transformación de proyección, para llevar las coordenadas de los objetos 3D a el plano 2D
+ * @return La matriz de proyección
+ */
+glm::mat4 IGV::Camara::getMatrizPerspectiva() {
+    return glm::perspective(angulo, raspecto, znear, zfar);
 }
 
 /**

@@ -50,7 +50,8 @@ namespace IGV{
                glm::vec3 _lookAt,
                glm::vec3 _vectorVertical);
 
-        void aplicar();
+        glm::mat4 getMatrizVision();
+        glm::mat4 getMatrizPerspectiva();
         void desplazarSobreEjeY(float desplazamiento);
         void rotarSobreLookAtEjeX(bool antihorario);
         void rotarSobreLookAtEjeY(bool antihorario);
