@@ -162,7 +162,7 @@ namespace IGV {
         glm::mat4 matrizModelado = modelo->getMatrizModelado();
         glm::mat4 matrizModeladoVision = camara->getMatrizVision() * matrizModelado;
         glm::mat4 matrizModeladoVisionPerspectiva = camara->getMatrizPerspectiva() * matrizModeladoVision;
-        
+
         int pos;
         pos = glGetUniformLocation(idSP, "matrizMV");
         if(pos != -1)
@@ -182,6 +182,15 @@ namespace IGV {
             std::vector<Malla> *mallas = modelo->getMallas();
             for(int i = 0 ; i < mallas->size() ; i++)
             {
+                if((*mallas)[i].getTextura())
+                {
+                    (*mallas)[i].getTextura()->aplicar(); // aqui se carga la imagen de textura en memoria
+                    GLint posicion = glGetUniformLocation ( idSP, "muestreador" );
+                    glUniform1i ( posicion, 0 );
+                    glActiveTexture ( GL_TEXTURE0 ); // Activamos la unidad de textura 0, y le asociamos la textura que habíamos configurado
+                }
+
+
                 glBindVertexArray((*mallas)[i].getIdVao());
                 glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, (*mallas)[i].getIdIbo());
                 glDrawElements(GL_TRIANGLES, (*mallas)[i].getNumIndices(), GL_UNSIGNED_INT, nullptr);

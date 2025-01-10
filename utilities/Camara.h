@@ -31,7 +31,8 @@ namespace IGV{
     private:
         tipoCamara tipo = IGV_PARALELA; // El tipo de la camara
         GLdouble xwmin, xwmax, ywmin, ywmax; // Las dimensiones de la camara, si usamos PARALELA
-        GLdouble angulo, raspecto; // El angulo de apertura vertical y la relacion ancho/alto
+        GLdouble angulo, // El angulo de apertura vertical [0, 2Pi],
+        raspecto; // y la relacion ancho/alto
         GLdouble znear, zfar;
         glm::vec3 posicionCamara;
         glm::vec3 lookAt;

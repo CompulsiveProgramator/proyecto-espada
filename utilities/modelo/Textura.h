@@ -15,8 +15,7 @@ namespace IGV {
     class Textura {
     private:
         unsigned int idTextura = 0; //< Id de la textura
-        unsigned int ancho = 0,
-        alto = 0; // Ancho y alto de la textura
+        unsigned ancho = 0, alto = 0; // Ancho y alto de la textura
         std::string nombreTextura;
     public:
         Textura( std::string fichero );

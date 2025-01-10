@@ -172,9 +172,9 @@ int main( int argc, char **argv ) {
 
     // Crear una ventana con contexto OpenGL
     glfwWindowHint ( GLFW_SAMPLES, 4 ); // - Activa antialiasing con 4 muestras.
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);  // Versión mayor (ejemplo: 3.3)
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);  // Core Profile
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);  // Versión mayor (ejemplo: 4.1)
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);  // Versión menor
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);  // Compatibility Profile
 
     // Crear ventana
     GLFWwindow* window = glfwCreateWindow(Constantes::anchoVentana, Constantes::altoVentana, "Proyecto espada", nullptr, nullptr);

@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include "../lodepng.h"
+#include "glad/glad.h"
 #include "Textura.h"
 
 namespace IGV {
@@ -30,17 +31,34 @@ namespace IGV {
             glGenTextures(1, &idTextura);
             glBindTexture(GL_TEXTURE_2D, idTextura);
 
+            /// Le damos la vuelta a la imagen leida, ya que se lee invertida:
+            // La textura se carga del revés, así que vamos a darle la vuelta
+            unsigned char *imgPtr = &texeles[0];
+            int numeroDeComponentesDeColor = 4;
+            int incrementoAncho = ancho * numeroDeComponentesDeColor; // Ancho en bytes
+            unsigned char* top = nullptr;
+            unsigned char* bot = nullptr;
+            unsigned char temp = 0;
+            for (int i = 0; i < alto / 2; i++)
+            { top = imgPtr + i * incrementoAncho;
+                bot = imgPtr + (alto- i- 1) * incrementoAncho;
+                for (int j = 0; j < incrementoAncho; j++)
+                { temp = *top;
+                    *top = *bot;
+                    *bot = temp;
+                    ++top;
+                    ++bot;
+                }
+            }
             //3. Especificamos la textura cargada:
             glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, ancho, alto, 0, GL_RGBA, GL_UNSIGNED_BYTE, texeles.data());
-
-            //4. Modo que hace blending del color del pixel con el color de textura:
-            glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
 
             //5. Repeticion y filtros:
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT); // Repetir en S
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT); // Repetir en T
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); // Filtrado min
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); // Filtrado mag
+            glGenerateMipmap(idTextura);
         }
     }
 
@@ -48,6 +66,7 @@ namespace IGV {
      * Destructor de la clase, que libera la memoria de la textura reservada
      */
     Textura::~Textura() {
+        std::cout << "jaja" << std::endl;
         glDeleteTextures(1, &idTextura);
     }
 

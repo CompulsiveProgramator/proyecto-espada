@@ -69,21 +69,27 @@ IGV::Textura *IGV::Malla::getTextura() {
 void IGV::Malla::crearVao() {
     // Generamos los buffers de OpenGL vacios:
     glGenVertexArrays(1, &idVAO);
-    glGenBuffers(1, &idVBO1);
-    glGenBuffers(1, &idVBO2);
+    glGenBuffers(1, &idVBOpos);
+    glGenBuffers(1, &idVBOnormal);
+    glGenBuffers(1, &idVBOtext);
     glGenBuffers(1, &idIBO);
 
     glBindVertexArray(idVAO);
 
-    glBindBuffer(GL_ARRAY_BUFFER, idVBO1);
+    glBindBuffer(GL_ARRAY_BUFFER, idVBOpos);
     glBufferData(GL_ARRAY_BUFFER, posicionesVertices.size() * sizeof(GLfloat), posicionesVertices.data(), GL_STATIC_DRAW);
     glEnableVertexAttribArray(0); //Esto es para decir que el contenido que vamos a leer para este VBO ira al "layout = 0" de nuestro vertex shader
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE,3 * sizeof(GLfloat), nullptr); // index es para activar el layout
 
-    glBindBuffer(GL_ARRAY_BUFFER, idVBO2);
+    glBindBuffer(GL_ARRAY_BUFFER, idVBOnormal);
     glBufferData(GL_ARRAY_BUFFER, normales.size() * sizeof(GLfloat), normales.data(), GL_STATIC_DRAW);
     glEnableVertexAttribArray(1);
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), nullptr);
+
+    glBindBuffer(GL_ARRAY_BUFFER, idVBOtext);
+    glBufferData(GL_ARRAY_BUFFER, coordenadasTextura.size() * sizeof(GLfloat), coordenadasTextura.data(), GL_STATIC_DRAW);
+    glEnableVertexAttribArray(2);
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), nullptr);
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, idIBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint) * indices.size(), indices.data(), GL_STATIC_DRAW);
@@ -118,8 +124,8 @@ IGV::Malla::~Malla() {
     std::cout << "Se destruye la malla" << "\n";
     glDeleteVertexArrays(1, &idVAO);
     glDeleteBuffers(1, &idIBO);
-    glDeleteBuffers(1, &idVBO1);
-    glDeleteBuffers(1, &idVBO2);
+    glDeleteBuffers(1, &idVBOpos);
+    glDeleteBuffers(1, &idVBOnormal);
 }
 
 unsigned long IGV::Malla::getNumIndices() {

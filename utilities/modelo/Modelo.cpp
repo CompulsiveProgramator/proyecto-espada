@@ -83,8 +83,7 @@ namespace IGV
                 posicionTextura = buscaTextura(mesh->MeshMaterial.map_Kd);
                 if(posicionTextura == -1) // Si no se ha credo la textura, la creamos ;)
                 {
-                    Textura textura(mesh->MeshMaterial.map_Kd);
-                    texturas.push_back(textura);
+                    texturas.emplace_back(mesh->MeshMaterial.map_Kd);
                 }
             }
 

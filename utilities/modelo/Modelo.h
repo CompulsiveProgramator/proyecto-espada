@@ -51,7 +51,7 @@ namespace IGV{
     private:
         GLuint idVAO = 0; // Memoria dinamica disfrazada, ya que en el destructor se "liberan" el VAO, VBOs, e IBO
         GLuint idIBO = 0;
-        GLuint idVBO1 = 0, idVBO2 = 0;
+        GLuint idVBOpos = 0, idVBOnormal = 0, idVBOtext = 0;
         std::vector<GLfloat> posicionesVertices;
         std::vector<GLfloat> normales;
         std::vector<GLfloat> coordenadasTextura;
