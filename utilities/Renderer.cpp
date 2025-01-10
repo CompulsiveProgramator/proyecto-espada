@@ -17,7 +17,7 @@ namespace IGV
         //Camara paralela:
         //        camara = new Camara(-1 * 4.5, 1 * 4.5, -1 * 4.5, 1 * 4.5
 //                , 1, 200, glm::vec3(6,4,8), glm::vec3(0,0,0), glm::vec3(0,1,0));
-        camara = new Camara(60, 1, 1, 200, glm::vec3(6,4,8), glm::vec3(0,0,0), glm::vec3(0,1,0));
+        camara = new Camara(glm::radians(60.0f), 1, 1, 200, glm::vec3(6,4,8), glm::vec3(0,0,0), glm::vec3(0,1,0));
         configuraOpenGL();
     }
 

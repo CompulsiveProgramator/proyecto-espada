@@ -89,10 +89,10 @@ void IGV::Camara::rotarSobreLookAtEjeY(bool antihorario) {
  */
 void IGV::Camara::zoom(bool positivo) {
     if(positivo){
-        angulo += 5.0;
+        angulo += glm::radians(5.0);
     }else{
-        if((angulo - 5) > 0){
-            angulo -= 5.0;
+        if((angulo - glm::radians(5.0)) > 0){
+            angulo -= glm::radians(5.0);
         }
     }
 }
