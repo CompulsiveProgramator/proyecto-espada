@@ -4,6 +4,7 @@
 
 #include <fstream>
 #include <sstream>
+#include <utility>
 #include "../glad/include/glad/glad.h"
 #include "ShaderProgram.h"
 
@@ -11,18 +12,18 @@ namespace IGV {
     /**
      * Constructor por defecto del shader program
      */
-    ShaderProgram::ShaderProgram() {
-        creaShaderProgram();
+    ShaderProgram::ShaderProgram(std::string nombreShader) {
+        creaShaderProgram(nombreShader);
     }
 
     /**
      * Métoodo para crear, compilar y enlazar el shader program
      * Con comprobacion de errores
      */
-    void ShaderProgram::creaShaderProgram() {
+    void ShaderProgram::creaShaderProgram(std::string &nombreShader) {
         try{
             std::string contenido;
-            std::string filename = "miShader";
+            std::string filename = nombreShader;
             GLuint vertexShaderId, fragmentShaderId;
             crearSP(idSP); //Fase 1
 

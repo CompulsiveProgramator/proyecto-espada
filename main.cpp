@@ -5,6 +5,7 @@
 #include "utilities/Renderer.h"
 #include "utilities/GUI.h"
 #include "Constantes.h"
+#include "utilities/lodepng.h"
 
 double lastXpos = 0, lastYpos = 0; //Empezamos a contar desde arriba a la izquierda de la pantalla en glfw, pero en open gl es de la esquina inferior derecha ;)
 bool ratonPulsado = false; // Para saber si el raton ha sido pulsado
@@ -195,6 +196,20 @@ int main( int argc, char **argv ) {
         glfwTerminate ();
         return -3;
     }
+
+    unsigned ancho, alto;
+    std::string rutaLogo = "../imagenes/espada_retocada.png";
+    std::vector<unsigned char> texeles;
+    unsigned int error = lodepng::decode (texeles, ancho, alto, rutaLogo );
+
+    if ( error )
+    {  std::string mensaje = "Error leyendo el archivo ";
+        throw std::runtime_error ( mensaje );
+    }
+
+    GLFWimage logo(ancho, alto, &texeles[0]);
+
+    glfwSetWindowIcon(window, 1, &logo);
 
     // Los callbacks:
     glfwSetWindowRefreshCallback ( window, window_refresh_callback );

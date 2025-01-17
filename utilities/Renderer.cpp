@@ -12,7 +12,7 @@ namespace IGV
     /**
      * Constructor de la ventana
      */
-    IGV::Renderer::Renderer(): shader() {
+    IGV::Renderer::Renderer(): shader("miShader") {
         escena = new Escena();
         //Camara paralela:
         //        camara = new Camara(-1 * 4.5, 1 * 4.5, -1 * 4.5, 1 * 4.5

@@ -19,9 +19,9 @@ namespace IGV {
     private:
         GLuint idSP = 0; // El id del shader program
 
-        void creaShaderProgram();
+        void creaShaderProgram(std::string &nombreShader);
     public:
-        ShaderProgram();
+        ShaderProgram(std::string nombreShader);
         void ejecutarShaderProgram(Modelo *modelo, Camara *camara, std::vector<FuenteLuz*> luces);
 
         //Para compilar un shader al completo:
