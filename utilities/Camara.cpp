@@ -104,3 +104,7 @@ void IGV::Camara::zoom(bool positivo) {
 void IGV::Camara::desplazarSobreEjeY(float desplazamiento) {
         posicionCamara[Y] += desplazamiento;
 }
+
+void IGV::Camara::desplazarLookAtEjeY(float d) {
+    lookAt[Y] += d;
+}

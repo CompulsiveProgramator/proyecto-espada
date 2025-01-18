@@ -64,6 +64,7 @@ void cursorPosition_callback(GLFWwindow *window, double xpos, double ypos) {
                 }else if(tipoMovimiento == CRANE)
                 {
                     IGV::Renderer::getInstancia().getCamara().desplazarSobreEjeY(signo*1);
+                    IGV::Renderer::getInstancia().getCamara().desplazarLookAtEjeY(signo*1);
                 }
 
                 lastYpos = ypos;

@@ -57,6 +57,8 @@ namespace IGV{
         void rotarSobreLookAtEjeX(bool antihorario);
         void rotarSobreLookAtEjeY(bool antihorario);
         void zoom(bool positivo);
+
+        void desplazarLookAtEjeY(float d);
     };
 }
 

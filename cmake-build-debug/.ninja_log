@@ -50,3 +50,12 @@
 2353	3500	7589342769475709	Proyecto_Espada.exe	10a96835a61600cf
 12	2299	7589343781115745	CMakeFiles/Proyecto_Espada.dir/utilities/ventanas/submenus/MenuTransformaciones.cpp.obj	b70e90c8d7b0705c
 2299	3480	7589343803988010	Proyecto_Espada.exe	10a96835a61600cf
+18	1594	7589348315771082	CMakeFiles/Proyecto_Espada.dir/utilities/Renderer.cpp.obj	a5d1544a536c0c83
+48	1798	7589348316072821	CMakeFiles/Proyecto_Espada.dir/utilities/ShaderProgram.cpp.obj	4dbdddf503e66c47
+13	2517	7589348315714583	CMakeFiles/Proyecto_Espada.dir/main.cpp.obj	386793c43965d245
+22	2745	7589348315805532	CMakeFiles/Proyecto_Espada.dir/utilities/Camara.cpp.obj	dcdad702091a8f41
+36	3210	7589348315953071	CMakeFiles/Proyecto_Espada.dir/utilities/ventanas/submenus/MenuTransformaciones.cpp.obj	b70e90c8d7b0705c
+42	3234	7589348316006959	CMakeFiles/Proyecto_Espada.dir/utilities/ventanas/submenus/MenuMaterial.cpp.obj	c024b31b91112a09
+27	3250	7589348315859889	CMakeFiles/Proyecto_Espada.dir/utilities/GUI.cpp.obj	e4b4abe6ea699acc
+31	3303	7589348315898016	CMakeFiles/Proyecto_Espada.dir/utilities/ventanas/VentanaGestion.cpp.obj	942caeaae3b453fb
+3303	4435	7589348348623022	Proyecto_Espada.exe	10a96835a61600cf
