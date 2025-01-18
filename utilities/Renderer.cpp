@@ -12,7 +12,7 @@ namespace IGV
     /**
      * Constructor de la ventana
      */
-    IGV::Renderer::Renderer(): shader("miShader") {
+    IGV::Renderer::Renderer(): shaderTextura("shaderTextura"){
         escena = new Escena();
         //Camara paralela:
         //        camara = new Camara(-1 * 4.5, 1 * 4.5, -1 * 4.5, 1 * 4.5
@@ -55,7 +55,12 @@ namespace IGV
         //escena->chequearMallaSeleccionada();
         if(escena->getModelo())
         {
-            shader.ejecutarShaderProgram(escena->getModelo(), camara, escena->getLuces());
+            if(escena->getModelo()->getTieneTextura())
+            {
+                shaderTextura.ejecutarShaderProgram(escena->getModelo(), camara, escena->getLuzPuntual());
+            }else{
+                //ToDo Shader sin textura
+            }
         }
     }
 

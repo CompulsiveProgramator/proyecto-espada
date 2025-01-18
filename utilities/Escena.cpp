@@ -257,6 +257,7 @@ FuenteLuz *IGV::Escena::getLuzFocal() {
  */
 std::vector<FuenteLuz *> IGV::Escena::getLuces() {
     std::vector<FuenteLuz*> aux;
+    //ToDo luz focal
     aux.push_back(luzPuntual);
     return aux;
 }

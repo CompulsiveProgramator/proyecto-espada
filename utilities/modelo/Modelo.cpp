@@ -73,8 +73,10 @@ namespace IGV
             if(mesh->MeshMaterial.map_Kd.empty())
             {
                 usaTextura = false;
+                tieneTextura = false;
             }else{
                 usaTextura = true;
+                tieneTextura = true;
             }
 
             int posicionTextura;
@@ -233,5 +235,13 @@ namespace IGV
      */
     Textura *Modelo::getTextura(int i) {
         return &texturas[i];
+    }
+
+    /**
+     * Metodo para comprobar si el modelo, tiene textura para saber como pintarlo
+     * @return True o false
+     */
+    bool Modelo::getTieneTextura() {
+        return tieneTextura;
     }
 }

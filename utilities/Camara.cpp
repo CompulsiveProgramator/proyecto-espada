@@ -44,7 +44,10 @@ IGV::Camara::Camara(GLdouble _angulo, GLdouble _raspecto, GLdouble _znear, GLdou
  * @return La matriz de visión
  */
 glm::mat4 IGV::Camara::getMatrizVision() {
-    return glm::lookAt(posicionCamara, lookAt, vectorVertical);
+    // Para recalcular el vector up de la camara, por si se hace un ORBIT por ejemplo
+    glm::vec3 right = glm::normalize(glm::cross(lookAt - posicionCamara, glm::vec3(0,1,0)));
+    glm::vec3 up = glm::normalize(glm::cross(right, lookAt - posicionCamara));
+    return glm::lookAt(posicionCamara, lookAt, up);
 }
 
 /**

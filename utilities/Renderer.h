@@ -24,7 +24,8 @@ namespace IGV{
 
         Escena *escena = nullptr;
         Camara *camara = nullptr;
-        ShaderProgram shader;
+        ShaderProgram shaderTextura;
+//        ShaderProgram shaderSinTextura;
         int ancho_ventana = Constantes::anchoVentana, alto_ventana = Constantes::altoVentana;
         void configuraOpenGL();
     public:
@@ -40,7 +41,6 @@ namespace IGV{
         Malla* getMallaSeleccionada();
         void pasarPosicionCursor(int x, int y);
         void deseleccionarMalla();
-
         void trasladarModeloEjeY(float d);
     };
 }

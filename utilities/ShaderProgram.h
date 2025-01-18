@@ -22,7 +22,7 @@ namespace IGV {
         void creaShaderProgram(std::string &nombreShader);
     public:
         ShaderProgram(std::string nombreShader);
-        void ejecutarShaderProgram(Modelo *modelo, Camara *camara, std::vector<FuenteLuz*> luces);
+        void ejecutarShaderProgram(Modelo *modelo, Camara *camara, FuenteLuz *luzPuntual);
 
         //Para compilar un shader al completo:
         void crearSP(GLuint &handler);
@@ -30,6 +30,10 @@ namespace IGV {
         GLuint creaShaderObject(GLenum shaderType);
         void compilarShaderObject(std::string shaderSourceString, GLuint shaderHandler, GLenum shaderType);
         void enlazarSP(GLuint handler, std::string filename);
+
+        void pasarUniformsLuzPuntual(FuenteLuz *luzPuntual, glm::mat4 matrizV);
+
+        void pasarUniformsMaterial(Material *pMaterial);
     };
 
 } // IGV

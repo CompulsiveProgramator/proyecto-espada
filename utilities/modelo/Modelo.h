@@ -21,6 +21,7 @@ namespace IGV{
      */
     class Modelo {
     private:
+        bool tieneTextura = false;
         std::vector<Malla> mallas; /// Las mallas de triangulos
         std::vector<Material> materiales;
         std::vector<Textura> texturas;
@@ -45,6 +46,7 @@ namespace IGV{
         void aplicarEscaladoEjeY(float proporcion);
         void aplicarEscaladoEjeZ(float proporcion);
         void resetearMatrizModelado();
+        bool getTieneTextura();
     };
 
     class Malla {

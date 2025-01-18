@@ -157,9 +157,9 @@ namespace IGV {
      * Metodo para ejecutar el shader program con el modelo que se le pase, la camara y las luces respectivas
      * @param modelo El modelo a visualizar !
      * @param camara La camara con la que se ve el mundo
-     * @param luces El vector con todas las luces, que iluminan al modelo
+     * @param luzPuntual El vector con todas las luces, que iluminan al modelo
      */
-    void ShaderProgram::ejecutarShaderProgram(Modelo *modelo, Camara *camara, std::vector<FuenteLuz*> luces) {
+    void ShaderProgram::ejecutarShaderProgram(Modelo *modelo, Camara *camara, FuenteLuz *luzPuntual) {
         glm::mat4 matrizModelado = modelo->getMatrizModelado();
         glm::mat4 matrizModeladoVision = camara->getMatrizVision() * matrizModelado;
         glm::mat4 matrizModeladoVisionPerspectiva = camara->getMatrizPerspectiva() * matrizModeladoVision;
@@ -177,12 +177,16 @@ namespace IGV {
             glUniformMatrix4fv(pos, 1, GL_FALSE, &matrizModeladoVisionPerspectiva[0][0]);
         }
 
+        // Pasar uniforms de la luz puntual
+        pasarUniformsLuzPuntual(luzPuntual, camara->getMatrizVision());
+
         try{
             glUseProgram(idSP);
 
             std::vector<Malla> *mallas = modelo->getMallas();
             for(int i = 0 ; i < mallas->size() ; i++)
             {
+                pasarUniformsMaterial((*mallas)[i].getMaterial());
                 if((*mallas)[i].getTextura())
                 {
                     (*mallas)[i].getTextura()->aplicar(); // aqui se carga la imagen de textura en memoria
@@ -199,6 +203,45 @@ namespace IGV {
         }catch(std::exception &e)
         {
             std::cout << e.what();
+        }
+    }
+
+    /**
+     * Para pasarle al shader program, los uniforms de la luz
+     */
+    void ShaderProgram::pasarUniformsLuzPuntual(FuenteLuz *luzPuntual, glm::mat4 matrizV) {
+        GLuint pos;
+        pos = glGetUniformLocation(idSP, "posicionLuz");
+        if(pos)
+        {
+            glm::vec3 posicionLuzEspacioVision = glm::vec3(matrizV * glm::vec4(luzPuntual->getPosicion(), 1));
+            glUniform3fv(pos, 1, &posicionLuzEspacioVision[0]);
+        }
+
+        pos = glGetUniformLocation(idSP, "Id");
+        if(pos)
+        {
+            glUniform3fv(pos, 1, &luzPuntual->getDifuso()[0]);
+        }
+
+        pos = glGetUniformLocation(idSP, "Is");
+        if(pos)
+        {
+            glUniform3fv(pos, 1, &luzPuntual->getEspecular()[0]);
+        }
+    }
+
+    /**
+     * Para pasarle los uniforms del material, al shader program
+     * ( Color difuso, especular, exponente de phong, ... )
+     * @param pMaterial Un puntero al material
+     */
+    void ShaderProgram::pasarUniformsMaterial(Material *pMaterial) {
+        GLuint pos;
+        pos = glGetUniformLocation(idSP, "Ks");
+        if(pos)
+        {
+            glUniform3fv(pos, 1, &pMaterial->getKs()[0]);
         }
     }
 } // IGV
