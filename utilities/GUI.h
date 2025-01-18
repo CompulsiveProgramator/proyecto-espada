@@ -27,6 +27,7 @@ namespace IGV{
         void pasarMallaSeleccionada(Malla *Malla);
         void pasarLuzPuntual(FuenteLuz *luzP);
         void pasarLuzFocal(FuenteLuz *luzF);
+        void pasarModelo(Modelo *modelo);
     };
 }
 

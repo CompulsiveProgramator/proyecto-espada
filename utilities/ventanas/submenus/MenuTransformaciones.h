@@ -14,6 +14,7 @@ namespace IGV{
      */
     class MenuTransformaciones: public Menu{
     private:
+        Modelo *miModelo = nullptr;
         // Para las traslaciones:
         float traslacionX = 0;
         float traslacionY = 0;
@@ -31,6 +32,7 @@ namespace IGV{
     public:
         MenuTransformaciones() = default;
         void refrescarMenu() override;
+        void asignarModelo(Modelo *modelo);
     };
 }
 

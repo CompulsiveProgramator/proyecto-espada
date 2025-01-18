@@ -237,6 +237,7 @@ int main( int argc, char **argv ) {
     while (!glfwWindowShouldClose(window)) {
         IGV::Renderer::getInstancia().refrescar();
         IGV::GUI::getInstancia().refrescar();
+        IGV::GUI::getInstancia().pasarModelo(IGV::Renderer::getInstancia().getEscena().getModelo());
         IGV::GUI::getInstancia().pasarMallaSeleccionada(IGV::Renderer::getInstancia().getMallaSeleccionada());
         IGV::GUI::getInstancia().pasarLuzPuntual(IGV::Renderer::getInstancia().getEscena().getLuzPuntual());
         IGV::GUI::getInstancia().pasarLuzFocal(IGV::Renderer::getInstancia().getEscena().getLuzFocal());

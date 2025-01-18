@@ -88,5 +88,13 @@ namespace IGV{
     void GUI::pasarLuzFocal(FuenteLuz *luzF) {
         ventanaGestion.pasarLuzFocal(luzF);
     }
+
+    /**
+     * Metodo para pasar el modelo/espada elegido a la ventana de gestion
+     * @param modelo El modelo en escena
+     */
+    void GUI::pasarModelo(Modelo *modelo) {
+        ventanaGestion.pasarModelo(modelo);
+    }
 }
 

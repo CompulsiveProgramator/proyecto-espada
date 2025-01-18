@@ -119,4 +119,13 @@ namespace IGV{
     void VentanaGestion::pasarLuzFocal(FuenteLuz *luzF) {
         menuIluminacion.pasarLuzFocal(luzF);
     }
+
+    /**
+     * Metodo para pasar el modelo/espada al menu de transformacion de modelo
+     * @param modelo El modelo
+     */
+    void VentanaGestion::pasarModelo(Modelo *modelo) {
+        menuTransformaciones.asignarModelo(modelo);
+    }
+
 }
