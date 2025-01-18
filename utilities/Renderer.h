@@ -25,7 +25,7 @@ namespace IGV{
         Escena *escena = nullptr;
         Camara *camara = nullptr;
         ShaderProgram shaderTextura;
-//        ShaderProgram shaderSinTextura;
+        ShaderProgram shaderSinTextura;
         int ancho_ventana = Constantes::anchoVentana, alto_ventana = Constantes::altoVentana;
         void configuraOpenGL();
     public:

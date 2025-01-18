@@ -243,5 +243,11 @@ namespace IGV {
         {
             glUniform3fv(pos, 1, &pMaterial->getKs()[0]);
         }
+
+        pos = glGetUniformLocation(idSP, "Kd");
+        if(pos)
+        {
+            glUniform3fv(pos, 1, &pMaterial->getKd()[0]);
+        }
     }
 } // IGV

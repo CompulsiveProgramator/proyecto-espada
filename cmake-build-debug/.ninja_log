@@ -78,3 +78,13 @@
 2109	3232	7589413732247195	Proyecto_Espada.exe	10a96835a61600cf
 13	1119	7589414410872512	CMakeFiles/Proyecto_Espada.dir/utilities/ShaderProgram.cpp.obj	4dbdddf503e66c47
 1119	2260	7589414421924281	Proyecto_Espada.exe	10a96835a61600cf
+59	4698	7589436071153981	CMakeFiles/Proyecto_Espada.dir/utilities/Renderer.cpp.obj	a5d1544a536c0c83
+48	6653	7589436071041281	CMakeFiles/Proyecto_Espada.dir/main.cpp.obj	386793c43965d245
+116	7946	7589436071726221	CMakeFiles/Proyecto_Espada.dir/utilities/ventanas/submenus/MenuMaterial.cpp.obj	c024b31b91112a09
+71	8051	7589436071273794	CMakeFiles/Proyecto_Espada.dir/utilities/GUI.cpp.obj	e4b4abe6ea699acc
+100	8099	7589436071566231	CMakeFiles/Proyecto_Espada.dir/utilities/ventanas/submenus/MenuTransformaciones.cpp.obj	b70e90c8d7b0705c
+83	8293	7589436071390467	CMakeFiles/Proyecto_Espada.dir/utilities/ventanas/VentanaGestion.cpp.obj	942caeaae3b453fb
+8294	10741	7589436153496305	Proyecto_Espada.exe	10a96835a61600cf
+31	2562	7589437767304900	CMakeFiles/Proyecto_Espada.dir/utilities/Renderer.cpp.obj	a5d1544a536c0c83
+42	2870	7589437767411395	CMakeFiles/Proyecto_Espada.dir/utilities/ShaderProgram.cpp.obj	4dbdddf503e66c47
+2870	5324	7589437795684585	Proyecto_Espada.exe	10a96835a61600cf
