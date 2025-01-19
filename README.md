@@ -15,3 +15,7 @@ gracias a los "shaders".
 Para la siguiente versión que será la 2.0 , la aplicación migrará completamente de Compatibility a Core Profile
 
 *"Per aspera, ad astra"*
+
+## 18/01/2024 Versión 2.0
+Ya esta disponible la versión de la app implementada puramente con Open GL Core Profile, con el uso de shaders. Se puede visualizar cualquier espada
+de las disponibles en el menú
