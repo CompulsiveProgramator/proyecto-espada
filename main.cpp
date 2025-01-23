@@ -241,7 +241,7 @@ int main( int argc, char **argv ) {
         IGV::GUI::getInstancia().pasarModelo(IGV::Renderer::getInstancia().getEscena().getModelo());
         IGV::GUI::getInstancia().pasarMallaSeleccionada(IGV::Renderer::getInstancia().getMallaSeleccionada());
         IGV::GUI::getInstancia().pasarLuzPuntual(IGV::Renderer::getInstancia().getEscena().getLuzPuntual());
-        IGV::GUI::getInstancia().pasarLuzFocal(IGV::Renderer::getInstancia().getEscena().getLuzFocal());
+        //IGV::GUI::getInstancia().pasarLuzFocal(IGV::Renderer::getInstancia().getEscena().getLuzFocal());
         glfwSwapBuffers(window);
         glfwPollEvents();
     }

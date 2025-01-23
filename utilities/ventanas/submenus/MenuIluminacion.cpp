@@ -40,21 +40,21 @@ void IGV::MenuIluminacion::refrescarMenu() {
 
         }
 
-        if(luzFocal)
-        {
-            if(ImGui::TreeNode("Luz focal"))
-            {
-                ImGui::Checkbox("Activa", &encendidaFocal);
-
-                if(encendidaFocal)
-                {
-                    luzFocal->encender();
-                }else{
-                    luzFocal->apagar();
-                }
-                ImGui::TreePop();
-            }
-        }
+//        if(luzFocal)
+//        {
+//            if(ImGui::TreeNode("Luz focal"))
+//            {
+//                ImGui::Checkbox("Activa", &encendidaFocal);
+//
+//                if(encendidaFocal)
+//                {
+//                    luzFocal->encender();
+//                }else{
+//                    luzFocal->apagar();
+//                }
+//                ImGui::TreePop();
+//            }
+//        }
     }
 }
 

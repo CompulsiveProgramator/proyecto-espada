@@ -218,17 +218,34 @@ namespace IGV {
             glUniform3fv(pos, 1, &posicionLuzEspacioVision[0]);
         }
 
-        pos = glGetUniformLocation(idSP, "Id");
-        if(pos)
+        if(luzPuntual->esta_encendida())
         {
-            glUniform3fv(pos, 1, &luzPuntual->getDifuso()[0]);
+            pos = glGetUniformLocation(idSP, "Id");
+            if(pos)
+            {
+                glUniform3fv(pos, 1, &luzPuntual->getDifuso()[0]);
+            }
+
+            pos = glGetUniformLocation(idSP, "Is");
+            if(pos)
+            {
+                glUniform3fv(pos, 1, &luzPuntual->getEspecular()[0]);
+            }
+        }else{
+            glm::vec3 ceros = {0,0,0};
+            pos = glGetUniformLocation(idSP, "Id");
+            if(pos)
+            {
+                glUniform3fv(pos, 1, &ceros[0]);
+            }
+
+            pos = glGetUniformLocation(idSP, "Is");
+            if(pos)
+            {
+                glUniform3fv(pos, 1, &ceros[0]);
+            }
         }
 
-        pos = glGetUniformLocation(idSP, "Is");
-        if(pos)
-        {
-            glUniform3fv(pos, 1, &luzPuntual->getEspecular()[0]);
-        }
     }
 
     /**

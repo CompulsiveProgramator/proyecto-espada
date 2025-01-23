@@ -88,3 +88,7 @@
 31	2562	7589437767304900	CMakeFiles/Proyecto_Espada.dir/utilities/Renderer.cpp.obj	a5d1544a536c0c83
 42	2870	7589437767411395	CMakeFiles/Proyecto_Espada.dir/utilities/ShaderProgram.cpp.obj	4dbdddf503e66c47
 2870	5324	7589437795684585	Proyecto_Espada.exe	10a96835a61600cf
+52	1665	7593519566393453	CMakeFiles/Proyecto_Espada.dir/utilities/ShaderProgram.cpp.obj	4dbdddf503e66c47
+36	2213	7593519566243317	CMakeFiles/Proyecto_Espada.dir/main.cpp.obj	386793c43965d245
+45	2353	7593519566327969	CMakeFiles/Proyecto_Espada.dir/utilities/ventanas/submenus/MenuIluminacion.cpp.obj	5f65b775242755ff
+2353	3844	7593519589406469	Proyecto_Espada.exe	10a96835a61600cf

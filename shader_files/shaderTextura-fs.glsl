@@ -22,8 +22,8 @@ vec3 luzPuntual()
     vec3 r = reflect(-l, n);
     vec3 vectorACamara = normalize(-posicionF); // Porque la camara esta en el (0,0,0) jeje
     vec3 colorDifuso, colorEspecular;
-    colorDifuso = color * max( dot( l, n ), 0);
-    colorEspecular = Is * Ks * max( dot( vectorACamara, r ), 0);
+    colorDifuso = color * Id * max( dot( l, n ), 0);
+    //colorEspecular = Is * Ks * max( dot( vectorACamara, r ), 0);
     return colorDifuso;
 }
 
